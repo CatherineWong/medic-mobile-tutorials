@@ -32,7 +32,7 @@ headerLayout.content.add(new Surface({
 
 headerLayout.footer.add(new Surface ({
 	size: [undefined, 50],
-	content: "Subtitles/Captions",
+	content: "Lalita visits Maya.",
 	properties: {
 		fontFamily: 'Helvetica',
 		fontSize: '30px',
