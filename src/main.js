@@ -3,9 +3,9 @@
 var Engine = famous.core.Engine;
 var Modifier = famous.core.Modifier;
 var Transform = famous.core.Transform;
-var Surface = famous.core.Surface
+var Surface = famous.core.Surface;
 var ImageSurface = famous.surfaces.ImageSurface;
-var HeaderFooterLayout = famous.views.HeaderFooterLayout
+var HeaderFooterLayout = famous.views.HeaderFooterLayout;
 var StateModifier = famous.modifiers.StateModifier;
 
 
@@ -58,7 +58,8 @@ var sidebar = new Surface({
 // your app here
 var logo = new ImageSurface({
     size: [200, 200],
-    content: 'http://code.famo.us/assets/famous_logo.png',
+    //content: 'http://code.famo.us/assets/famous_logo.png',
+    content: 'img/Medic-Mobile-Logo.jpeg',
     classes: ['double-sided']
 });
 
