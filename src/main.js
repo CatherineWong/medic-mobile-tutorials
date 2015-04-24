@@ -58,7 +58,8 @@ var sidebar = new Surface({
 // your app here
 var logo = new ImageSurface({
     size: [200, 200],
-    content: 'http://code.famo.us/assets/famous_logo.png',
+    //content: 'http://code.famo.us/assets/famous_logo.png',
+    content: 'img/body.png',
     classes: ['double-sided']
 });
 
