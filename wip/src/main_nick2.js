@@ -54,12 +54,19 @@ var captionText = [
 		"5) Nick",
 		"6) DDDDOOOONNNNEEEE!"
 	]];
+//these are style components
+var sidebarWidth = 290;
+sidebar_backgroundColor = '#D8D8D8';
+var fontType = 'Avenir';
+var headerBarHeight = 80;
+var headerFontSize = '40px';
+var captionFontSize = '40px';
+
+// These two variables change often and dictate what tutorial and what caption the user is on
 var captionTextIndex = 0;
 var tutorialIndex = 0;
 
-var sidebarWidth = 280;
-sidebar_backgroundColor = '#D8D8D8';
-
+/* This first chunk of code creates the view */
 //make sideBar
 var sideBarContent = '<div class="button incomplete selected" onclick="selectTutorial(this)">' + tutorialNames[0] + '</div>';
 for (var i = 1; i < tutorialNames.length; i++) {
@@ -70,23 +77,24 @@ var sidebar = new Surface({
 	<div id="tutorials"> Tutorials </div>' + sideBarContent,
 	size: [sidebarWidth, undefined], 
 	properties: {
+		boxShadow: '1px 0px 2px #888888',
 		backgroundColor: sidebar_backgroundColor,
+		fontFamily: fontType,
 		borderRightStyle: 'solid',
-		fontFamily: 'Avenir',
 		borderRightWidth: '1px',
-		borderRightColor: '#585858'
+		borderRightColor: '#848484'
 	}
 });
 mainContext.add(sidebar);
 
 //make headerBar
 var headerBar = new Surface ({
-	size: [screen.width - sidebarWidth, 80],
+	size: [screen.width - sidebarWidth, headerBarHeight],
 	content: tutorialNames[0],
 	properties: {
 		backgroundColor: 'black',
-		fontFamily: 'Avenir',
-		fontSize: '40px',
+		fontFamily: fontType,
+		fontSize: headerFontSize,
 		lineHeight: '80px',
 		textAlign: 'center',
 		color: "white",
@@ -106,7 +114,10 @@ var progressBar = new Surface ({
 	size: [screen.width - sidebarWidth, 20],
 	content: '<div>'+content+'</div>',
 	properties: {
-		boxShadow: '0px 5px 1px #888888',
+		boxShadow: '0px 2px 2px #888888',
+		/*borderBottom: 'solid',
+		borderBottomWidth: '1px',
+		borderBottomColor: '#848484',*/
 		marginTop: headerBar.size[1] + 'px',
 		marginLeft: sidebarWidth + 'px'
 	}
@@ -150,8 +161,8 @@ var caption = new Surface ({
 	size: [screen.width - sidebarWidth, 80],
 	content: captionText[tutorialIndex][captionTextIndex],
 	properties: {
-		fontFamily: 'Avenir',
-		fontSize: '40px',
+		fontFamily: fontType,
+		fontSize: captionFontSize,
 		lineHeight: '80px',
 		textAlign: 'center',
 		marginLeft: sidebarWidth + 'px'
@@ -164,8 +175,8 @@ var placeCaption = new StateModifier({
 mainContext.add(placeCaption).add(caption);
 
 
-
-//functions and such
+/* This second chunk of code manages functionality */
+//this function is used in multiple places to manage the events that happen when one changes tutorials
 function changeTutorial() {
 	captionTextIndex = 0;
 	var numSteps = captionText[tutorialIndex].length;;
@@ -179,6 +190,8 @@ function changeTutorial() {
 	headerBar.setContent(tutorialNames[tutorialIndex]);
 }
 
+//This function handles the event when a user clicks on a tutorial on the sideBar
+//the me parameter is the button that is clicked
 function selectTutorial(me) {
 	var buttons = document.getElementsByClassName("button");
     for (var i = 0; i < buttons.length; i++){
@@ -191,9 +204,9 @@ function selectTutorial(me) {
     changeTutorial();
 }
 
+//this function manages what happens when you click the nextArrow
+//clicking next at the end of a tutorial goes to the BEGINNING of the NEXT tutorial
 nextArrow.on('click', function() {
-  	
-
   	if (captionTextIndex + 1 < captionText[tutorialIndex].length) {
   		captionTextIndex++;
   		caption.setContent(captionText[tutorialIndex][captionTextIndex]);
@@ -201,7 +214,8 @@ nextArrow.on('click', function() {
   		uncompletedBars[0].className = 'completedStep';
   	}
   	else if (tutorialIndex + 1 == captionText.length){
-		//do nothing
+		var completedTutorial = document.getElementsByClassName('button selected');
+  		completedTutorial[0].className = 'button completed';
 	}
   	else {
   		var completedTutorial = document.getElementsByClassName('button selected');
@@ -209,31 +223,18 @@ nextArrow.on('click', function() {
   		completedTutorial[0].className = 'button completed';
   		var buttons = document.getElementsByClassName("button");
   		for (var i = 0; i < buttons.length; i++){
-  			//alert(buttons[i].className);
   			if (buttons[i] == buttonBefore) {
-  				//alert("momma we made it!");
   				buttons[i + 1].className = buttons[i+1].className + ' selected';
   			}
-	    	/*buttons[i].className = buttons[i].className.replace('selected', '');
-	    	if (buttons[i] == me) {
-	    		tutorialIndex = i;
-	    	}*/
 	    }
-  		/*var uncompletedTutorial = document.getElementsByClassName('button incomplete');
-  		uncompletedTutorial[0].className = 'button incomplete selected';*/
-  		/*var buttons = document.getElementsByClassName("button");
-	    for (var i = 0; i < buttons.length; i++){
-	    	if (buttons[i] == completedTutorial[0]) {
-	    		//tutorialIndex = i;// + 1;
-	    		alert("it happened");
-	    		buttons[i+1].className = 'button selected';
-	    	}
-	    }*/
 	    tutorialIndex++;
   		changeTutorial();
   	}
   	
 });
+
+//this function manages what happens when you click the backArrow
+//clicking back at the beginning of a tutorial goes to the BEGINNING of the PREVIOUS tutorial
 backArrow.on('click', function() {
   	if (captionTextIndex > 0) {
   		captionTextIndex--;
@@ -241,7 +242,17 @@ backArrow.on('click', function() {
   		var completedBars = document.getElementsByClassName('completedStep');  
   		completedBars[completedBars.length - 1].className = 'uncompletedStep';
   	}
-  	else {
-  		//do nothing
+  	else if (tutorialIndex >  0){
+  		var completedTutorial = document.getElementsByClassName('button selected');
+  		var buttonAfter = completedTutorial[0];
+  		completedTutorial[0].className = completedTutorial[0].className.replace('selected','');
+  		var buttons = document.getElementsByClassName("button");
+  		for (var i = 0; i < buttons.length; i++){
+  			if (buttons[i] == buttonAfter) {
+  				buttons[i - 1].className = buttons[i - 1].className + ' selected';
+  			}
+	    }
+	    tutorialIndex--;
+  		changeTutorial();
   	}
 });

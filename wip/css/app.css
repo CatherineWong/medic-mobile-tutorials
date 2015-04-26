@@ -28,9 +28,11 @@ html {
 	float: left;
 }
 #logo {
-	width: 278px;
-	height: 79px;
+	width: 260px;
+	height: 65px;
 	padding-bottom:15px;
+	margin-left: 15px;
+	margin-right: 1px;
 	border-bottom: 1px solid;
 	border-bottom-color: #A4A4A4;
 	/*
