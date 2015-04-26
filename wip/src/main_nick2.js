@@ -50,6 +50,7 @@ var sidebar = new Surface({
 		borderRightColor: '#585858'
 	}
 });
+
 //boxShadow: '10px 10px 10px #888888'
 //,marginTop: headerBar.size[1] + 'px'
 function select(me) {
@@ -82,11 +83,11 @@ var headerBar = new Surface ({
 //boxShadow: '0px 5px 1px #888888',
 mainContext.add(headerBar);
 
-var content = '';
 var numSteps = 10;
 var stepWidth = headerBar.size[0] / numSteps - (0.2 * numSteps);
-for (var i=0; i < numSteps; i++) {
-	content += '<div style="width:' + stepWidth + 'px;" class="progressStep"></div>'
+var content = '<div style="width:' + stepWidth + 'px;" class="completedStep"></div>';
+for (var i=1; i < numSteps; i++) {
+	content += '<div style="width:' + stepWidth + 'px;" class="uncompletedStep"></div>'
 }
 var progressBar = new Surface ({
 	size: [screen.width - sidebarWidth, 20],
@@ -98,6 +99,79 @@ var progressBar = new Surface ({
 	}
 })
 mainContext.add(progressBar);
+
+
+
+var backArrow = new ImageSurface({
+    size: [50, 50],
+    content: 'src/back_arrow.svg',
+    properties: {
+		marginLeft: (sidebarWidth + 50) + 'px',
+		marginTop: (headerBar.size[1]+progressBar.size[1]) + 'px'
+	}
+});
+
+var placeBackArrow = new StateModifier({
+  	align: [0, 0.4],
+  	origin: [0.5, 0.5]
+});
+mainContext.add(placeBackArrow).add(backArrow);
+
+var nextArrow = new ImageSurface({
+    size: [50, 50],
+    content: 'src/next_arrow.svg',
+    properties: {
+		marginLeft: (sidebarWidth + headerBar.size[0] - 50) + 'px',
+		marginTop: (headerBar.size[1]+progressBar.size[1]) + 'px'
+	}
+});
+
+var placeNextArrow = new StateModifier({
+  	align: [0, 0.4],
+  	origin: [0.5, 0.5]
+});
+mainContext.add(placeNextArrow).add(nextArrow);
+
+var captionText = [
+	"1) Hi Cathy",
+	"2) Sup Cathy",
+	"3) Yo Cathy",
+	"4) Hello Cathy"];
+var captionTextIndex = 0;
+
+var caption = new Surface ({
+	size: [screen.width - sidebarWidth, 80],
+	content: captionText[captionTextIndex],
+	properties: {
+		fontFamily: 'Avenir',
+		fontSize: '40px',
+		lineHeight: '80px',
+		textAlign: 'center',
+		marginLeft: sidebarWidth + 'px'
+	}
+})
+var placeCaption = new StateModifier({
+  	align: [0, 1],
+  	origin: [0, 1]
+});
+
+nextArrow.on('click', function() {
+  	captionTextIndex++;
+  	caption.setContent(captionText[captionTextIndex]);
+  	var uncompletedBars = document.getElementsByClassName('uncompletedStep');  
+  	uncompletedBars[0].className = 'completedStep';
+});
+backArrow.on('click', function() {
+  	captionTextIndex--;
+  	caption.setContent(captionText[captionTextIndex]);
+  	var completedBars = document.getElementsByClassName('completedStep');  
+  	completedBars[completedBars.length - 1].className = 'uncompletedStep';
+});
+
+//boxShadow: '0px 5px 1px #888888',
+mainContext.add(placeCaption).add(caption);
+
+/*
 
 headerLayout.footer.add(new Surface ({
 	size: [screen.width - sidebarWidth, 80],
