@@ -12,35 +12,64 @@ var StateModifier = famous.modifiers.StateModifier;
 // create the main context
 var mainContext = Engine.createContext();
 
+var captionText = [
+	[
+		"1) Hi Cathy",
+		"2) Sup Cathy",
+		"3) Yo Cathy",
+		"4) Hello Cathy",
+		"5) Nick",
+		"6) NICK",
+		"7) hersh",
+		"8) HERSHEY",
+		"9) nhershey",
+		"10) DDDDOOOONNNNEEEE!"
+	],
+	[
+		"1) Hi Cathy",
+		"2) Sup Cathy",
+		"3) Yo Cathy",
+		"4) Hello Cathy",
+		"5) DDDDOOOONNNNEEEE!"
+	],
+	[
+		"1) Hi Cathy",
+		"2) Sup Cathy",
+		"3) Yo Cathy",
+		"4) Hello Cathy",
+		"5) Nick",
+		"6) NICK",
+		"7) DDDDOOOONNNNEEEE!"
+	],
+	[
+		"1) Hi Cathy",
+		"2) Sup Cathy",
+		"3) Yo Cathy",
+		"4) Hello Cathy",
+		"5) Nick",
+		"6) DDDDOOOONNNNEEEE!"
+	]];
+var captionTextIndex = 0;
+var tutorialIndex = 0;
 
 /* break */
 
 var sidebarWidth = 280;
-
-/*var logo = new ImageSurface({
-	content: 'Medic-Mobile-logo+name_300.png',
-	size: [sidebarWidth, headerBar.size[1]],
-	properties: {
-		backgroundColor: '#33CC33',
-		borderStyle: 'solid',
-		borderWidth: '1px',
-		borderColor: '#585858',
-		boxShadow: '0px 5px 1px #888888'
-	}
-});
-mainContext.add(logo);*/
-
-
 sidebar_backgroundColor = '#D8D8D8';
 sidebar_hoverColor = '#DB5320';
+
+var tutorialNames = [
+	"1) Overview",
+	"2) Training your Clinic",
+	"3) Getting Going",
+	"4) Learn More"];
+var content = '<div class="button selected" onclick="select(this)">' + tutorialNames[0] + '</div>';
+for (var i = 1; i < tutorialNames.length; i++) {
+	content += '<div class="button incomplete" onclick="select(this)">' + tutorialNames[i] + '</div>'
+}
 var sidebar = new Surface({
-	content: '\
-	<img id="logo" src="Medic-Mobile-logo+name_300.png"> \
-	<div id="tutorials"> TUTORIALS </div> \
-	<div class="button completed" onclick="select(this)"> 1) Overview </div> \
-	<div class="button selected" onclick="select(this)"> 2) Training your Clinic </div> \
-	<div class="button" onclick="select(this)"> 3) Getting Going </div> \
-	<div class="button" onclick="select(this)"> 4) Learn More </div>',
+	content: '<img id="logo" src="Medic-Mobile-logo+name_300.png"> \
+	<div id="tutorials"> Tutorials </div>' + content,
 	size: [sidebarWidth, undefined], 
 	properties: {
 		backgroundColor: sidebar_backgroundColor,
@@ -57,19 +86,28 @@ function select(me) {
 	var buttons = document.getElementsByClassName("button");
     for (var i = 0; i < buttons.length; i++){
     	buttons[i].className = buttons[i].className.replace('selected', '');
+    	if (buttons[i] == me) {
+    		tutorialIndex = i;
+    	}
     }
     me.className = me.className + " selected";
     headerBar.setContent(me.innerHTML);
+    var numSteps = captionText[tutorialIndex].length;;
+	var stepWidth = headerBar.size[0] / numSteps - (0.4 * numSteps);
+	var content = '<div style="width:' + stepWidth + 'px;" class="completedStep"></div>';
+	for (var i=1; i < numSteps; i++) {
+		content += '<div style="width:' + stepWidth + 'px;" class="uncompletedStep"></div>'
+	}
+	progressBar.setContent('<div>'+content+'</div>');
+	caption.setContent(captionText[tutorialIndex][captionTextIndex]);
 }
 
 /**/
 mainContext.add(sidebar);
 
-var headerLayout = new HeaderFooterLayout();
-
 var headerBar = new Surface ({
 	size: [screen.width - sidebarWidth, 80],
-	content: "Tutorials",
+	content: tutorialNames[0],
 	properties: {
 		backgroundColor: 'black',
 		fontFamily: 'Avenir',
@@ -83,7 +121,7 @@ var headerBar = new Surface ({
 //boxShadow: '0px 5px 1px #888888',
 mainContext.add(headerBar);
 
-var numSteps = 10;
+var numSteps = captionText[tutorialIndex].length;
 var stepWidth = headerBar.size[0] / numSteps - (0.2 * numSteps);
 var content = '<div style="width:' + stepWidth + 'px;" class="completedStep"></div>';
 for (var i=1; i < numSteps; i++) {
@@ -132,16 +170,11 @@ var placeNextArrow = new StateModifier({
 });
 mainContext.add(placeNextArrow).add(nextArrow);
 
-var captionText = [
-	"1) Hi Cathy",
-	"2) Sup Cathy",
-	"3) Yo Cathy",
-	"4) Hello Cathy"];
-var captionTextIndex = 0;
+
 
 var caption = new Surface ({
 	size: [screen.width - sidebarWidth, 80],
-	content: captionText[captionTextIndex],
+	content: captionText[tutorialIndex][captionTextIndex],
 	properties: {
 		fontFamily: 'Avenir',
 		fontSize: '40px',
@@ -154,12 +187,33 @@ var placeCaption = new StateModifier({
   	align: [0, 1],
   	origin: [0, 1]
 });
+mainContext.add(placeCaption).add(caption);
 
 nextArrow.on('click', function() {
   	captionTextIndex++;
-  	caption.setContent(captionText[captionTextIndex]);
-  	var uncompletedBars = document.getElementsByClassName('uncompletedStep');  
-  	uncompletedBars[0].className = 'completedStep';
+  	if (captionTextIndex < captionText[tutorialIndex].length) {
+  		caption.setContent(captionText[tutorialIndex][captionTextIndex]);
+  		var uncompletedBars = document.getElementsByClassName('uncompletedStep');  
+  		uncompletedBars[0].className = 'completedStep';
+  	}
+  	else {
+  		captionTextIndex = 0;
+  		tutorialIndex++;
+  		var completedTutorial = document.getElementsByClassName('button selected');
+  		completedTutorial[0].className = 'button completed';
+  		var uncompletedTutorial = document.getElementsByClassName('button incomplete');
+  		uncompletedTutorial[0].className = 'button selected';
+
+  		var numSteps = captionText[tutorialIndex].length;;
+		var stepWidth = headerBar.size[0] / numSteps - (0.4 * numSteps);
+		var content = '<div style="width:' + stepWidth + 'px;" class="completedStep"></div>';
+		for (var i=1; i < numSteps; i++) {
+			content += '<div style="width:' + stepWidth + 'px;" class="uncompletedStep"></div>'
+		}
+		progressBar.setContent('<div>'+content+'</div>');
+		caption.setContent(captionText[tutorialIndex][captionTextIndex]);
+  	}
+  	
 });
 backArrow.on('click', function() {
   	captionTextIndex--;
@@ -169,7 +223,7 @@ backArrow.on('click', function() {
 });
 
 //boxShadow: '0px 5px 1px #888888',
-mainContext.add(placeCaption).add(caption);
+
 
 /*
 
