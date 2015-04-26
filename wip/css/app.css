@@ -7,3 +7,42 @@ html {
     -webkit-backface-visibility: visible;
     backface-visibility: visible;
 }
+
+#tutorials {
+	padding: 5px;
+	text-align: center;
+	font-size: 36px;
+	font-weight: bold;
+}
+
+.progressStep {
+	height:20px;
+	background-color: green;
+	border: 1px solid #444444;
+	float: left;
+}
+#logo {
+	width: 278px;
+	height: 79px;
+	padding-bottom:15px;
+	border-bottom: 1px solid;
+	border-bottom-color: #444444;
+	/*
+	background-color: #64A2C8;
+	box-shadow: 0px 5px 1px #888888;*/
+}
+.button {
+	font-size: 20px;
+	padding: 20px;	
+	cursor: pointer;
+}
+.selected {
+	background-color: #FFF;
+	font-weight: bold;
+}
+.completed { 
+	text-decoration: line-through;
+}
+.button:hover {
+	background-color: #DB5320;
+}
