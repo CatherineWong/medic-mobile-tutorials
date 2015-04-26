@@ -18,13 +18,13 @@ html {
 .uncompletedStep {
 	height:20px;
 	background-color: #B5BD21;
-	border: 1px solid #444444;
+	/*border: 1px solid #444444;*/
 	float: left;
 }
 .completedStep {
 	height:20px;
 	background-color: #E9AA22;
-	border: 1px solid #444444;
+	/*border: 1px solid #444444;*/
 	float: left;
 }
 #logo {
