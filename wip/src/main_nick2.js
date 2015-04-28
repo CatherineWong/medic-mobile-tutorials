@@ -161,7 +161,7 @@ mainContext.add(placeNextArrow).add(nextArrow);
 
 // make caption
 var caption = new Surface ({
-	size: [screen.width - sidebarWidth, 80],
+	size: [$(window).width() - sidebarWidth, 80],
 	content: captionText[tutorialIndex][captionTextIndex],
 	properties: {
 		fontFamily: fontType,
