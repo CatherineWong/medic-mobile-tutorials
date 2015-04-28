@@ -1,5 +1,8 @@
+
 /*global famous*/
 // import dependencies
+
+// TODO: switch this to use Require.js instead
 var Engine = famous.core.Engine;
 var Modifier = famous.core.Modifier;
 var Transform = famous.core.Transform;
@@ -8,6 +11,10 @@ var ImageSurface = famous.surfaces.ImageSurface;
 var HeaderFooterLayout = famous.views.HeaderFooterLayout;
 var StateModifier = famous.modifiers.StateModifier;
 
+
+// TODO: Create a get next function in main, that determines where we are and has a switch statement to explicitly run or 
+// reverse run a given animation. Each animation should have: a function that returns its caption text; when added, 
+// have an init method that reads in and stores these arrays and determines progress bar length (ex. init tutorial 1)
 
 // create the main context
 var mainContext = Engine.createContext();
@@ -19,7 +26,7 @@ var tutorialNames = [
 
 var captionText = [
 	[
-		"1) Hi Cathy",
+		"1) Hi Cathy is Cathy",
 		"2) Sup Cathy",
 		"3) Yo Cathy",
 		"4) Hello Cathy",
@@ -54,6 +61,8 @@ var captionText = [
 		"5) Nick",
 		"6) DDDDOOOONNNNEEEE!"
 	]];
+
+
 //these are style components
 var sidebarWidth = 290;
 sidebar_backgroundColor = '#D8D8D8';
@@ -67,6 +76,7 @@ var captionTextIndex = 0;
 var tutorialIndex = 0;
 
 /* This first chunk of code creates the view */
+
 //make sideBar
 var sideBarContent = '<div class="button incomplete selected" onclick="selectTutorial(this)">' + tutorialNames[0] + '</div>';
 for (var i = 1; i < tutorialNames.length; i++) {
@@ -176,6 +186,7 @@ mainContext.add(placeCaption).add(caption);
 
 
 /* This second chunk of code manages functionality */
+
 //this function is used in multiple places to manage the events that happen when one changes tutorials
 function changeTutorial() {
 	captionTextIndex = 0;
@@ -207,6 +218,7 @@ function selectTutorial(me) {
 //this function manages what happens when you click the nextArrow
 //clicking next at the end of a tutorial goes to the BEGINNING of the NEXT tutorial
 nextArrow.on('click', function() {
+	loadNextTutorialAnimation();
   	if (captionTextIndex + 1 < captionText[tutorialIndex].length) {
   		captionTextIndex++;
   		caption.setContent(captionText[tutorialIndex][captionTextIndex]);
@@ -236,6 +248,7 @@ nextArrow.on('click', function() {
 //this function manages what happens when you click the backArrow
 //clicking back at the beginning of a tutorial goes to the BEGINNING of the PREVIOUS tutorial
 backArrow.on('click', function() {
+	loadPreviousTutorialAnimation();
   	if (captionTextIndex > 0) {
   		captionTextIndex--;
   		caption.setContent(captionText[tutorialIndex][captionTextIndex]);
@@ -256,3 +269,47 @@ backArrow.on('click', function() {
   		changeTutorial();
   	}
 });
+
+
+/** Define the animations for the tutorials: add each tutorial animation below the next**/
+// This function handles advancement through the tutorial animations
+function loadNextTutorialAnimation() {
+	runAnimation1_1();
+}
+
+// This function handles back progress through the tutorials
+function loadPreviousTutorialAnimation() {
+	reverseAnimation1_1();
+}
+
+/** Tutorial #1 **/
+
+// Animation 1.1
+var surface = new Surface({
+	  size: [100, 100],
+	  properties: {
+	    color: 'white',
+	    textAlign: 'center',
+	    backgroundColor: '#FA5C4F'
+	  }
+	});
+var stateModifier = new StateModifier();
+
+function runAnimation1_1() {
+	mainContext.add(stateModifier).add(surface);
+		stateModifier.setTransform(
+		  Transform.translate(100, 300, 0),
+		  { duration : 1000, curve: 'easeInOut' }
+		);
+}
+
+function reverseAnimation1_1() {
+	stateModifier.halt();
+	stateModifier.setTransform(
+		  Transform.translate(-100, -300, 0),
+		  { duration : 1000, curve: 'easeInOut' }
+		);
+	// remove the surface: TODO: use a completion callback to remove
+	//surface.render = function() {return null;}
+}
+
