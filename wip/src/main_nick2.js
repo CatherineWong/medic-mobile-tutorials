@@ -130,7 +130,8 @@ var backArrow = new ImageSurface({
     content: 'src/back_arrow.svg',
     properties: {
 		marginLeft: (sidebarWidth + 50) + 'px',
-		marginTop: (headerBar.size[1]+progressBar.size[1]) + 'px'
+		marginTop: (headerBar.size[1]+progressBar.size[1]) + 'px',
+		cursor: 'pointer'
 	}
 });
 
@@ -146,7 +147,8 @@ var nextArrow = new ImageSurface({
     content: 'src/next_arrow.svg',
     properties: {
 		//marginLeft: (sidebarWidth + headerBar.size[0] - 50) + 'px',
-		marginTop: (headerBar.size[1]+progressBar.size[1]) + 'px'
+		marginTop: (headerBar.size[1]+progressBar.size[1]) + 'px',
+		cursor: 'pointer'
 	}
 });
 
