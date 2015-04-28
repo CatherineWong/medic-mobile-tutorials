@@ -145,13 +145,13 @@ var nextArrow = new ImageSurface({
     size: [50, 50],
     content: 'src/next_arrow.svg',
     properties: {
-		marginLeft: (sidebarWidth + headerBar.size[0] - 50) + 'px',
+		//marginLeft: (sidebarWidth + headerBar.size[0] - 50) + 'px',
 		marginTop: (headerBar.size[1]+progressBar.size[1]) + 'px'
 	}
 });
 
 var placeNextArrow = new StateModifier({
-  	align: [0, 0.4],
+  	align: [0.95, 0.4],
   	origin: [0.5, 0.5]
 });
 mainContext.add(placeNextArrow).add(nextArrow);
