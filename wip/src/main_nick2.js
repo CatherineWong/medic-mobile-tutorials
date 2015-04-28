@@ -1,5 +1,6 @@
 /*global famous*/
 // import dependencies
+
 var Engine = famous.core.Engine;
 var Modifier = famous.core.Modifier;
 var Transform = famous.core.Transform;
@@ -89,7 +90,7 @@ mainContext.add(sidebar);
 
 //make headerBar
 var headerBar = new Surface ({
-	size: [screen.width - sidebarWidth, headerBarHeight],
+	size: [$(window).width() - sidebarWidth, headerBarHeight],
 	content: tutorialNames[0],
 	properties: {
 		backgroundColor: 'black',
