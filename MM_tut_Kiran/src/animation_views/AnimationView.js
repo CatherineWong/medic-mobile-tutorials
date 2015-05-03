@@ -38,13 +38,13 @@ define(function(require, exports, module) {
 		var placeForeground = new StateModifier({
 			align: [0.5, 0.5],
 			origin: [0.5, 0.5],
-			transform : Transform.translate(150, 30, 0)
+			transform : Transform.translate(143, 30, 0)
 		});
 
 		var placeMiddleground = new StateModifier ({
 			align: [0.5, 0.5],
 			origin: [0.5, 0.5],
-			transform : Transform.translate(150, 30, 0)
+			transform : Transform.translate(143, 30, 0)
 		});
 
 		var foreground = new ImageSurface ({
