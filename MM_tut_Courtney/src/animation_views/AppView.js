@@ -22,13 +22,13 @@ define(function(require, exports, module) {
 	//var animationview = new AnimationView();
 	
 	var layout = new HeaderFooterLayout();
-	// var hariIntroView = new HariIntroView();
-	// var animationview = new AnimationView();
+	var hariIntroView = new HariIntroView();
+	var animationview = new AnimationView();
 	var mayaIntroView = new MayaIntroView();
 	var zoomOutIntroView = new ZoomOutIntroView();
-	// var lalitaIntroView = new LalitaIntroView();
+	var lalitaIntroView = new LalitaIntroView();
 	var zoomOutTransitionView = new ZoomOutTransitionView();
-	layout.content.add(zoomOutIntroView);
+	layout.content.add(hariIntroView);
 	mainContext.add(layout);
 
 	//layout.content.add(animationview);
