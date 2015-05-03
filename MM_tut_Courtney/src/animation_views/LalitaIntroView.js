@@ -1,4 +1,4 @@
-/* MayaIntroView -- view where Maya is first introduced. */
+/* LailaIntroView -- view where Maya is first introduced. */
 
 
 define(function(require, exports, module) {
@@ -10,22 +10,22 @@ define(function(require, exports, module) {
 	var ImageSurface = require('famous/surfaces/ImageSurface');
 	var Easing = require('famous/transitions/Easing');
 
-   function MayaIntroView () {
+   function LalitaIntroView () {
    		View.apply(this, arguments);
    		_createBackground.call(this);
    		_createHuts.call(this);
-   		_createMaya.call(this);
+   		_createLalita.call(this);
    }
 
-   MayaIntroView.prototype = Object.create(View.prototype);
-   MayaIntroView.prototype.constructor = MayaIntroView;
+   LalitaIntroView.prototype = Object.create(View.prototype);
+   LalitaIntroView.prototype.constructor = LalitaIntroView;
 
-   MayaIntroView.prototype.returnCaptionArray = function() {
-   		var captionText = ["This is Maya. She’s just learned that she is pregnant for the first time. Congratulations, Maya!"];
+   LalitaIntroView.prototype.returnCaptionArray = function() {
+   		var captionText = ["This is Lalita. Lalita is a community health worker in Maya’s village."];
    		return captionText;	
    }
 
-   MayaIntroView.DEFAULT_OPTIONS = {};
+   LalitaIntroView.DEFAULT_OPTIONS = {};
 
 
 	function _createBackground() {
@@ -80,22 +80,8 @@ define(function(require, exports, module) {
 		var placeHut= new StateModifier ({
 			align : [0.5, 0.5],
 			origin : [0.0, 0.25],
-			// sets initial x- and y-scale to be 0
-			transform: Transform.scale(0, 0, 1),
-			// sets inital opacity to 0
-			opacity: 0
 		});
 		this.add(placeHut).add(hut);
-
-		// animates x- and y-scale to 1
-		placeHut.setTransform(
-			Transform.scale(1, 1, 1),
-			{ duration : 1000, curve: Easing.outBack }
-		);
-		// animates opacity to 1
-		placeHut.setOpacity(1, {
-			duration: 1000, curve: Easing.outBack
-		});
 
 		var chickens = new ImageSurface ({
 			size : [50, 50],
@@ -105,28 +91,8 @@ define(function(require, exports, module) {
 		var placeChickens= new StateModifier ({
 			align : [0.5, 0.7],
 			origin : [0.2, 0.8],
-			// sets initial x- and y-scale to be 0
-			transform: Transform.scale(0, 0, 1),
-			// sets inital opacity to 0
-			opacity: 0
 		});
 		this.add(placeChickens).add(chickens);
-
-		// animates x- and y-scale to 1
-		placeChickens.setTransform(
-			Transform.scale(1, 1, 1),
-			{ duration : 1000, curve: Easing.outBack }
-		);
-		// animates opacity to 1
-		placeChickens.setOpacity(1, {
-			duration: 1000, curve: Easing.outBack
-		});
-
-	}
-
-
-
-	function _createMaya() {
 
 		var maya = new ImageSurface ({
 			size : [130, 130],
@@ -142,11 +108,34 @@ define(function(require, exports, module) {
 
 		placeMaya.setTransform(
 			Transform.translate(350, 0, 0),
-			{duration: 2000, curve: 'easeInOut'}
+			{duration: 10, curve: 'easeInOut'}
 		);
 
 	}
 
-	module.exports = MayaIntroView;
+
+
+	function _createLalita() {
+		var lalita = new ImageSurface ({
+			size : [130, 130],
+			content: 'animation-assets/chw-nepali.svg'
+		});
+
+		var placeLalita= new StateModifier ({
+			align : [0.2, 0.78],
+			origin: [0.0, 0.2]
+		});
+		this.add(placeLalita).add(lalita);
+
+
+		placeLalita.setTransform(
+			Transform.translate(800, 0, 0),
+			{duration: 2000, curve: 'easeInOut'}
+		);
+
+
+	}
+
+	module.exports = LalitaIntroView;
 
 });

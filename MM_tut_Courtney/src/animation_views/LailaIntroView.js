@@ -1,4 +1,4 @@
-/* MayaIntroView -- view where Maya is first introduced. */
+/* LailaIntroView -- view where Maya is first introduced. */
 
 
 define(function(require, exports, module) {
@@ -10,22 +10,22 @@ define(function(require, exports, module) {
 	var ImageSurface = require('famous/surfaces/ImageSurface');
 	var Easing = require('famous/transitions/Easing');
 
-   function MayaIntroView () {
+   function LailaIntroView () {
    		View.apply(this, arguments);
    		_createBackground.call(this);
    		_createHuts.call(this);
-   		_createMaya.call(this);
+   		_createLaila.call(this);
    }
 
-   MayaIntroView.prototype = Object.create(View.prototype);
-   MayaIntroView.prototype.constructor = MayaIntroView;
+   LailaIntroView.prototype = Object.create(View.prototype);
+   LailaIntroView.prototype.constructor = LailaIntroView;
 
-   MayaIntroView.prototype.returnCaptionArray = function() {
-   		var captionText = ["This is Maya. She’s just learned that she is pregnant for the first time. Congratulations, Maya!"];
+   LailaIntroView.prototype.returnCaptionArray = function() {
+   		var captionText = ["This is Hari. Hari is the clinic director at a rural health post."];
    		return captionText;	
    }
 
-   MayaIntroView.DEFAULT_OPTIONS = {};
+   LailaIntroView.DEFAULT_OPTIONS = {};
 
 
 	function _createBackground() {
@@ -122,12 +122,6 @@ define(function(require, exports, module) {
 			duration: 1000, curve: Easing.outBack
 		});
 
-	}
-
-
-
-	function _createMaya() {
-
 		var maya = new ImageSurface ({
 			size : [130, 130],
 			content: 'animation-assets/anc-trimester1.svg'
@@ -142,11 +136,19 @@ define(function(require, exports, module) {
 
 		placeMaya.setTransform(
 			Transform.translate(350, 0, 0),
-			{duration: 2000, curve: 'easeInOut'}
+			{duration: 100, curve: 'easeInOut'}
 		);
 
 	}
 
-	module.exports = MayaIntroView;
+
+
+	function _createMaya() {
+
+
+
+	}
+
+	module.exports = LailaIntroView;
 
 });

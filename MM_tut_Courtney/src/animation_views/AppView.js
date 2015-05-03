@@ -13,6 +13,7 @@ define(function(require, exports, module) {
 	var AnimationView = require('animation_views/AnimationView'); //correct way to get the view
 	var HariIntroView = require('animation_views/HariIntroView'); 
 	var MayaIntroView = require('animation_views/MayaIntroView'); 
+	var LalitaIntroView = require('animation_views/LalitaIntroView'); 
 	// create the main context
 	var mainContext = Engine.createContext();
 	//var animationview = new AnimationView();
@@ -20,8 +21,9 @@ define(function(require, exports, module) {
 	var layout = new HeaderFooterLayout();
 	// var hariIntroView = new HariIntroView();
 	// var animationview = new AnimationView();
-	var mayaIntroView = new MayaIntroView();
-	layout.content.add(mayaIntroView);
+	// var mayaIntroView = new MayaIntroView();
+	var lalitaIntroView = new LalitaIntroView();
+	layout.content.add(lalitaIntroView);
 	mainContext.add(layout);
 
 	//layout.content.add(animationview);
