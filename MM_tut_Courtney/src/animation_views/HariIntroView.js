@@ -76,21 +76,21 @@ define(function(require, exports, module) {
 		var place_health_center= new StateModifier ({
 			align : [0.5, 0.5],
 			origin : [0.5, 0.5],
-		   // sets initial x- and y-scale to be 0
-		    transform: Transform.scale(0, 0, 1),
-		    // sets inital opacity to 0
-		    opacity: 0
+			// sets initial x- and y-scale to be 0
+			transform: Transform.scale(0, 0, 1),
+			// sets inital opacity to 0
+			opacity: 0
 		});
 		this.add(place_health_center).add(health_center);
 
 		// animates x- and y-scale to 1
 		place_health_center.setTransform(
-		    Transform.scale(1, 1, 1),
-		    { duration : 1000, curve: Easing.outBack }
+			Transform.scale(1, 1, 1),
+			{ duration : 1000, curve: Easing.outBack }
 		);
 		// animates opacity to 1
 		place_health_center.setOpacity(1, {
-		    duration: 1000, curve: Easing.outBack
+			duration: 1000, curve: Easing.outBack
 		});
 	}
 
@@ -103,11 +103,16 @@ define(function(require, exports, module) {
 		});
 
 		var placeHari = new StateModifier ({
-			align: [0.6, 0.5],
+			align: [0.0, 0.5],
 			origin: [0.0, -0.2]
 		});
 
 		this.add(placeHari).add(hari);
+
+		placeHari.setTransform(
+			Transform.translate(700, 0, 0),
+			{duration: 2000, curve: 'easeInOut'}
+		);
 
 	}
 
