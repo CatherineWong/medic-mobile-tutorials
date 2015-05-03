@@ -14,6 +14,9 @@ define(function(require, exports, module) {
 	var HariIntroView = require('animation_views/HariIntroView'); 
 	var MayaIntroView = require('animation_views/MayaIntroView'); 
 	var LalitaIntroView = require('animation_views/LalitaIntroView'); 
+	var ZoomOutIntroView = require('animation_views/ZoomOutIntroView'); 
+
+	var ZoomOutTransitionView = require('animation_views/ZoomOutTransitionView'); 
 	// create the main context
 	var mainContext = Engine.createContext();
 	//var animationview = new AnimationView();
@@ -22,7 +25,9 @@ define(function(require, exports, module) {
 	// var hariIntroView = new HariIntroView();
 	// var animationview = new AnimationView();
 	var mayaIntroView = new MayaIntroView();
+	var zoomOutIntroView = new ZoomOutIntroView();
 	// var lalitaIntroView = new LalitaIntroView();
+	var zoomOutTransitionView = new ZoomOutTransitionView();
 	layout.content.add(mayaIntroView);
 	mainContext.add(layout);
 

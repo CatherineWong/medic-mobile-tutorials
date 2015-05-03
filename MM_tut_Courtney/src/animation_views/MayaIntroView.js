@@ -124,17 +124,15 @@ define(function(require, exports, module) {
 
 	}
 
-
-
 	function _createMaya() {
 
 		var maya = new ImageSurface ({
-			size : [200, 200],
+			size : [250, 250],
 			content: 'animation-assets/anc-trimester1.svg'
 		});
 
 		var placeMaya= new StateModifier ({
-			align : [0.2, 0.6],
+			align : [0.2, 0.55],
 			origin: [0.4, 0.0]
 		});
 		this.add(placeMaya).add(maya);
