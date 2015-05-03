@@ -73,13 +73,13 @@ define(function(require, exports, module) {
 	function _createHuts() {
 
 		var hut = new ImageSurface ({
-			size : [400, 500],
-			content: 'animation-assets/village-yurt.svg'
+			size : [1100, 1100],
+			content: 'animation-assets/single-yurt.svg'
 		});
 
 		var placeHut= new StateModifier ({
 			align : [0.5, 0.5],
-			origin : [0.0, 0.25],
+			origin : [0.4, 0.6],
 			// sets initial x- and y-scale to be 0
 			transform: Transform.scale(0, 0, 1),
 			// sets inital opacity to 0
@@ -98,13 +98,13 @@ define(function(require, exports, module) {
 		});
 
 		var chickens = new ImageSurface ({
-			size : [50, 50],
+			size : [150, 150],
 			content: 'animation-assets/chickens.svg'
 		});
 
 		var placeChickens= new StateModifier ({
-			align : [0.5, 0.7],
-			origin : [0.2, 0.8],
+			align : [0.35, 0.8],
+			origin : [0.9, 0.3],
 			// sets initial x- and y-scale to be 0
 			transform: Transform.scale(0, 0, 1),
 			// sets inital opacity to 0
@@ -129,19 +129,19 @@ define(function(require, exports, module) {
 	function _createMaya() {
 
 		var maya = new ImageSurface ({
-			size : [130, 130],
+			size : [200, 200],
 			content: 'animation-assets/anc-trimester1.svg'
 		});
 
 		var placeMaya= new StateModifier ({
-			align : [0.2, 0.78],
-			origin: [0.0, 0.2]
+			align : [0.2, 0.6],
+			origin: [0.4, 0.0]
 		});
 		this.add(placeMaya).add(maya);
 
 
 		placeMaya.setTransform(
-			Transform.translate(350, 0, 0),
+			Transform.translate(300, 0, 0),
 			{duration: 2000, curve: 'easeInOut'}
 		);
 

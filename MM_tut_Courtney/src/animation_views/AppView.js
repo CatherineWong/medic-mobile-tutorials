@@ -21,9 +21,9 @@ define(function(require, exports, module) {
 	var layout = new HeaderFooterLayout();
 	// var hariIntroView = new HariIntroView();
 	// var animationview = new AnimationView();
-	// var mayaIntroView = new MayaIntroView();
-	var lalitaIntroView = new LalitaIntroView();
-	layout.content.add(lalitaIntroView);
+	var mayaIntroView = new MayaIntroView();
+	// var lalitaIntroView = new LalitaIntroView();
+	layout.content.add(mayaIntroView);
 	mainContext.add(layout);
 
 	//layout.content.add(animationview);
