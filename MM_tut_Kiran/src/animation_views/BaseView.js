@@ -13,8 +13,8 @@ define(function(require, exports, module) {
    		View.apply(this, arguments);
 
    		_createBackground.call(this);
-   		_createHuts.call(this);
-   		_createPath.call(this);
+   		//_createHuts.call(this);
+   		//_createPath.call(this);
    }
 
    BaseView.prototype = Object.create(View.prototype);
@@ -25,8 +25,9 @@ define(function(require, exports, module) {
 
 	function _createBackground() {
 		var background = new ImageSurface ({
-			size : [undefined, undefined],
-			content: 'animation-assets/scene-1.svg'
+			//size : [undefined, undefined],
+			content: 'animation-assets/scene-example-1.png'
+			//content: 'animation-assets/scene-1.svg'
 		});
 
 		var middleground = new ImageSurface ({
@@ -54,14 +55,15 @@ define(function(require, exports, module) {
 		});
 
 		var placeBackground = new StateModifier({
-			align: [-0.25, 0],
-			origin: [0, 0],
-			transform: Transform.behind
+			//transform: Transform.scale(2, 2, 2)
+			//align: [-0.25, 0],
+			//origin: [0, 0],
+			//transform: Transform.behind
 		});
 
 		this.add(placeBackground).add(background);
-		this.add(placeMiddleground).add(middleground);
-		this.add(placeForeground).add(foreground);
+		//this.add(placeMiddleground).add(middleground);
+		//this.add(placeForeground).add(foreground);
 
 
 	}
