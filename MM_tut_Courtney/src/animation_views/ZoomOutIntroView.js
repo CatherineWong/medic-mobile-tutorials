@@ -27,8 +27,6 @@ define(function(require, exports, module) {
 
    ZoomOutIntroView.DEFAULT_OPTIONS = {};
 
-
-
 	function _createAndMoveBackground() {
 
 		var background = new ImageSurface ({

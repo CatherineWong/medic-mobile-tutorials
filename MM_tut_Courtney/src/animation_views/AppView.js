@@ -28,7 +28,7 @@ define(function(require, exports, module) {
 	var zoomOutIntroView = new ZoomOutIntroView();
 	// var lalitaIntroView = new LalitaIntroView();
 	var zoomOutTransitionView = new ZoomOutTransitionView();
-	layout.content.add(zoomOutTransitionView);
+	layout.content.add(mayaIntroView);
 	mainContext.add(layout);
 
 	//layout.content.add(animationview);
