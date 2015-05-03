@@ -14,7 +14,7 @@ define(function(require, exports, module) {
 
         _createLayout.call(this);
         _createHeader.call(this);
-        //_createBody.call(this);
+        _createBody.call(this);
 
         _setListeners.call(this);
 
@@ -114,14 +114,14 @@ define(function(require, exports, module) {
         this.layout.content.add(this.sideSurface);
     }*/
 
-    /*function _createBody() {
+    function _createBody() {
         var baseView = new BaseView();
 
         var baseModifier = new StateModifier ({
             transform: Transform.behind
         });
         this.layout.content.add(baseModifier).add(baseView);
-    }*/
+    }
 
     function _setListeners() {
         this.hamburgerSurface.on('click', function() {
