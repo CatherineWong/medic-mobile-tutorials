@@ -95,12 +95,12 @@ define(function(require, exports, module) {
 		this.add(placeChickens).add(chickens);
 
 		var maya = new ImageSurface ({
-			size : [200, 200],
+			size : [250, 250],
 			content: 'animation-assets/anc-trimester1.svg'
 		});
 
 		var placeMaya= new StateModifier ({
-			align : [0.2, 0.6],
+			align : [0.2, 0.55],
 			origin: [0.4, 0.0]
 		});
 		this.add(placeMaya).add(maya);
@@ -117,19 +117,19 @@ define(function(require, exports, module) {
 
 	function _createLalita() {
 		var lalita = new ImageSurface ({
-			size : [200, 200],
+			size : [250, 250],
 			content: 'animation-assets/chw-nepali.svg'
 		});
 
 		var placeLalita= new StateModifier ({
-			align : [0.2, 0.6],
+			align : [1.2, 0.55],
 			origin: [0.4, 0.0]
 		});
 		this.add(placeLalita).add(lalita);
 
 
 		placeLalita.setTransform(
-			Transform.translate(700, 0, 0),
+			Transform.translate(-570, 0, 0),
 			{duration: 2000, curve: 'easeInOut'}
 		);
 
