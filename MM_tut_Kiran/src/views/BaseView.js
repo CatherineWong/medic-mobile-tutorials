@@ -8,6 +8,7 @@ define(function(require, exports, module) {
 	var Transform = require('famous/core/Transform');
 	var StateModifier = require('famous/modifiers/StateModifier');
 	var ImageSurface = require('famous/surfaces/ImageSurface');
+	//var HariIntroView = require('animation/HariIntroView'); 
 
    function BaseView () {
    		View.apply(this, arguments);
