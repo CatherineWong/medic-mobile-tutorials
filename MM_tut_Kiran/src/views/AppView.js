@@ -5,8 +5,8 @@ define(function(require, exports, module) {
     var StateModifier = require('famous/modifiers/StateModifier');
     var EventHandler  = require('famous/core/EventHandler');
 
-    var PageView = require('views/PageView');
-    var MenuView = require('views/MenuView');
+    var PageView = require('animation_views/PageView');
+    var MenuView = require('animation_views/MenuView');
     var StripData = require('Data/StripData');
 
     function AppView() {

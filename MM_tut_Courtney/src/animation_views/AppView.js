@@ -10,7 +10,7 @@ define(function(require, exports, module) {
 	var HeaderFooterLayout = require('famous/views/HeaderFooterLayout');
 	var StateModifier = require('famous/modifiers/StateModifier');
 
-	var AnimationView = require('views/AnimationView'); //correct way to get the view
+	var AnimationView = require('animation_views/AnimationView'); //correct way to get the view
 	var HariIntroView = require('animation_views/HariIntroView'); 
 	var MayaIntroView = require('animation_views/MayaIntroView'); 
 	var LalitaIntroView = require('animation_views/LalitaIntroView'); 
@@ -28,7 +28,7 @@ define(function(require, exports, module) {
 	var zoomOutIntroView = new ZoomOutIntroView();
 	var lalitaIntroView = new LalitaIntroView();
 	var zoomOutTransitionView = new ZoomOutTransitionView();
-	layout.content.add(mayaIntroView);
+	layout.content.add(hariIntroView);
 	mainContext.add(layout);
 
 	//layout.content.add(animationview);

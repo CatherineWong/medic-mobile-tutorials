@@ -7,7 +7,7 @@ define(function(require, exports, module) {
 
     var ImageSurface = require('famous/surfaces/ImageSurface');
     var FastClick       = require('famous/inputs/FastClick');
-    var BaseView = require('views/BaseView');
+    var BaseView = require('animation_views/BaseView');
 
     function PageView() {
         View.apply(this, arguments);
