@@ -8,14 +8,15 @@ define(function(require, exports, module) {
     var ImageSurface = require('famous/surfaces/ImageSurface');
     var FastClick       = require('famous/inputs/FastClick');
     var BaseView = require('animation_views/BaseView');
+    var HariIntroView = require('animation_views/animation_slides/HariIntroView');
 
     function PageView() {
         View.apply(this, arguments);
 
         _createLayout.call(this);
-        _createHeader.call(this);
         _createBody.call(this);
-
+        //_loadStartingAnimation.call(this); //Uncomment to add animation to body
+        _createHeader.call(this);
         _setListeners.call(this);
 
     }
@@ -116,11 +117,20 @@ define(function(require, exports, module) {
 
     function _createBody() {
         var baseView = new BaseView();
-
+        var hariIntroView = new HariIntroView();
         var baseModifier = new StateModifier ({
             transform: Transform.behind
         });
         this.layout.content.add(baseModifier).add(baseView);
+    }
+
+    function _loadStartingAnimation() {
+        var animationModifier = new StateModifier ({
+            transform: Transform.behind
+        });
+
+        var hariIntroView = new HariIntroView();
+        this.layout.content.add(animationModifier).add(hariIntroView);
     }
 
     function _setListeners() {
