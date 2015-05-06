@@ -42,7 +42,6 @@ define(function(require, exports, module) {
         this.add(this.menuModifier).add(anotherModifier).add(this.menuView);
     }
 
-
     function _setListeners() {
         this.pageView.on('menuToggle', function(){
             console.log('menu toggle!');
