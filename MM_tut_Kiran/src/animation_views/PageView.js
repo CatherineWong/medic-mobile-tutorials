@@ -1,13 +1,13 @@
 define(function(require, exports, module) {
-    var View          = require('famous/core/View');
-    var Surface       = require('famous/core/Surface');
-    var Transform     = require('famous/core/Transform');
-    var StateModifier = require('famous/modifiers/StateModifier');
-    var HeaderFooter = require('famous/views/HeaderFooterLayout');
+    var View            = require('famous/core/View');
+    var Surface         = require('famous/core/Surface');
+    var Transform       = require('famous/core/Transform');
+    var StateModifier   = require('famous/modifiers/StateModifier');
+    var HeaderFooter    = require('famous/views/HeaderFooterLayout');
 
-    var ImageSurface = require('famous/surfaces/ImageSurface');
+    var ImageSurface    = require('famous/surfaces/ImageSurface');
     var FastClick       = require('famous/inputs/FastClick');
-    var BaseView = require('animation_views/BaseView');
+    var BaseView        = require('animation_views/BaseView');
 
     function PageView() {
         View.apply(this, arguments);
