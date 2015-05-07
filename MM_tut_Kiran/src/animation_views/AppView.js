@@ -8,6 +8,7 @@ define(function(require, exports, module) {
     var PageView = require('animation_views/PageView');
     var MenuView = require('animation_views/MenuView');
     var StripData = require('Data/StripData');
+    
 
     function AppView() {
         View.apply(this, arguments);
@@ -46,6 +47,8 @@ define(function(require, exports, module) {
         this.pageView.on('menuToggle', function(){
             console.log('menu toggle!');
         }.bind(this));
+
+
     }
 
     function _setListeners() {
@@ -76,6 +79,7 @@ define(function(require, exports, module) {
             curve: 'easeOut'
         });
     };
+
 
     module.exports = AppView;
 });

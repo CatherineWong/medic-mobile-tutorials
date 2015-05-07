@@ -4,22 +4,25 @@ define(function(require, exports, module) {
     var Transform       = require('famous/core/Transform');
     var StateModifier   = require('famous/modifiers/StateModifier');
     var HeaderFooter    = require('famous/views/HeaderFooterLayout');
+    var Engine = require('famous/core/Engine');
 
     var ImageSurface    = require('famous/surfaces/ImageSurface');
     var FastClick       = require('famous/inputs/FastClick');
     var BaseView = require('animation_views/BaseView');
     var HariIntroView = require('animation_views/animation_slides/HariIntroView');
     var AnimationController = require('controllers/AnimationController'); // Controller for the tutorial loading logic
+    var animationController = new AnimationController(); //Global animation controller
 
     function PageView() {
         View.apply(this, arguments);
+         _debugAnimationController.call(this); //Strictly a debugging method
 
         _createLayout.call(this);
         _createBody.call(this);
         _loadStartingAnimation.call(this); //Uncomment to add base animation to body
         _createHeader.call(this);
         _setListeners.call(this);
-        _debugAnimationController.call(this); //Strictly a debugging method
+       
 
     }
 
@@ -38,13 +41,12 @@ define(function(require, exports, module) {
     
     function _debugAnimationController() {
         console.log("Demonstrating Animation Controller with Debugger: PageView");
-        this.animationController = new AnimationController();
-        this.animationController.printDebugOutput(); //Prints current tutorial and slide number
+        animationController.printDebugOutput(); //Prints current tutorial and slide number
         // Demonstration: get the length of a given tutorial for progress bar
-        console.log("Current tutorial length: ", this.animationController.getTutorialLength(0));
+        console.log("Current tutorial length: ", animationController.getTutorialLength(0));
         // Demo: call on next button push to adjust counters appropriately
-        this.animationController.incrementTutorialCounts();
-        this.animationController.printDebugOutput();
+        animationController.incrementTutorialCounts();
+        animationController.printDebugOutput();
     }
 
     function _createLayout() {
@@ -154,6 +156,19 @@ define(function(require, exports, module) {
 
 
     } 
+
+    /**
+     * Handle keyboard inputs to advance through tutorials
+     */
+     Engine.on('keydown', function(e) {
+        if(e.which === 39) { //Right arrow key
+            animationController.incrementTutorialCounts();
+            animationController.printDebugOutput();
+        } else if (e.which === 37) { //Left arrow key
+            animationController.decrementTutorialCounts();
+            animationController.printDebugOutput();
+        }
+     }); 
 
     module.exports = PageView;
 });

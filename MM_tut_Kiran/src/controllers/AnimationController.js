@@ -52,8 +52,12 @@ define(function(require, exports, module) {
         if (currTutorialSlide > 0) {
             currTutorialSlide--;
         } else {
-            currTutorial = (currTutorial - 1) % tutorialLengths.length;
-            currTutorialSlide = tutorialLengths[currTutorial] - 1;
+            if (currTutorial == 0) {
+                currTutorial = tutorialLengths.length - 1;
+            } else {
+                currTutorial--;
+            }
+            currTutorialSlide = 0; //Start at the beginning of the previous tutorial
         }
     }
 
