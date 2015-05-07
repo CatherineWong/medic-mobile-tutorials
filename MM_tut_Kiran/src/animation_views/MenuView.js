@@ -19,7 +19,7 @@ define(function(require, exports, module) {
 
     MenuView.DEFAULT_OPTIONS = {
         stripData: {},
-        topOffset: 47,
+        topOffset: 44,
         stripOffset: 32
     };
 
