@@ -129,5 +129,24 @@ define(function(require, exports, module) {
         }.bind(this));
     } 
 
+
+
+    /**
+     * Handle keyboard inputs to advance through tutorials
+     */
+     Engine.on('keydown', function(e) {
+        if(e.which === 39) { //Right arrow key
+            animationController.incrementTutorialCounts();
+            animationController.printDebugOutput();
+            animationController.loadAnimationView(thisPageView); 
+            _bringHeaderToFront();
+
+        } else if (e.which === 37) { //Left arrow key
+            animationController.decrementTutorialCounts();
+            animationController.printDebugOutput();
+
+        }
+     }); 
+
     module.exports = PageView;
 });
