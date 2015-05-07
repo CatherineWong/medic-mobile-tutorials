@@ -9,16 +9,17 @@ define(function(require, exports, module) {
     var FastClick       = require('famous/inputs/FastClick');
     var BaseView = require('animation_views/BaseView');
     var HariIntroView = require('animation_views/animation_slides/HariIntroView');
-
+    var AnimationController = require('controllers/AnimationController');
 
     function PageView() {
         View.apply(this, arguments);
 
         _createLayout.call(this);
         _createBody.call(this);
-        //_loadStartingAnimation.call(this); //Uncomment to add animation to body
+        _loadStartingAnimation.call(this); //Uncomment to add animation to body
         _createHeader.call(this);
         _setListeners.call(this);
+        _debugAnimationController.call(this); //Strictly a debugging method
 
     }
 
@@ -34,6 +35,11 @@ define(function(require, exports, module) {
         "2) Training your Clinic",
         "3) Getting Going",
         "4) Learn More"];
+    
+    function _debugAnimationController() {
+        var animationController = new AnimationController();
+        console.log(animationController.getCurrTutorial());
+    }
 
     function _createLayout() {
         this.layout = new HeaderFooter({
