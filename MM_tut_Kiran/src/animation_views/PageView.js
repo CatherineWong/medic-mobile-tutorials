@@ -171,8 +171,8 @@ define(function(require, exports, module) {
         if(e.which === 39) { //Right arrow key
             animationController.incrementTutorialCounts();
             animationController.printDebugOutput();
+            animationController.loadAnimationView(thisPageView); //Demonstration: pass the page view to the controller
             _bringHeaderToFront();
-            //_loadStartingAnimation(); // Test: doesn't remove objects: consider using a render controller
 
         } else if (e.which === 37) { //Left arrow key
             animationController.decrementTutorialCounts();
