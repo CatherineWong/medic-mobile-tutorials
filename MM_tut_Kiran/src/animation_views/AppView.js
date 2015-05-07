@@ -8,8 +8,12 @@ define(function(require, exports, module) {
     var PageView = require('animation_views/PageView');
     var MenuView = require('animation_views/MenuView');
     var StripData = require('Data/StripData');
+<<<<<<< HEAD
     var CaptionData = require('Data/CaptionData');
 
+=======
+    
+>>>>>>> 38baec6a48b2a4038c51a071dcb7097a8a0f9314
 
     function AppView() {
         View.apply(this, arguments);
@@ -38,8 +42,13 @@ define(function(require, exports, module) {
     function _createMenuView() {
         this.menuView = new MenuView({ stripData: StripData });
 
+<<<<<<< HEAD
         this.anotherModifier = new StateModifier ({
             transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
+=======
+        var anotherModifier = new StateModifier ({
+            transform: Transform.translate(0, 0, 0.1)   //use this z axis to bring in front of surface
+>>>>>>> 38baec6a48b2a4038c51a071dcb7097a8a0f9314
         });
 
         this.menuModifier = new StateModifier();
@@ -53,6 +62,8 @@ define(function(require, exports, module) {
         this.pageView.on('menuToggle', function(){
             console.log('menu toggle!');
         }.bind(this));
+
+
     }
 
     function _setListeners() {
@@ -94,6 +105,7 @@ define(function(require, exports, module) {
             curve: 'easeOut'
         });*/
     };
+
 
     module.exports = AppView;
 });
