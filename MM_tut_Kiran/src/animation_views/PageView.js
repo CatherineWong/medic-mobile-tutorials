@@ -9,14 +9,14 @@ define(function(require, exports, module) {
     var FastClick       = require('famous/inputs/FastClick');
     var BaseView = require('animation_views/BaseView');
     var HariIntroView = require('animation_views/animation_slides/HariIntroView');
-    var AnimationController = require('controllers/AnimationController');
+    var AnimationController = require('controllers/AnimationController'); // Controller for the tutorial loading logic
 
     function PageView() {
         View.apply(this, arguments);
 
         _createLayout.call(this);
         _createBody.call(this);
-        _loadStartingAnimation.call(this); //Uncomment to add animation to body
+        _loadStartingAnimation.call(this); //Uncomment to add base animation to body
         _createHeader.call(this);
         _setListeners.call(this);
         _debugAnimationController.call(this); //Strictly a debugging method
@@ -37,8 +37,14 @@ define(function(require, exports, module) {
         "4) Learn More"];
     
     function _debugAnimationController() {
-        var animationController = new AnimationController();
-        console.log(animationController.getCurrTutorial());
+        this.animationController = new AnimationController();
+        console.log(this.animationController.getCurrTutorial());
+        console.log(this.animationController.getCurrTutorialSlide());
+        // Demonstration: get the length of a given tutorial for progress bar
+        console.log(this.animationController.getTutorialLength(0));
+        // Demo: call on next button push to adjust counters appropriately
+        this.animationController.incrementTutorialCounts();
+        console.log(this.animationController.getCurrTutorialSlide());
     }
 
     function _createLayout() {
@@ -143,6 +149,7 @@ define(function(require, exports, module) {
     function _setListeners() {
         this.hamburgerSurface.on('click', function() {
             this._eventOutput.emit('menuToggle');
+
         }.bind(this));
     } 
 
