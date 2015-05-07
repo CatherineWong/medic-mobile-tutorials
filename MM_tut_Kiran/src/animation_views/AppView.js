@@ -35,7 +35,7 @@ define(function(require, exports, module) {
         this.menuView = new MenuView({ stripData: StripData });
 
         var anotherModifier = new StateModifier ({
-            transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
+            transform: Transform.translate(0, 0, 0.1)   //use this z axis to bring in front of surface
         });
 
         this.menuModifier = new StateModifier();

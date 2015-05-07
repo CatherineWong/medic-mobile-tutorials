@@ -12,18 +12,18 @@ define(function(require, exports, module) {
     var HariIntroView = require('animation_views/animation_slides/HariIntroView');
     var AnimationController = require('controllers/AnimationController'); // Controller for the tutorial loading logic
     var animationController = new AnimationController(); //Global animation controller
+    var thisPageView; //Give global access to the page view to load animations
 
     function PageView() {
+        thisPageView = this;
         View.apply(this, arguments);
          _debugAnimationController.call(this); //Strictly a debugging method
 
         _createLayout.call(this);
         _createBody.call(this);
-        _loadStartingAnimation.call(this); //Uncomment to add base animation to body
+        _loadStartingAnimation.call(this); //Uncomment to add sample animation to body
         _createHeader.call(this);
         _setListeners.call(this);
-       
-
     }
 
     PageView.prototype = Object.create(View.prototype);
@@ -72,11 +72,11 @@ define(function(require, exports, module) {
             }
         });
 
-        var backgroundModifier = new StateModifier({
+        thisPageView.backgroundModifier = new StateModifier({
             transform: Transform.behind
         });
 
-        this.hamburgerSurface = new ImageSurface({
+        thisPageView.hamburgerSurface = new ImageSurface({
             size: [44, 44],
             content: 'mm-assets/hamburger.png'
         });
@@ -86,21 +86,28 @@ define(function(require, exports, module) {
             content: 'Medic-Mobile-logo+name_white150.png'
         });
 
-        var hamburgerModifier = new StateModifier({
+        thisPageView.hamburgerModifier = new StateModifier({
             origin: [0, 0.5],
             align : [0, 0.5]
         });
 
-        var iconModifier = new StateModifier({
+        thisPageView.iconModifier = new StateModifier({
             origin: [0, 0.5],
             align : [0.05, 0.5]
         });
 
 
         
-        this.layout.header.add(hamburgerModifier).add(this.hamburgerSurface);
-        this.layout.header.add(iconModifier).add(iconSurface);
-        this.layout.header.add(backgroundModifier).add(backgroundSurface);
+        thisPageView.layout.header.add(thisPageView.hamburgerModifier).add(thisPageView.hamburgerSurface);
+        thisPageView.layout.header.add(thisPageView.iconModifier).add(iconSurface);
+        thisPageView.layout.header.add(thisPageView.backgroundModifier).add(backgroundSurface);
+        _bringHeaderToFront();
+    }
+
+    function _bringHeaderToFront() {
+        thisPageView.backgroundModifier.setTransform(Transform.inFront);
+        thisPageView.iconModifier.setTransform(Transform.inFront);
+        thisPageView.hamburgerModifier.setTransform(Transform.inFront);
     }
 
 
@@ -145,7 +152,7 @@ define(function(require, exports, module) {
         });
 
         var hariIntroView = new HariIntroView();
-        this.layout.content.add(animationModifier).add(hariIntroView);
+        thisPageView.layout.content.add(animationModifier).add(hariIntroView);
     }
 
     function _setListeners() {
@@ -153,9 +160,9 @@ define(function(require, exports, module) {
             this._eventOutput.emit('menuToggle');
 
         }.bind(this));
-
-
     } 
+
+
 
     /**
      * Handle keyboard inputs to advance through tutorials
@@ -164,9 +171,13 @@ define(function(require, exports, module) {
         if(e.which === 39) { //Right arrow key
             animationController.incrementTutorialCounts();
             animationController.printDebugOutput();
+            _bringHeaderToFront();
+            //_loadStartingAnimation(); // Test: doesn't remove objects: consider using a render controller
+
         } else if (e.which === 37) { //Left arrow key
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
+
         }
      }); 
 
