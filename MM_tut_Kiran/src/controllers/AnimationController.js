@@ -41,8 +41,27 @@ define(function(require, exports, module) {
             currTutorialSlide++;
         } else {
             currTutorial = (currTutorial+1) % tutorialLengths.length; //Wrap back to beginning
-            currTutorialSlide = 0;
+            currTutorialSlide = 0; 
         }
+    }
+
+    /**
+     * Called when the back button is clicked to decrement the index counters accordingly
+     */
+    AnimationController.prototype.decrementTutorialCounts = function() {
+        if (currTutorialSlide > 0) {
+            currTutorialSlide--;
+        } else {
+            currTutorial = (currTutorial - 1) % tutorialLengths.length;
+            currTutorialSlide = tutorialLengths[currTutorial] - 1;
+        }
+    }
+
+    /**
+     * Used for debugging purposes only: prints out the tutorial and the current tutorial slide
+     */
+    AnimationController.prototype.printDebugOutput = function() {
+        console.log("[AnimationController]: Current tutorial: ", currTutorial, " Current tutorial slide: ", currTutorialSlide);
     }
 
     module.exports = AnimationController;

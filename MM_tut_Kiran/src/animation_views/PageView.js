@@ -37,14 +37,14 @@ define(function(require, exports, module) {
         "4) Learn More"];
     
     function _debugAnimationController() {
+        console.log("Demonstrating Animation Controller with Debugger: PageView");
         this.animationController = new AnimationController();
-        console.log(this.animationController.getCurrTutorial());
-        console.log(this.animationController.getCurrTutorialSlide());
+        this.animationController.printDebugOutput(); //Prints current tutorial and slide number
         // Demonstration: get the length of a given tutorial for progress bar
-        console.log(this.animationController.getTutorialLength(0));
+        console.log("Current tutorial length: ", this.animationController.getTutorialLength(0));
         // Demo: call on next button push to adjust counters appropriately
         this.animationController.incrementTutorialCounts();
-        console.log(this.animationController.getCurrTutorialSlide());
+        this.animationController.printDebugOutput();
     }
 
     function _createLayout() {
@@ -151,6 +151,8 @@ define(function(require, exports, module) {
             this._eventOutput.emit('menuToggle');
 
         }.bind(this));
+
+
     } 
 
     module.exports = PageView;
