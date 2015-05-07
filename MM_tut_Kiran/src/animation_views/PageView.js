@@ -4,18 +4,24 @@ define(function(require, exports, module) {
     var Transform     = require('famous/core/Transform');
     var StateModifier = require('famous/modifiers/StateModifier');
     var HeaderFooter = require('famous/views/HeaderFooterLayout');
+    var Engine = require('famous/core/Engine');
 
     var ImageSurface = require('famous/surfaces/ImageSurface');
     var FastClick       = require('famous/inputs/FastClick');
     var BaseView = require('animation_views/BaseView');
+    var HariIntroView = require('animation_views/animation_slides/HariIntroView');
+    var AnimationController = require('controllers/AnimationController'); // Controller for the tutorial loading logic
+    var animationController = new AnimationController(); //Global animation controller
+    var thisPageView; //Give global access to the page view to load animations
 
     function PageView() {
+        thisPageView = this;
         View.apply(this, arguments);
 
         _createLayout.call(this);
         _createHeader.call(this);
         _createBody.call(this);
-
+        _loadStartingAnimation.call(this); //Uncomment to add sample animation to body
         _setListeners.call(this);
 
     }
@@ -39,7 +45,7 @@ define(function(require, exports, module) {
         });
 
         var layoutModifier = new StateModifier({
-            transform: Transform.translate(0, 0, 0.1)
+            transform: Transform.translate(0, 0, 0.2)
         });
 
         this.add(layoutModifier).add(this.layout);
@@ -56,7 +62,7 @@ define(function(require, exports, module) {
             }
         });
 
-        var backgroundModifier = new StateModifier({
+        thisPageView.backgroundModifier = new StateModifier({
             transform: Transform.behind
         });
 
@@ -70,21 +76,29 @@ define(function(require, exports, module) {
             content: 'Medic-Mobile-logo+name_white150.png'
         });
 
-        var hamburgerModifier = new StateModifier({
+        thisPageView.hamburgerModifier = new StateModifier({
             origin: [0, 0.5],
             align : [0, 0.5]
         });
 
-        var iconModifier = new StateModifier({
+        thisPageView.iconModifier = new StateModifier({
             origin: [0, 0.5],
             align : [0.05, 0.5]
         });
 
 
         
-        this.layout.header.add(hamburgerModifier).add(this.hamburgerSurface);
-        this.layout.header.add(iconModifier).add(iconSurface);
-        this.layout.header.add(backgroundModifier).add(backgroundSurface);
+        this.layout.header.add(thisPageView.hamburgerModifier).add(this.hamburgerSurface);
+        this.layout.header.add(thisPageView.iconModifier).add(iconSurface);
+        this.layout.header.add(thisPageView.backgroundModifier).add(backgroundSurface);
+        
+        _bringHeaderToFront();
+    }
+
+    function _bringHeaderToFront() {
+        thisPageView.backgroundModifier.setTransform(Transform.inFront);
+        thisPageView.iconModifier.setTransform(Transform.inFront);
+        thisPageView.hamburgerModifier.setTransform(Transform.inFront);
     }
 
 
@@ -123,11 +137,40 @@ define(function(require, exports, module) {
         this.layout.content.add(baseModifier).add(baseView);
     }
 
+    function _loadStartingAnimation() {
+        var animationModifier = new StateModifier ({
+            transform: Transform.behind
+        });
+
+        var hariIntroView = new HariIntroView();
+        this.layout.content.add(animationModifier).add(hariIntroView);
+    }
+
     function _setListeners() {
         this.hamburgerSurface.on('click', function() {
             this._eventOutput.emit('menuToggle');
         }.bind(this));
     } 
+
+
+
+    /**
+     * Handle keyboard inputs to advance through tutorials
+     */
+     Engine.on('keydown', function(e) {
+        if(e.which === 39) { //Right arrow key
+            animationController.incrementTutorialCounts();
+            animationController.printDebugOutput();
+            animationController.loadAnimationView(thisPageView); 
+            _bringHeaderToFront();
+
+        } else if (e.which === 37) { //Left arrow key
+            animationController.decrementTutorialCounts();
+            animationController.printDebugOutput();
+            animationController.loadAnimationView(thisPageView); 
+            _bringHeaderToFront();
+        }
+     }); 
 
     module.exports = PageView;
 });
