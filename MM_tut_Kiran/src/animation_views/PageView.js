@@ -8,6 +8,13 @@ define(function(require, exports, module) {
     var ImageSurface = require('famous/surfaces/ImageSurface');
     var FastClick       = require('famous/inputs/FastClick');
     var BaseView = require('animation_views/BaseView');
+    var NavigationView = require('animation_views/NavigationView');
+    var ContentView = require('animation_views/ContentView');
+
+    var EventHandler = require('famous/core/EventHandler');
+
+    var eventHandlerA = new EventHandler();
+    var eventHandlerB = new EventHandler();
 
     function PageView() {
         View.apply(this, arguments);
@@ -15,6 +22,7 @@ define(function(require, exports, module) {
         _createLayout.call(this);
         _createHeader.call(this);
         _createBody.call(this);
+        _createNavigationView.call(this);
 
         _setListeners.call(this);
 
@@ -24,14 +32,10 @@ define(function(require, exports, module) {
     PageView.prototype.constructor = PageView;
 
     PageView.DEFAULT_OPTIONS = {
-        headerSize: 44
+        headerSize: 44,
+        captionData: {}
     };
 
-    var tutorialNames = [
-        "1) Overview", 
-        "2) Training your Clinic",
-        "3) Getting Going",
-        "4) Learn More"];
 
     function _createLayout() {
         this.layout = new HeaderFooter({
@@ -39,7 +43,7 @@ define(function(require, exports, module) {
         });
 
         var layoutModifier = new StateModifier({
-            transform: Transform.translate(0, 0, 0.1)
+            transform: Transform.translate(0, 0, 0.01)//0.1)
         });
 
         this.add(layoutModifier).add(this.layout);
@@ -72,7 +76,8 @@ define(function(require, exports, module) {
 
         var hamburgerModifier = new StateModifier({
             origin: [0, 0.5],
-            align : [0, 0.5]
+            align : [0, 0.5],
+            transform: Transform.front
         });
 
         var iconModifier = new StateModifier({
@@ -113,20 +118,70 @@ define(function(require, exports, module) {
 
         this.layout.content.add(this.sideSurface);
     }*/
-
+    var sidebarWidth = 290;
+    var i = 0;
     function _createBody() {
-        var baseView = new BaseView();
+        //this.captionModifiers = [];
+        
+        this.caption = new Surface({
+            size: [screen.width - sidebarWidth, 80],
+            content: this.options.captionData[i].title,
+            properties: {
+                lineHeight: '80px',
+                textAlign: 'center',
+            }
+        });
+
+        this.placeCaption = new StateModifier({
+            align: [0, 1],
+            origin: [0, 1]
+        });
+        this.layout.content.add(this.placeCaption).add(this.caption);
+ 
+        var contentView = new ContentView();
+
+        var contentModifier = new StateModifier ({
+            transform: Transform.behind
+        });
+        this.layout.content.add(contentModifier).add(contentView);
+
+
+        /*var baseView = new BaseView();
 
         var baseModifier = new StateModifier ({
             transform: Transform.behind
         });
-        this.layout.content.add(baseModifier).add(baseView);
+        this.layout.content.add(baseModifier).add(baseView);*/
     }
+
+
+    function _createNavigationView() {
+        this.navigationView = new NavigationView();
+        var navigationModifier = new StateModifier({
+            Transform: Transform.translate(0, 0, 0.3),
+            opacity: 0.7
+        });
+
+        this.layout.content.add(navigationModifier).add(this.navigationView);
+    }
+
 
     function _setListeners() {
         this.hamburgerSurface.on('click', function() {
             this._eventOutput.emit('menuToggle');
         }.bind(this));
+
+        this.navigationView.on('next', function() {
+            i += 1;
+            this.caption.setContent(this.options.captionData[i].title);
+            //eventHandlerA.emit('hello');
+        }.bind(this));
+
+        this.navigationView.on('back', function() {
+            i -= 1;
+            this.caption.setContent(this.options.captionData[i].title);
+        }.bind(this));
+
     } 
 
 
