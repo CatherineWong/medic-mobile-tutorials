@@ -14,6 +14,7 @@ define(function(require, exports, module) {
     var AnimationController = require('controllers/AnimationController'); // Controller for the tutorial loading logic
     var animationController = new AnimationController(); //Global animation controller
     var thisPageView; //Give global access to the page view to load animations
+    var NavigationView = require('animation_views/NavigationView');
 
     function PageView() {
         thisPageView = this;
@@ -22,6 +23,7 @@ define(function(require, exports, module) {
         _createLayout.call(this);
         _createHeader.call(this);
         _createBody.call(this);
+	_createNavigationView.call(this);
         _loadStartingAnimation.call(this); //Uncomment to add sample animation to body
         _setListeners.call(this);
 
@@ -148,6 +150,16 @@ define(function(require, exports, module) {
 
         var zoomOutTransitionView = new ZoomOutTransitionView();
         this.layout.content.add(animationModifier).add(zoomOutTransitionView);
+    }
+
+    function _createNavigationView() {
+        this.navigationView = new NavigationView();
+        var navigationModifier = new StateModifier({
+            Transform: Transform.translate(0, 0, 0.3),
+            opacity: 0.7
+        });
+
+        this.layout.content.add(navigationModifier).add(this.navigationView);
     }
 
     function _setListeners() {
