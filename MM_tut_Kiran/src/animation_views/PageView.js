@@ -63,7 +63,7 @@ define(function(require, exports, module) {
                 textAlign: "center",
                 color: 'white'
             }
-        });
+        });       
 
         thisPageView.backgroundModifier = new StateModifier({
             transform: Transform.behind
@@ -88,9 +88,8 @@ define(function(require, exports, module) {
             origin: [0, 0.5],
             align : [0.05, 0.5]
         });
-
-
         
+
         this.layout.header.add(thisPageView.hamburgerModifier).add(this.hamburgerSurface);
         this.layout.header.add(thisPageView.iconModifier).add(iconSurface);
         this.layout.header.add(thisPageView.backgroundModifier).add(backgroundSurface);
@@ -102,6 +101,7 @@ define(function(require, exports, module) {
         thisPageView.backgroundModifier.setTransform(Transform.inFront);
         thisPageView.iconModifier.setTransform(Transform.inFront);
         thisPageView.hamburgerModifier.setTransform(Transform.inFront);
+
     }
 
 
