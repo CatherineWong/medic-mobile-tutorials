@@ -58,7 +58,6 @@ define(function(require, exports, module) {
 		});
 
 		var placeBackground = new StateModifier({
-			align: [0.5, 0.5],
 			origin: [0.6, 0.45],
 		});
 
