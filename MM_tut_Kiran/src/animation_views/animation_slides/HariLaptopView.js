@@ -1,4 +1,4 @@
-/* HariIntroView -- view where Hari is first introduced. */
+/* HariLaptopView -- where Hari opens a laptop*/
 
 
 define(function(require, exports, module) {
@@ -21,7 +21,7 @@ define(function(require, exports, module) {
    HariIntroView.prototype.constructor = HariIntroView;
 
    HariIntroView.prototype.returnCaptionArray = function() {
-   		var captionText = ["This is Hari. Hari is the clinic director at a rural health post."];
+   		var captionText = ["Now, Hari’s clinic uses Medic Mobile software to keep track of pregnancies in Maya’s village."];
    		return captionText;	
    }
 
@@ -60,7 +60,7 @@ define(function(require, exports, module) {
 
 		var placeBackground = new StateModifier({
 			align: [0.5, 0.5],
-			origin: [0.6, 0.4]
+			origin: [0.6, 0.45]
 		});
 
 		this.add(placeBackground).add(background);
@@ -78,8 +78,8 @@ define(function(require, exports, module) {
 		});
 
 		var place_health_center= new StateModifier ({
-			align : [0.5, 0.5],
-			origin : [0.5, 0.5],
+			align : [0.6, 0.5],
+			origin : [0.1, 0.5],
 			// sets initial x- and y-scale to be 0
 			transform: Transform.scale(0, 0, 1),
 			// sets inital opacity to 0
@@ -114,8 +114,8 @@ define(function(require, exports, module) {
 		this.add(placeHari).add(hari);
 
 		placeHari.setTransform(
-			Transform.translate(700, 0, 0),
-			{duration: 2000, curve: 'easeInOut'}
+			Transform.translate(400, 0, 0)
+			//{duration: 2000, curve: 'easeInOut'}
 		);
 
 	}

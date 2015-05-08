@@ -22,14 +22,22 @@ define(function(require, exports, module) {
 	//var animationview = new AnimationView();
 	
 	var layout = new HeaderFooterLayout();
+<<<<<<< HEAD
 	var hariIntroView = new HariIntroView();
+=======
+	// var hariIntroView = new HariIntroView();
+>>>>>>> 71ae0b296dad1a0d78921626162dc8f942df3557
 	// var animationview = new AnimationView();
 	var mayaIntroView = new MayaIntroView();
 	var zoomOutIntroView = new ZoomOutIntroView();
-	var lalitaIntroView = new LalitaIntroView();
+	// var lalitaIntroView = new LalitaIntroView();
 	var zoomOutTransitionView = new ZoomOutTransitionView();
+<<<<<<< HEAD
 
 	layout.content.add(zoomOutTransitionView);
+=======
+	layout.content.add(mayaIntroView);
+>>>>>>> 71ae0b296dad1a0d78921626162dc8f942df3557
 	mainContext.add(layout);
 
 	//layout.content.add(animationview);
