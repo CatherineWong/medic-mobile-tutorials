@@ -12,7 +12,7 @@ define(function(require, exports, module) {
 
    function HariIntroView () {
    		View.apply(this, arguments);
-   		_createBackground.call(this);
+   		// _createBackground.call(this);
    		_createHuts.call(this);
    		_createHari.call(this);
    }
