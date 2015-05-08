@@ -60,7 +60,7 @@ define(function(require, exports, module) {
             currTutorialSlide--;
         } else {
             if (currTutorial == 0) {
-                currTutorial = tutorialLengths.length - 1;
+                return; // Don't back up if you're at the beginning
             } else {
                 currTutorial--;
             }
