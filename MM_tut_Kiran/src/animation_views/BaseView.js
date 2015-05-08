@@ -25,34 +25,34 @@ define(function(require, exports, module) {
 
 	function _createBackground() {
 		var background = new ImageSurface ({
-			//size : [undefined, undefined],
-			content: 'animation-assets/scene-example-1.png'
+			size : [undefined, undefined],
+			content: 'animation-assets/scene-background-repeat-h.svg'
 			//content: 'animation-assets/scene-1.svg'
 		});
 
-		var middleground = new ImageSurface ({
-			size : [950, 700],
-			content: 'animation-assets/hills-middle-ground.svg'
+		// var middleground = new ImageSurface ({
+		// 	size : [950, 700],
+		// 	content: 'animation-assets/hills-middle-ground.svg'
 
-		});
+		// });
 
-		var placeForeground = new StateModifier({
-			align: [0.5, 0.5],
-			origin: [0.5, 0.5],
-			transform : Transform.translate(150, 30, 0)
-		});
+		// var placeForeground = new StateModifier({
+		// 	align: [0.5, 0.5],
+		// 	origin: [0.5, 0.5],
+		// 	transform : Transform.translate(150, 30, 0)
+		// });
 
-		var placeMiddleground = new StateModifier ({
-			align: [0.5, 0.5],
-			origin: [0.5, 0.5],
-			transform : Transform.translate(150, 30, 0)
-		});
+		// var placeMiddleground = new StateModifier ({
+		// 	align: [0.5, 0.5],
+		// 	origin: [0.5, 0.5],
+		// 	transform : Transform.translate(150, 30, 0)
+		// });
 
-		var foreground = new ImageSurface ({
-			size : [950, 700],
-			content: 'animation-assets/hills-foreground.svg'
+		// var foreground = new ImageSurface ({
+		// 	size : [950, 700],
+		// 	content: 'animation-assets/hills-foreground.svg'
 
-		});
+		// });
 
 		var placeBackground = new StateModifier({
 			//transform: Transform.scale(2, 2, 2)

@@ -86,6 +86,8 @@ define(function(require, exports, module) {
 
         var hariIntroView = new HariIntroView();
         pageView.layout.content.add(animationModifier).add(hariIntroView);
+
+
     }
 
     module.exports = AnimationController;
