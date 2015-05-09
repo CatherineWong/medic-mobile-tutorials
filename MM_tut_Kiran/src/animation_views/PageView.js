@@ -23,7 +23,7 @@ define(function(require, exports, module) {
         _createLayout.call(this);
         _createHeader.call(this);
         _createBody.call(this);
-	_createNavigationView.call(this);
+	    _createNavigationView.call(this);
         _loadStartingAnimation.call(this); //Uncomment to add sample animation to body
         _setListeners.call(this);
 
