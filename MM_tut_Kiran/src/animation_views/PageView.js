@@ -25,7 +25,7 @@ define(function(require, exports, module) {
         _createBody.call(this);
 	    _createNavigationView.call(this);
         _initializeAnimationController.call(this);
-        _loadStartingAnimation.call(this); //Uncomment to add sample animation to body
+        //_loadStartingAnimation.call(this); //Uncomment to add sample animation to body
         _setListeners.call(this);
 
     }

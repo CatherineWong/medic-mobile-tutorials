@@ -6,6 +6,8 @@ define(function(require, exports, module) {
     var StateModifier = require('famous/modifiers/StateModifier');
     var HariIntroView = require('animation_views/animation_slides/HariIntroView');
     var MayaIntroView = require('animation_views/animation_slides/MayaIntroView');
+    var LalitaIntroView = require('animation_views/animation_slides/LalitaIntroView');
+
     var Transform       = require('famous/core/Transform');
     var Easing = require('famous/transitions/Easing');
     var RenderController = require("famous/views/RenderController");
@@ -103,26 +105,34 @@ define(function(require, exports, module) {
      */
     AnimationController.prototype.loadAnimationView = function(pageView) {
         renderController.hide(); // TODO: use a rendercontroller callback to avoid rendering issues
+        var currView = _getNextAnimationView();
+        renderController.show(currView);
+    }
+
+    /** Controls the logic to determine which animation to load */
+    function _getNextAnimationView() {
         var currView;
-        if (currTutorial == 0 && currTutorialSlide == 0) {
-            currView = new HariIntroView();
+        if (currTutorial == 0) {
+            switch (currTutorialSlide) {
+                case 0: 
+                    currView = new HariIntroView();
+                    break;
+                case 1:
+                    currView = new MayaIntroView();
+                    break;
+                case 2: 
+                    currView = new LalitaIntroView();
+                    break;
+                default:
+                    currView = new HariIntroView(); //Temporary place holder
+                    break; 
+            }
+            
         } else {
             currView = new MayaIntroView();
         }   
 
-        renderController.show(currView);
-
-    }
-
-    function _showNextAnimationCallback() {
-        console.log("callback!");
-        var animationModifier = new StateModifier ({
-            transform: Transform.behind
-        });
-        var hariIntroView = new HariIntroView();
-
-        renderController.show(hariIntroView);
-
+        return currView;
     }
 
 
