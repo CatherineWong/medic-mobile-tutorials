@@ -17,10 +17,15 @@ define(function(require, exports, module) {
     StripView.prototype.constructor = StripView;
 
     StripView.DEFAULT_OPTIONS = {
-        width: 180,
-        height: 30,
-        //title: 'Famo.us',
-        fontSize: 12,
+        width: 225,
+        height: 45,
+        fontSize: 15,
+        padding: 13,
+        paddingLeft: 30,
+        fontFamily: 'Trebuchet MS',
+        backgroundColor: '#5A5B5C',
+        textColor: '#E1E6E9',
+        backgroundOpacity: 0.85
     };
 
 
@@ -28,14 +33,14 @@ define(function(require, exports, module) {
         var backgroundSurface = new Surface({
             size: [this.options.width, this.options.height],
             properties: {
-                backgroundColor: 'black',
+                backgroundColor: this.options.backgroundColor,
                 boxShadow: '0 0 1px rgba(0,0,0,1)',
-                textAlign: "center"
+                textAlign: 'center'
             }
         });
 
         var backgroundModifier = new StateModifier ({
-            opacity : 0.5
+            opacity : this.options.backgroundOpacity
         });
 
         this.add(backgroundModifier).add(backgroundSurface);
@@ -46,11 +51,13 @@ define(function(require, exports, module) {
             size: [true, true],
             content: this.options.title,
             properties: {
-                color: 'white',
+                color: this.options.textColor,
                 fontSize: this.options.fontSize + 'px',
                 textAlign : 'center',
-                textTransform: 'uppercase',
-                pointerEvents : 'none'
+                pointerEvents : 'none',
+                fontFamily: this.options.fontFamily,
+                padding: this.options.padding + 'px',
+                paddingLeft: this.options.paddingLeft +'px'
             }
         });
 

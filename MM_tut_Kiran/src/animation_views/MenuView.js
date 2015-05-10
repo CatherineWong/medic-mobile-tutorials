@@ -19,8 +19,8 @@ define(function(require, exports, module) {
 
     MenuView.DEFAULT_OPTIONS = {
         stripData: {},
-        topOffset: 44,
-        stripOffset: 32
+        topOffset: 75,
+        stripOffset: 45
     };
 
     function _createStripViews() {

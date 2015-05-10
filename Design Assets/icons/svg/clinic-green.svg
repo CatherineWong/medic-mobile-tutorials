@@ -1,0 +1,17 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="800px" height="800px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g>
+        <g id="clinic-green">
+            <g>
+                <path d="M520,40L520,126L400,39L80,280L80,320L720,320L720,280L600,188L600,40L520,40Z" style="fill:rgb(92,133,97);fill-rule:nonzero;"/>
+            </g>
+            <g>
+                <rect x="160" y="360" width="480" height="400" style="fill:rgb(92,133,97);"/>
+            </g>
+            <g>
+                <path d="M440,600L440,680L360,680L360,600L280,600L280,520L360,520L360,440L440,440L440,520L520,520L520,600L440,600Z" style="fill:white;"/>
+            </g>
+        </g>
+    </g>
+</svg>

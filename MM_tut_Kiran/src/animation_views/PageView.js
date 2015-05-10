@@ -36,11 +36,6 @@ define(function(require, exports, module) {
         headerSize: 44
     };
 
-    var tutorialNames = [
-        "1) Overview", 
-        "2) Training your Clinic",
-        "3) Getting Going",
-        "4) Learn More"];
 
     function _createLayout() {
         this.layout = new HeaderFooter({
@@ -56,12 +51,15 @@ define(function(require, exports, module) {
 
     function _createHeader() {
         var backgroundSurface = new Surface({
-            content : "MEDIC MOBILE FOR ANTENATAL CARE",
+            size: [undefined,60],
+            content : "Medic Mobile for Antenatal Care",
             properties: {
-                backgroundColor: 'black',
-                fontSize: "30px",
-                textAlign: "center",
-                color: 'white'
+                backgroundColor: '#000',
+                padding: '10px',
+                fontSize: '30px',
+                textAlign: 'center',
+                color: 'white',
+                fontFamily: 'Avenir'
             }
         });       
 
@@ -74,8 +72,15 @@ define(function(require, exports, module) {
             content: 'mm-assets/hamburger.png'
         });
 
+        var logoSurface = new Surface({
+            size: [225,75],
+            properties: {
+                backgroundColor: '#323232'
+            }
+        });    
+
         var iconSurface = new ImageSurface({
-            size: [120, 40],
+            size: [130, 30],
             content: 'Medic-Mobile-logo+name_white150.png'
         });
 
@@ -85,22 +90,30 @@ define(function(require, exports, module) {
         });
 
         thisPageView.iconModifier = new StateModifier({
-            origin: [0, 0.5],
+            origin: [0, 0],
             align : [0.05, 0.5]
+        });
+
+        thisPageView.logoModifier = new StateModifier({
+            origin: [0, 0],
+            align : [0, 0]
         });
         
 
         this.layout.header.add(thisPageView.hamburgerModifier).add(this.hamburgerSurface);
         this.layout.header.add(thisPageView.iconModifier).add(iconSurface);
         this.layout.header.add(thisPageView.backgroundModifier).add(backgroundSurface);
-        
+        this.layout.header.add(thisPageView.logoModifier).add(logoSurface);
+
         _bringHeaderToFront();
     }
 
     function _bringHeaderToFront() {
         thisPageView.backgroundModifier.setTransform(Transform.inFront);
+        thisPageView.logoModifier.setTransform(Transform.inFront);
         thisPageView.iconModifier.setTransform(Transform.inFront);
         thisPageView.hamburgerModifier.setTransform(Transform.inFront);
+        
 
     }
 
