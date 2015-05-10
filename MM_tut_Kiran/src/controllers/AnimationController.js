@@ -124,12 +124,12 @@ define(function(require, exports, module) {
                     currView = new LalitaIntroView();
                     break;
                 default:
-                    currView = new HariIntroView(); //Temporary place holder
+                     //Temporary place holder to fade out to nothingness
                     break; 
             }
             
         } else {
-            currView = new MayaIntroView();
+            currView;
         }   
 
         return currView;
