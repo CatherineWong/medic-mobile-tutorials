@@ -24,6 +24,7 @@ define(function(require, exports, module) {
         _createHeader.call(this);
         _createBody.call(this);
 	    _createNavigationView.call(this);
+        _initializeAnimationController.call(this);
         _loadStartingAnimation.call(this); //Uncomment to add sample animation to body
         _setListeners.call(this);
 
@@ -47,6 +48,10 @@ define(function(require, exports, module) {
         });
 
         this.add(layoutModifier).add(this.layout);
+    }
+
+    function _initializeAnimationController() {
+        animationController.initialize(thisPageView);
     }
 
     function _createHeader() {

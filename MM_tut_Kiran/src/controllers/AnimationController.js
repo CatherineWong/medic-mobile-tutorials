@@ -5,11 +5,19 @@
 define(function(require, exports, module) {
     var StateModifier = require('famous/modifiers/StateModifier');
     var HariIntroView = require('animation_views/animation_slides/HariIntroView');
+    var MayaIntroView = require('animation_views/animation_slides/MayaIntroView');
     var Transform       = require('famous/core/Transform');
+    var Easing = require('famous/transitions/Easing');
+    var RenderController = require("famous/views/RenderController");
 
     var tutorialLengths = [4, 4, 4, 4]; //Holds the lengths of each tutorial
     var currTutorial = 0;
     var currTutorialSlide = 0;
+    var renderController;
+
+    /** Global views */
+    
+
     function AnimationController() {
 
 
@@ -17,6 +25,21 @@ define(function(require, exports, module) {
 
     AnimationController.prototype = Object.create(null);
     AnimationController.prototype.constructor = AnimationController;
+
+    AnimationController.prototype.initialize = function(pageView) {
+        var fadeOutModifier = new StateModifier();
+        fadeOutModifier.setOpacity(0, {
+            duration: 1000, curve: Easing.outBack
+        });
+
+        var fadeInModifier = new StateModifier();
+        fadeOutModifier.setOpacity(1, {
+            duration: 1000, curve: Easing.outBack
+        });
+
+        renderController = new RenderController(null, fadeInModifier, fadeOutModifier, false);
+        pageView.layout.content.add(renderController);
+    }
 
     /** 
      * Getter for the current tutorial number
@@ -76,19 +99,33 @@ define(function(require, exports, module) {
     }
 
     /**
-     *
+     * Used to load the next animation view
      */
     AnimationController.prototype.loadAnimationView = function(pageView) {
-        // TODO: FIX TO NOT CONTINUE ADDING VIEWS: SHOULD RELOAD
+        renderController.hide(); // TODO: use a rendercontroller callback to avoid rendering issues
+        var currView;
+        if (currTutorial == 0 && currTutorialSlide == 0) {
+            currView = new HariIntroView();
+        } else {
+            currView = new MayaIntroView();
+        }   
+
+        renderController.show(currView);
+
+    }
+
+    function _showNextAnimationCallback() {
+        console.log("callback!");
         var animationModifier = new StateModifier ({
             transform: Transform.behind
         });
-
         var hariIntroView = new HariIntroView();
-        pageView.layout.content.add(animationModifier).add(hariIntroView);
 
+        renderController.show(hariIntroView);
 
     }
+
+
 
     module.exports = AnimationController;
 
