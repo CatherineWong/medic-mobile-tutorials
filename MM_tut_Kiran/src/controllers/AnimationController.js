@@ -101,17 +101,22 @@ define(function(require, exports, module) {
     }
 
     /**
-     * Used to load the next animation view
+     * Used to load the next animation view; also returns the current caption
      */
     AnimationController.prototype.loadAnimationView = function(pageView) {
         renderController.hide(); // TODO: use a rendercontroller callback to avoid rendering issues
         var currView = _getNextAnimationView();
         renderController.show(currView);
+        var captionArray = null;
+        if (currView != null) captionArray = currView.returnCaptionArray();
+
+        console.log(captionArray); // Uncomment to og array for debugging purposes
+        return captionArray;
     }
 
     /** Controls the logic to determine which animation to load */
     function _getNextAnimationView() {
-        var currView;
+        var currView = null;
         if (currTutorial == 0) {
             switch (currTutorialSlide) {
                 case 0: 
@@ -128,9 +133,7 @@ define(function(require, exports, module) {
                     break; 
             }
             
-        } else {
-            currView;
-        }   
+        } 
 
         return currView;
     }
