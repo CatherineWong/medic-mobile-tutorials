@@ -7,6 +7,7 @@ define(function(require, exports, module) {
     var StateModifier = require('famous/modifiers/StateModifier');
 
     var StripView = require('animation_views/StripView');
+    var StripTitleView = require('animation_views/StripTitleView');
 
     function MenuView() {
         View.apply(this, arguments);
@@ -26,6 +27,20 @@ define(function(require, exports, module) {
     function _createStripViews() {
         this.stripModifiers = [];
         var yOffset = this.options.topOffset;
+
+            var stripView = new StripTitleView({
+                //iconUrl: this.options.stripData[i].iconUrl,
+                title: "Tutorials"
+            });
+
+            var stripModifier = new StateModifier({
+                transform: Transform.translate(0, yOffset, 0)
+            });
+
+            this.stripModifiers.push(stripModifier);
+            this.add(stripModifier).add(stripView);
+
+            yOffset += this.options.stripOffset;
 
         for (var i = 0; i < this.options.stripData.length; i++) {
             var stripView = new StripView({

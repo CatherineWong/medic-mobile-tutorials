@@ -34,8 +34,10 @@ define(function(require, exports, module) {
             size: [this.options.width, this.options.height],
             properties: {
                 backgroundColor: this.options.backgroundColor,
-                boxShadow: '0 0 1px rgba(0,0,0,1)',
-                textAlign: 'center'
+                textAlign: 'center',
+                borderTopStyle: 'solid',
+                borderTopColor: '#93989B',
+                borderTopWidth: '1px'
             }
         });
 

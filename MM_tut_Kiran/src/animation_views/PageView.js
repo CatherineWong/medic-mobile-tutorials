@@ -91,7 +91,7 @@ define(function(require, exports, module) {
 
         thisPageView.iconModifier = new StateModifier({
             origin: [0, 0],
-            align : [0.05, 0.5]
+            align : [0.03, 0.4]
         });
 
         thisPageView.logoModifier = new StateModifier({
