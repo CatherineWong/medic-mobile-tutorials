@@ -1,4 +1,7 @@
-/* ZoomOutTransitionView -- move the CHW + pregnant lady + village off, have some trees zoom by */
+/* ZoomOutTransitionView -- move the CHW + pregnant lady + village off, have some trees zoom by 
+
+
+YOU ARE USING THIS ONE*/
 
 
 define(function(require, exports, module) {

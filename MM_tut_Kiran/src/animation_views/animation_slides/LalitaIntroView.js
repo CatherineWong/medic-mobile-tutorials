@@ -12,7 +12,7 @@ define(function(require, exports, module) {
 
    function LalitaIntroView () {
    		View.apply(this, arguments);
-   		_createBackground.call(this);
+   		// _createBackground.call(this);
    		_createHuts.call(this);
    		_createLalita.call(this);
    }

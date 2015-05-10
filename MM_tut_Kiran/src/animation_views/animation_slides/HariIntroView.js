@@ -12,7 +12,7 @@ define(function(require, exports, module) {
 
    function HariIntroView () {
    		View.apply(this, arguments);
-   		_createBackground.call(this);
+   		// _createBackground.call(this);
    		_createHuts.call(this);
    		_createHari.call(this);
    }
@@ -59,7 +59,7 @@ define(function(require, exports, module) {
 		});
 
 		var placeBackground = new StateModifier({
-			align: [0.5, 0.5],
+			align: [0.567, 0.5],
 			origin: [0.6, 0.4]
 		});
 

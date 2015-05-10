@@ -10,7 +10,7 @@ define(function(require, exports, module) {
     var FastClick       = require('famous/inputs/FastClick');
     var BaseView = require('animation_views/BaseView');
     var HariIntroView = require('animation_views/animation_slides/HariIntroView');
-    var ZoomOutTransitionView = require('animation_views/animation_slides/zoomOutTransitionView');
+    var ZoomOutIntroView = require('animation_views/animation_slides/ZoomOutIntroView');
     var AnimationController = require('controllers/AnimationController'); // Controller for the tutorial loading logic
     var animationController = new AnimationController(); //Global animation controller
     var thisPageView; //Give global access to the page view to load animations
@@ -23,7 +23,7 @@ define(function(require, exports, module) {
         _createLayout.call(this);
         _createHeader.call(this);
         _createBody.call(this);
-	_createNavigationView.call(this);
+	    _createNavigationView.call(this);
         _loadStartingAnimation.call(this); //Uncomment to add sample animation to body
         _setListeners.call(this);
 
@@ -161,8 +161,8 @@ define(function(require, exports, module) {
         // var hariIntroView = new HariIntroView();
         // this.layout.content.add(animationModifier).add(hariIntroView);
 
-        var zoomOutTransitionView = new ZoomOutTransitionView();
-        this.layout.content.add(animationModifier).add(zoomOutTransitionView);
+        var zoomOutIntroView = new ZoomOutIntroView();
+        this.layout.content.add(animationModifier).add(zoomOutIntroView);
     }
 
     function _createNavigationView() {

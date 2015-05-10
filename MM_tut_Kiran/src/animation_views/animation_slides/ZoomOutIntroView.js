@@ -30,12 +30,12 @@ define(function(require, exports, module) {
 	function _createAndMoveBackground() {
 
 		var background = new ImageSurface ({
-			size : [1330, 1330],
+			size : [1800, 1800],
 			content: 'animation-assets/tutorialIntroBackgroundScene.svg'
 		});
 		var placeBackground = new StateModifier({
 			align: [0.6, 0.56],
-			origin: [0.80, 0.5],
+			origin: [0.78, 0.49],
 			transform : Transform.scale(1, 1, 1),
 			transform : Transform.translate(0, 0 ,0),
 		});
@@ -43,7 +43,7 @@ define(function(require, exports, module) {
 		this.add(placeBackground).add(background);
 
 		placeBackground.setTransform(
-			Transform.scale(5, 5, 1),
+			Transform.scale(4, 4, 1),
 			{ duration : 2000, curve: Easing.outBack }
 		);
 
@@ -53,7 +53,7 @@ define(function(require, exports, module) {
 		);
 
 
-	// }
+	}
 
 	module.exports = ZoomOutIntroView;
 
