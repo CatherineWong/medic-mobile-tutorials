@@ -32,16 +32,18 @@ define(function(require, exports, module) {
 
     AnimationController.prototype.initialize = function(pageView) {
         var fadeOutModifier = new StateModifier();
+        fadeOutModifier.setTransform(Transform.behind);
         fadeOutModifier.setOpacity(0, {
             duration: 1000, curve: Easing.outBack
         });
 
-        var fadeInModifier = new StateModifier();
-        fadeOutModifier.setOpacity(1, {
+        var sendToBackModifier = new StateModifier();
+        sendToBackModifier.setTransform(Transform.behind);
+        sendToBackModifier.setOpacity(1, {
             duration: 1000, curve: Easing.outBack
         });
 
-        renderController = new RenderController(null, fadeInModifier, fadeOutModifier, false);
+        renderController = new RenderController(null, sendToBackModifier, fadeOutModifier, false);
         pageView.layout.content.add(renderController);
     }
 
@@ -114,6 +116,8 @@ define(function(require, exports, module) {
 
         if (DEBUG) console.log(captionArray); 
         return captionArray;
+
+        //Redraw all of the other layers on top
     }
 
     /** Controls the logic to determine which animation to load */
