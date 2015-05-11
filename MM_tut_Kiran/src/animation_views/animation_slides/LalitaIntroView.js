@@ -1,4 +1,4 @@
-/* LailaIntroView -- view where Maya is first introduced. */
+/* LailaIntroView -- view where Lalita is first introduced. */
 
 
 define(function(require, exports, module) {
@@ -103,7 +103,11 @@ define(function(require, exports, module) {
 			align : [0.2, 0.55],
 			origin: [0.4, 0.0]
 		});
-		this.add(placeMaya).add(maya);
+
+		var bringToFront = new StateModifier();
+		bringToFront.setTransform(Transform.inFront);
+
+		this.add(placeMaya).add(bringToFront).add(maya);
 
 
 		placeMaya.setTransform(
@@ -125,7 +129,11 @@ define(function(require, exports, module) {
 			align : [1.2, 0.55],
 			origin: [0.4, 0.0]
 		});
-		this.add(placeLalita).add(lalita);
+
+		var bringToFront = new StateModifier();
+		bringToFront.setTransform(Transform.inFront);
+
+		this.add(bringToFront).add(placeLalita).add(lalita);
 
 
 		placeLalita.setTransform(

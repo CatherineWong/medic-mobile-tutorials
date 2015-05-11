@@ -3,16 +3,18 @@
 * also handles current captions
 */
 define(function(require, exports, module) {
+    var DEBUG = true; //When true, prints debugging info to the console
     var StateModifier = require('famous/modifiers/StateModifier');
     var HariIntroView = require('animation_views/animation_slides/HariIntroView');
     var MayaIntroView = require('animation_views/animation_slides/MayaIntroView');
     var LalitaIntroView = require('animation_views/animation_slides/LalitaIntroView');
-
+    var ZoomOutIntroView = require('animation_views/animation_slides/ZoomOutIntroView');
+    var ZoomOutTransitionView = require('animation_views/animation_slides/ZoomOutTransitionView');
     var Transform       = require('famous/core/Transform');
     var Easing = require('famous/transitions/Easing');
     var RenderController = require("famous/views/RenderController");
 
-    var tutorialLengths = [4, 4, 4, 4]; //Holds the lengths of each tutorial
+    var tutorialLengths = [10, 4, 4, 4]; //Holds the lengths of each tutorial
     var currTutorial = 0;
     var currTutorialSlide = 0;
     var renderController;
@@ -106,11 +108,11 @@ define(function(require, exports, module) {
     AnimationController.prototype.loadAnimationView = function(pageView) {
         renderController.hide(); // TODO: use a rendercontroller callback to avoid rendering issues
         var currView = _getNextAnimationView();
-        renderController.show(currView);
+        renderController.show(currView); // TODO: create a render node to send to back
         var captionArray = null;
         if (currView != null) captionArray = currView.returnCaptionArray();
 
-        console.log(captionArray); // Uncomment to og array for debugging purposes
+        if (DEBUG) console.log(captionArray); 
         return captionArray;
     }
 
@@ -127,6 +129,12 @@ define(function(require, exports, module) {
                     break;
                 case 2: 
                     currView = new LalitaIntroView();
+                    break;
+                case 3: 
+                    currView = new ZoomOutTransitionView();
+                    break;
+                case 4:
+                    currView = new ZoomOutIntroView();
                     break;
                 default:
                      //Temporary place holder to fade out to nothingness
