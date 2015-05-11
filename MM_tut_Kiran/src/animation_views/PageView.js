@@ -21,9 +21,10 @@ define(function(require, exports, module) {
         View.apply(this, arguments);
 
         _createLayout.call(this);
+        _createNavigationView.call(this);
         _createHeader.call(this);
         _createBody.call(this);
-	    _createNavigationView.call(this);
+        _initializeAnimationController.call(this);
         _loadStartingAnimation.call(this); //Uncomment to add sample animation to body
         _setListeners.call(this);
 
@@ -47,6 +48,24 @@ define(function(require, exports, module) {
         });
 
         this.add(layoutModifier).add(this.layout);
+    }
+
+    function _initializeAnimationController() {
+        animationController.initialize(thisPageView);
+    }
+
+    function _createNavigationView() {
+        this.navigationView = new NavigationView();
+        var navigationModifier = new StateModifier({
+            Transform: Transform.translate(0, 0, 0.3),
+            opacity: 0.7
+        });
+
+        thisPageView.navigationFrontModifier = new StateModifier({
+            transform: Transform.inFront
+        });
+
+        this.layout.content.add(navigationModifier).add(this.navigationFrontModifier).add(this.navigationView);
     }
 
     function _createHeader() {
@@ -113,8 +132,7 @@ define(function(require, exports, module) {
         thisPageView.logoModifier.setTransform(Transform.inFront);
         thisPageView.iconModifier.setTransform(Transform.inFront);
         thisPageView.hamburgerModifier.setTransform(Transform.inFront);
-        
-
+        thisPageView.navigationFrontModifier.setTransform(Transform.inFront);
     }
 
 
@@ -161,19 +179,9 @@ define(function(require, exports, module) {
         // var hariIntroView = new HariIntroView();
         // this.layout.content.add(animationModifier).add(hariIntroView);
 
-        var zoomOutIntroView = new ZoomOutIntroView();
-        this.layout.content.add(animationModifier).add(zoomOutIntroView);
+        animationController.loadAnimationView(thisPageView);
     }
 
-    function _createNavigationView() {
-        this.navigationView = new NavigationView();
-        var navigationModifier = new StateModifier({
-            Transform: Transform.translate(0, 0, 0.3),
-            opacity: 0.7
-        });
-
-        this.layout.content.add(navigationModifier).add(this.navigationView);
-    }
 
     function _setListeners() {
         this.hamburgerSurface.on('click', function() {
