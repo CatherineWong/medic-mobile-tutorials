@@ -15,12 +15,17 @@ define(function(require, exports, module) {
     var animationController = new AnimationController(); //Global animation controller
     var thisPageView; //Give global access to the page view to load animations
     var NavigationView = require('animation_views/NavigationView');
+    var MenuView = require('animation_views/MenuView');
+    var StripData = require('Data/StripData');
+
 
     function PageView() {
         thisPageView = this;
+        this.menuToggle = false;
         View.apply(this, arguments);
 
         _createLayout.call(this);
+        _createMenuView.call(this);
         _createNavigationView.call(this);
         _createHeader.call(this);
         _createBody.call(this);
@@ -86,7 +91,7 @@ define(function(require, exports, module) {
             transform: Transform.behind
         });
 
-        this.hamburgerSurface = new ImageSurface({
+        var hamburgerSurface = new ImageSurface({
             size: [44, 44],
             content: 'mm-assets/hamburger.png'
         });
@@ -119,7 +124,7 @@ define(function(require, exports, module) {
         });
         
 
-        this.layout.header.add(thisPageView.hamburgerModifier).add(this.hamburgerSurface);
+        this.layout.header.add(thisPageView.hamburgerModifier).add(hamburgerSurface);
         this.layout.header.add(thisPageView.iconModifier).add(iconSurface);
         this.layout.header.add(thisPageView.backgroundModifier).add(backgroundSurface);
         this.layout.header.add(thisPageView.logoModifier).add(logoSurface);
@@ -133,6 +138,7 @@ define(function(require, exports, module) {
         thisPageView.iconModifier.setTransform(Transform.inFront);
         thisPageView.hamburgerModifier.setTransform(Transform.inFront);
         thisPageView.navigationFrontModifier.setTransform(Transform.inFront);
+        thisPageView.menuModifier.setTransform(Transform.inFront);
     }
 
 
@@ -171,6 +177,18 @@ define(function(require, exports, module) {
         this.layout.content.add(baseModifier).add(baseView);
     }
 
+    function _createMenuView() {
+        this.menuView = new MenuView({ stripData: StripData });
+
+        var anotherModifier = new StateModifier ({
+            transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
+        });
+
+        this.menuModifier = new StateModifier();
+
+        this.add(this.menuModifier).add(anotherModifier).add(this.menuView);
+    }
+
     function _loadStartingAnimation() {
         var animationModifier = new StateModifier ({
             transform: Transform.behind
@@ -184,9 +202,25 @@ define(function(require, exports, module) {
 
 
     function _setListeners() {
-        this.hamburgerSurface.on('click', function() {
+        /*this.hamburgerSurface.on('click', function() {
             this._eventOutput.emit('menuToggle');
+        }.bind(this));*/
+
+        this.navigationView.on('next', function() {
+            animationController.incrementTutorialCounts();
+            animationController.printDebugOutput();
+            animationController.loadAnimationView(thisPageView); 
+            _bringHeaderToFront();
         }.bind(this));
+
+        this.navigationView.on('back', function() {
+            animationController.decrementTutorialCounts();
+            animationController.printDebugOutput();
+            animationController.loadAnimationView(thisPageView); 
+            _bringHeaderToFront();
+        }.bind(this));
+
+
     } 
 
 
@@ -208,6 +242,9 @@ define(function(require, exports, module) {
             _bringHeaderToFront();
         }
      }); 
+
+    
+
 
     module.exports = PageView;
 });
