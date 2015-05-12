@@ -10,22 +10,22 @@ define(function(require, exports, module) {
 	var ImageSurface = require('famous/surfaces/ImageSurface');
 	var Easing = require('famous/transitions/Easing');
 
-   function HariIntroView () {
+   function HariLaptopView () {
    		View.apply(this, arguments);
-   		_createBackground.call(this);
+   		//_createBackground.call(this);
    		_createHuts.call(this);
    		_createHari.call(this);
    }
 
-   HariIntroView.prototype = Object.create(View.prototype);
-   HariIntroView.prototype.constructor = HariIntroView;
+   HariLaptopView.prototype = Object.create(View.prototype);
+   HariLaptopView.prototype.constructor = HariLaptopView;
 
-   HariIntroView.prototype.returnCaptionArray = function() {
+   HariLaptopView.prototype.returnCaptionArray = function() {
    		var captionText = ["Now, Hari’s clinic uses Medic Mobile software to keep track of pregnancies in Maya’s village."];
    		return captionText;	
    }
 
-   HariIntroView.DEFAULT_OPTIONS = {};
+   HariLaptopView.DEFAULT_OPTIONS = {};
 
 
 	function _createBackground() {
@@ -89,8 +89,7 @@ define(function(require, exports, module) {
 
 		// animates x- and y-scale to 1
 		place_health_center.setTransform(
-			Transform.scale(1, 1, 1),
-			{ duration : 1000, curve: Easing.outBack }
+			Transform.scale(1, 1, 1)
 		);
 		// animates opacity to 1
 		place_health_center.setOpacity(1, {
@@ -120,6 +119,6 @@ define(function(require, exports, module) {
 
 	}
 
-	module.exports = HariIntroView;
+	module.exports = HariLaptopView;
 
 });

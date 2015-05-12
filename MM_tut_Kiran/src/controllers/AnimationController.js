@@ -10,6 +10,8 @@ define(function(require, exports, module) {
     var LalitaIntroView = require('animation_views/animation_slides/LalitaIntroView');
     var ZoomOutIntroView = require('animation_views/animation_slides/ZoomOutIntroView');
     var ZoomOutTransitionView = require('animation_views/animation_slides/ZoomOutTransitionView');
+    var HariLaptopView = require('animation_views/animation_slides/HariLaptopView');
+    var LalitaCellView = require('animation_views/animation_slides/LalitaCellView');
     var Transform       = require('famous/core/Transform');
     var Easing = require('famous/transitions/Easing');
     var RenderController = require("famous/views/RenderController");
@@ -139,6 +141,12 @@ define(function(require, exports, module) {
                     break;
                 case 4:
                     currView = new ZoomOutIntroView();
+                    break;
+                case 5:
+                    currView = new HariLaptopView();
+                    break;
+                case 6:
+                    currView = new LalitaCellView();
                     break;
                 default:
                      //Temporary place holder to fade out to nothingness
