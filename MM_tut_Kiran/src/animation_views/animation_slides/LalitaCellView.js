@@ -1,4 +1,4 @@
-/* LalitaCellView.js -- Lolital holds up her cell phone*/
+/* LalitaCellView.js -- Lalita holds up her cell phone*/
 
 define(function(require, exports, module) {
 
@@ -9,22 +9,22 @@ define(function(require, exports, module) {
 	var ImageSurface = require('famous/surfaces/ImageSurface');
 	var Easing = require('famous/transitions/Easing');
 
-   function LalitaIntroView () {
+   function LalitaCellView () {
    		View.apply(this, arguments);
-   		_createBackground.call(this);
+   		//_createBackground.call(this);
    		_createHuts.call(this);
    		_createLalita.call(this);
    }
 
-   LalitaIntroView.prototype = Object.create(View.prototype);
-   LalitaIntroView.prototype.constructor = LalitaIntroView;
+   LalitaCellView.prototype = Object.create(View.prototype);
+   LalitaCellView.prototype.constructor = LalitaCellView;
 
-   LalitaIntroView.prototype.returnCaptionArray = function() {
+   LalitaCellView.prototype.returnCaptionArray = function() {
    		var captionText = ["Medic Mobile lets community health workers use cell phones to register and track patients, which can reduce time spent on recording data to only 1 day month."];
    		return captionText;	
    }
 
-   LalitaIntroView.DEFAULT_OPTIONS = {};
+   LalitaCellView.DEFAULT_OPTIONS = {};
 
 
 	function _createBackground() {
@@ -58,6 +58,7 @@ define(function(require, exports, module) {
 		});
 
 		var placeBackground = new StateModifier({
+			align: [0.567, 0.5],
 			origin: [0.6, 0.45],
 		});
 
@@ -114,27 +115,7 @@ define(function(require, exports, module) {
 
 
 	function _createLalita() {
-		var phone = new ImageSurface ({
-			size : [25,25],
-			content: 'animation-assets/phone_no-logo.svg'
-		});
 
-		var placePhone = new StateModifier ({
-			transform: Transform.rotateZ(1),
-			align : [1.1, 0.5],
-			origin: [0.4,0.0]
-			
-		});
-
-		//var phoneModifier = new Modifier({
-		//	transform: Transform.rotateY(1.4);
-		//});
-
-		this.add(placePhone).add(phone);
-
-		placePhone.setTransform(
-			Transform.translate(-588, 20, 0)
-		);
 		var lalita = new ImageSurface ({
 			size : [250, 250],
 			content: 'animation-assets/chw-female-side-left.svg'
@@ -149,13 +130,30 @@ define(function(require, exports, module) {
 
 		placeLalita.setTransform(
 			Transform.translate(-570, 0, 0)
-			//{duration: 2000, curve: 'easeInOut'}
 		);
 
+		var phone = new ImageSurface ({
+			size : [25,25],
+			content: 'animation-assets/phone_logo.svg'
+		});
 
+		var placePhone = new StateModifier ({
+			align : [1.1, 0.5],
+			origin: [0.4, 0.0]
+		});
+
+		placePhone.setTransform(
+			Transform.translate(-585, 15, 0)
+		);
+
+		var fade = new StateModifier();
+		fade.setOpacity(0);
+		fade.setOpacity(1, {duration : 500, curve : Easing.inQuart});
+
+		this.add(fade).add(placePhone).add(phone);
 	}
 
 
-	module.exports = LalitaIntroView;
+	module.exports = LalitaCellView;
 
 });
