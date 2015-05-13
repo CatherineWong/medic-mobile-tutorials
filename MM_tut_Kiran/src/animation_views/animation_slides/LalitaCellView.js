@@ -11,7 +11,6 @@ define(function(require, exports, module) {
 
    function LalitaCellView () {
    		View.apply(this, arguments);
-   		//_createBackground.call(this);
    		_createHuts.call(this);
    		_createLalita.call(this);
    }
@@ -27,59 +26,18 @@ define(function(require, exports, module) {
    LalitaCellView.DEFAULT_OPTIONS = {};
 
 
-	function _createBackground() {
-		var background = new ImageSurface ({
-			size : [1700, 1200],
-			content: 'animation-assets/scene-1.svg'
-		});
-
-		var middleground = new ImageSurface ({
-			size : [1700, 1200],
-			content: 'animation-assets/hills-middle-ground.svg'
-
-		});
-
-		var placeForeground = new StateModifier({
-			align: [0.5, 0.5],
-			origin: [0.6, 0.45],
-			transform : Transform.translate(143, 30, 0)
-		});
-
-		var placeMiddleground = new StateModifier ({
-			align: [0.5, 0.5],
-			origin: [0.6, 0.45],
-			transform : Transform.translate(143, 30, 0)
-		});
-
-		var foreground = new ImageSurface ({
-			size : [1700, 1200],
-			content: 'animation-assets/hills-foreground.svg'
-
-		});
-
-		var placeBackground = new StateModifier({
-			align: [0.567, 0.5],
-			origin: [0.6, 0.45],
-		});
-
-		this.add(placeBackground).add(background);
-		this.add(placeMiddleground).add(middleground);
-		this.add(placeForeground).add(foreground);
-
-
-	}
-
 	function _createHuts() {
 
 		var hut = new ImageSurface ({
-			size : [400, 400],
+			size : [700, 700],
 			content: 'animation-assets/yurt-1.svg'
 		});
 
 		var placeHut= new StateModifier ({
-			align : [0.525, 0.6],
-			origin : [0.5, 0.5],
+			align : [0.5, 0.5],
+			origin : [0.3, 0.5]
 		});
+		placeHut.setTransform(Transform.behind);
 		this.add(placeHut).add(hut);
 
 		var chickens = new ImageSurface ({
@@ -88,9 +46,10 @@ define(function(require, exports, module) {
 		});
 
 		var placeChickens= new StateModifier ({
-			align : [.2, 0.7],
-			origin : [0.4, 0.0],
+			align : [.3, 0.7],
+			origin : [0.4, 0.0]
 		});
+		placeChickens.setTransform(Transform.behind);
 		this.add(placeChickens).add(chickens);
 
 		var maya = new ImageSurface ({
@@ -99,7 +58,7 @@ define(function(require, exports, module) {
 		});
 
 		var placeMaya= new StateModifier ({
-			align : [0.1, 0.5],
+			align : [0.2, 0.55],
 			origin: [0.4, 0.0]
 		});
 		this.add(placeMaya).add(maya);
@@ -107,9 +66,8 @@ define(function(require, exports, module) {
 
 		placeMaya.setTransform(
 			Transform.translate(300, 0, 0)
-			//{duration: 10, curve: 'easeInOut'}
 		);
-
+		
 	}
 
 
@@ -122,15 +80,15 @@ define(function(require, exports, module) {
 		});
 
 		var placeLalita= new StateModifier ({
-			align : [1.1, 0.5],
+			align : [1.2, 0.55],
 			origin: [0.4, 0.0]
 		});
-		this.add(placeLalita).add(lalita);
-
 
 		placeLalita.setTransform(
 			Transform.translate(-570, 0, 0)
 		);
+
+		this.add(placeLalita).add(lalita);
 
 		var phone = new ImageSurface ({
 			size : [25,25],
@@ -138,7 +96,7 @@ define(function(require, exports, module) {
 		});
 
 		var placePhone = new StateModifier ({
-			align : [1.1, 0.5],
+			align : [1.2, 0.55],
 			origin: [0.4, 0.0]
 		});
 
@@ -148,7 +106,7 @@ define(function(require, exports, module) {
 
 		var fade = new StateModifier();
 		fade.setOpacity(0);
-		fade.setOpacity(1, {duration : 500, curve : Easing.inQuart});
+		fade.setOpacity(1, {duration : 1000, curve : Easing.inQuart});
 
 		this.add(fade).add(placePhone).add(phone);
 	}
