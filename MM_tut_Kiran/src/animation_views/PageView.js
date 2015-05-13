@@ -75,15 +75,16 @@ define(function(require, exports, module) {
 
     function _createHeader() {
         var backgroundSurface = new Surface({
-            size: [undefined,60],
+            size: [undefined,80],
             content : "Medic Mobile for Antenatal Care",
             properties: {
                 backgroundColor: '#000',
                 padding: '10px',
-                fontSize: '30px',
+                fontSize: '30pt',
                 textAlign: 'center',
+                textTransform: 'uppercase',
                 color: 'white',
-                fontFamily: 'Avenir'
+                fontFamily: 'FuturaPTWebLight'
             }
         });       
 
@@ -93,29 +94,32 @@ define(function(require, exports, module) {
 
         var hamburgerSurface = new ImageSurface({
             size: [44, 44],
-            content: 'mm-assets/hamburger.png'
+            content: 'mm-assets/hamburger.svg',
+            properties: {
+                 zIndex: '10'
+            }
         });
 
         var logoSurface = new Surface({
-            size: [225,75],
+            size: [280,100],
             properties: {
-                backgroundColor: '#323232'
+                backgroundColor: 'rgb(50,50,50)'
             }
         });    
 
         var iconSurface = new ImageSurface({
-            size: [130, 30],
+            size: [170, 40],
             content: 'Medic-Mobile-logo+name_white150.png'
         });
 
         thisPageView.hamburgerModifier = new StateModifier({
-            origin: [0, 0.5],
-            align : [0, 0.5]
+            origin: [0, 0],
+            align : [0.01, 0.6]
         });
 
         thisPageView.iconModifier = new StateModifier({
             origin: [0, 0],
-            align : [0.03, 0.4]
+            align : [0.06, 0.6]
         });
 
         thisPageView.logoModifier = new StateModifier({
@@ -130,6 +134,7 @@ define(function(require, exports, module) {
         this.layout.header.add(thisPageView.logoModifier).add(logoSurface);
 
         _bringHeaderToFront();
+        thisPageView.hamburgerModifier.setTransform(Transform.inFront);
     }
 
     function _bringHeaderToFront() {
