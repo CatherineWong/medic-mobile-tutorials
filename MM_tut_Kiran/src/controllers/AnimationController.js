@@ -17,6 +17,7 @@ define(function(require, exports, module) {
     var RenderController = require("famous/views/RenderController");
     var LongDistanceView = require('animation_views/animation_slides/LongDistanceView');
     var PaperPileupView = require('animation_views/animation_slides/PaperPileupView');
+    var LalitaConfirmView = require('animation_views/animation_slides/LalitaConfirmView');
 
     var tutorialLengths = [10, 4, 4, 4]; //Holds the lengths of each tutorial
     var currTutorial = 0;
@@ -130,7 +131,6 @@ define(function(require, exports, module) {
         if (currTutorial == 0) {
             switch (currTutorialSlide) {
                 case 0:
-                    //currView = new PaperPileupView(); 
                     currView = new HariIntroView();
                     break;
                 case 1:
@@ -160,6 +160,8 @@ define(function(require, exports, module) {
                 case 9:
                     currView = new LalitaRegisteringMayaView();
                     break;
+                case 10:
+                    currView = new LalitaConfirmView();
                 default:
                      //Temporary place holder to fade out to nothingness
                     break; 
