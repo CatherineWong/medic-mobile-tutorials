@@ -157,6 +157,9 @@ define(function(require, exports, module) {
                 case 8:
                     currView = new PaperPileupView();
                     break;
+                case 9:
+                    currView = new LalitaRegisteringMayaView();
+                    break;
                 default:
                      //Temporary place holder to fade out to nothingness
                     break; 
