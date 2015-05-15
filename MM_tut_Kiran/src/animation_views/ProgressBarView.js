@@ -10,7 +10,6 @@ define(function(require, exports, module) {
         View.apply(this, arguments);
 
         _createBackground.call(this);
-        _createTitle.call(this);
     }
 
     StripView.prototype = Object.create(View.prototype);
@@ -23,7 +22,6 @@ define(function(require, exports, module) {
         padding: 13,
         paddingLeft: 30,
         fontFamily: 'FuturaPTWebLight',
-        backgroundColor: '#656912',
         textColor: 'white', //'#E1E6E9',
         backgroundOpacity: 0.8
     };
@@ -31,7 +29,7 @@ define(function(require, exports, module) {
 
     function _createBackground() {
         var backgroundSurface = new Surface({
-            size: [this.options.width, this.options.height],
+            size: [(screen.width - 280)/this.options.length, this.options.height],
             properties: {
                 backgroundColor: this.options.backgroundColor,
                 textAlign: 'center',
@@ -46,24 +44,6 @@ define(function(require, exports, module) {
         });
 
         this.add(backgroundModifier).add(backgroundSurface);
-    }
-
-     function _createTitle() {
-        var titleSurface = new Surface({
-            size: [true, true],
-            content: this.options.title,
-            properties: {
-                color: this.options.textColor,
-                fontSize: this.options.fontSize + 'px',
-                textAlign : 'center',
-                pointerEvents : 'none',
-                fontFamily: this.options.fontFamily,
-                padding: this.options.padding + 'px',
-                paddingLeft: this.options.paddingLeft +'px'
-            }
-        });
-
-        this.add(titleSurface);
     }
 
     module.exports = StripView;
