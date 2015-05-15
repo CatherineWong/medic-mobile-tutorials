@@ -16,6 +16,7 @@ define(function(require, exports, module) {
     var thisPageView; //Give global access to the page view to load animations
     var NavigationView = require('animation_views/NavigationView');
     var MenuView = require('animation_views/MenuView');
+    var ProgressView = require('animation_views/ProgressView');
     var StripData = require('Data/StripData');
 
 
@@ -26,12 +27,14 @@ define(function(require, exports, module) {
 
         _createLayout.call(this);
         _createMenuView.call(this);
+        _createProgress.call(this);
         _createNavigationView.call(this);
         _createHeader.call(this);
         _createBody.call(this);
         _initializeAnimationController.call(this);
         _loadStartingAnimation.call(this); //Uncomment to add sample animation to body
         _setListeners.call(this);
+        //_createProgress.call(this);
 
     }
 
@@ -192,6 +195,18 @@ define(function(require, exports, module) {
         thisPageView.menuModifier = new StateModifier();
 
         this.add(this.menuModifier).add(anotherModifier).add(this.menuView);
+    }
+
+    function _createProgress() {
+        this.ProgressView = new ProgressView({ stripData: StripData });
+
+        var anotherModifier = new StateModifier ({
+            transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
+        });
+
+        this.menuModifier = new StateModifier();
+
+        this.add(this.menuModifier).add(anotherModifier).add(this.ProgressView);
     }
 
     function _loadStartingAnimation() {
