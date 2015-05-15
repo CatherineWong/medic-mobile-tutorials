@@ -217,8 +217,8 @@ define(function(require, exports, module) {
         // var hariIntroView = new HariIntroView();
         // this.layout.content.add(animationModifier).add(hariIntroView);
 
-        var zoomOutIntroView = new ZoomOutIntroView();
-        this.layout.content.add(animationModifier).add(zoomOutIntroView);
+        // var zoomOutIntroView = new ZoomOutIntroView();
+        // this.layout.content.add(animationModifier).add(zoomOutIntroView);
     }
 
 
