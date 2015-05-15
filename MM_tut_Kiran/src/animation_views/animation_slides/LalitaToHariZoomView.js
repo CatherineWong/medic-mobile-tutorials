@@ -45,7 +45,10 @@ define(function(require, exports, module) {
 			align : [0.85, 0.5],
 			origin : [0.5, 0.5],
 		});
-		this.add(place_small_house).add(small_house);
+
+		var move_small_house = new StateModifier();
+
+		this.add(place_small_house).add(move_small_house).add(small_house);
 
 		//ADD MAYA
 		var maya = new ImageSurface ({
@@ -58,8 +61,9 @@ define(function(require, exports, module) {
 			origin: [0.5, 0.5],
 			transform: Transform.inFront
 		});
+		var moveMaya = new StateModifier();
 
-		this.add(placeMaya).add(maya);
+		this.add(placeMaya).add(moveMaya).add(maya);
 
 
 		//ADD LALITA
@@ -71,15 +75,14 @@ define(function(require, exports, module) {
 		var placeLalita = new StateModifier ({
 			align: [0.5, 0.5],
 			origin: [0.5, 0.5],
-			transform: Transform.translate(-200,500,1);
+			transform: Transform.translate(-200,500,1)
 		});
 
-		this.add(placeLalita).add(lalita);
+		var moveLalita = new StateModifier();
 
-	}
+		this.add(placeLalita).add(moveLalita).add(lalita);
 
-
-	function _createPhone() {
+		//ADD PHONE
 		var phone = new ImageSurface ({
 			size : [45, 90],
 			content: 'animation-assets/phone_logo.svg'
@@ -87,54 +90,38 @@ define(function(require, exports, module) {
 
 		var placePhone = new StateModifier ({
 			align: [0.5, 0.5],
-			origin: [0.5, 0.5]
+			origin: [0.5, 0.5],
+			transform: Transform.translate(-100,300,0)
 		});
 
-		placePhone.setTransform(
-			Transform.translate(-700,300,0)
-		);
-
 		var movePhone = new StateModifier();
-		movePhone.setTransform(
-			Transform.translate(600, 0, 0),
-			{duration: 2000, curve: 'easeInOut'}
-		);
 
 		this.add(placePhone).add(movePhone).add(phone);
-	}
 
-	function _createMessage() {
+		//ADD MESSAGE
 		var message = new ImageSurface ({
-			size : [1, 1],
+			size : [100, 100],
 			content: 'animation-assets/Message-icon-grey.png'
 		});
 
 		var placeMessage = new StateModifier ({
 			align: [0.5, 0.5],
 			origin: [0.5, 0.5],
-			opacity: 1
+			transform: Transform.translate(-50,150,0)
 		});
-
-		placeMessage.setTransform(
-			Transform.translate(-650,150,1)
-		);
-
 		var moveMessage = new StateModifier();
-		moveMessage.setTransform(
-			Transform.translate(600, 0, 1),
-			{duration: 2000, curve: 'easeInOut'}
-		);
 
-		var showMessage = new StateModifier();
+		this.add(placeMessage).add(moveMessage).add(message);
 
-		this.add(placeMessage).add(moveMessage).add(showMessage).add(message);
-	
-		setTimeout(function(){showMessage.setTransform(
-			Transform.scale(100, 100, 1),
-			{duration: 500, curve: Easing.outBack}
-		)}, 2000);
+		place_small_house.setTransform(Transform.translate(-1600, 0, 0), {duration : 1000, curve : 'easeInOut'});
+		placeMessage.setTransform(Transform.translate(-1650, 150, 0), {duration : 1000, curve : 'easeInOut'});
+		placePhone.setTransform(Transform.translate(-1700, 300, 0), {duration : 1000, curve : 'easeInOut'});
+		placeLalita.setTransform(Transform.translate(-1800, 500, 1), {duration : 1000, curve : 'easeInOut'});
+		placeMaya.setTransform(Transform.translate(-1600, 0, 0), {duration : 1000, curve : 'easeInOut'});
+
 
 	}
+
 
 
 	////////////////////////////////////////////////////////////

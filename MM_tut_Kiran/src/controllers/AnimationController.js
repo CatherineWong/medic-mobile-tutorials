@@ -21,7 +21,7 @@ define(function(require, exports, module) {
     var LalitaToHariZoomView = require('animation_views/animation_slides/LalitaToHariZoomView');
     var LalitaConfirmView = require('animation_views/animation_slides/LalitaConfirmView');
 
-    var tutorialLengths = [10, 4, 4, 4]; //Holds the lengths of each tutorial
+    var tutorialLengths = [12, 4, 4, 4]; //Holds the lengths of each tutorial
     var currTutorial = 0;
     var currTutorialSlide = 0;
     var renderController;
