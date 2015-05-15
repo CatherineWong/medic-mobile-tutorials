@@ -147,6 +147,7 @@ define(function(require, exports, module) {
         thisPageView.hamburgerModifier.setTransform(Transform.inFront);
         thisPageView.navigationFrontModifier.setTransform(Transform.inFront);
         thisPageView.menuModifier.setTransform(Transform.inFront);
+        thisPageView.progressModifier.setTransform(Transform.inFront);
     }
 
 
@@ -200,13 +201,13 @@ define(function(require, exports, module) {
     function _createProgress() {
         this.ProgressView = new ProgressView({ stripData: StripData });
 
-        var anotherModifier = new StateModifier ({
+        var tempModifier = new StateModifier ({
             transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
         });
 
-        this.menuModifier = new StateModifier();
+        thisPageView.progressModifier = new StateModifier();
 
-        this.add(this.menuModifier).add(anotherModifier).add(this.ProgressView);
+        this.add(thisPageView.progressModifier).add(tempModifier).add(this.ProgressView);
     }
 
     function _loadStartingAnimation() {
@@ -249,6 +250,7 @@ define(function(require, exports, module) {
         } else {
             console.log("Current tutorial:");
             _topDown();
+            //_bringHeaderToFront();
         }
         this.menuToggle = !this.menuToggle;
     }
@@ -263,10 +265,11 @@ define(function(require, exports, module) {
 
     function _topUp() {
         //thisPageView.menuModifier.setTransform(Transform.inFront);
-        thisPageView.menuModifier.setTransform(Transform.translate(0, 0, 0), {
+        thisPageView.menuModifier.setTransform(Transform.translate(0, 0, 0.0001), {
             duration: 300,
             curve: 'easeOut'
         });
+        //thisPageView.menuModifier.setTransform(Transform.translate(0,0,0.2));
         //thisPageView.menuModifier.setTransform(Transform.inFront);
     }
 
