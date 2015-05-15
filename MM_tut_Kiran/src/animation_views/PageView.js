@@ -198,8 +198,11 @@ define(function(require, exports, module) {
     }
 
     function _createProgress() {
-        this.ProgressView = new ProgressView({ stripData: StripData });
-
+        this.ProgressView = new ProgressView({ 
+            stripData: StripData,
+            currTutorial: animationController.getCurrTutorial() 
+        });
+        //alert(animationController.getCurrTutorial());
         var anotherModifier = new StateModifier ({
             transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
         });
