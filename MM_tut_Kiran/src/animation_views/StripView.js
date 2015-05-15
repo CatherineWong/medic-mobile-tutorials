@@ -17,10 +17,15 @@ define(function(require, exports, module) {
     StripView.prototype.constructor = StripView;
 
     StripView.DEFAULT_OPTIONS = {
-        width: 180,
-        height: 30,
-        //title: 'Famo.us',
-        fontSize: 12,
+        width: 280,
+        height: 60,
+        fontSize: 20,
+        padding: 13,
+        paddingLeft: 30,
+        fontFamily: 'FuturaPTWebLight',
+        backgroundColor: 'rgb(50,50,50)',
+        textColor: 'white', //'#E1E6E9',
+        backgroundOpacity: 0.8
     };
 
 
@@ -28,14 +33,16 @@ define(function(require, exports, module) {
         var backgroundSurface = new Surface({
             size: [this.options.width, this.options.height],
             properties: {
-                backgroundColor: 'black',
-                boxShadow: '0 0 1px rgba(0,0,0,1)',
-                textAlign: "center"
+                backgroundColor: this.options.backgroundColor,
+                textAlign: 'center',
+                borderTopStyle: 'solid',
+                borderTopColor: '#93989B',
+                borderTopWidth: '1px'
             }
         });
 
         var backgroundModifier = new StateModifier ({
-            opacity : 0.5
+            opacity : this.options.backgroundOpacity
         });
 
         this.add(backgroundModifier).add(backgroundSurface);
@@ -46,11 +53,13 @@ define(function(require, exports, module) {
             size: [true, true],
             content: this.options.title,
             properties: {
-                color: 'white',
+                color: this.options.textColor,
                 fontSize: this.options.fontSize + 'px',
                 textAlign : 'center',
-                textTransform: 'uppercase',
-                pointerEvents : 'none'
+                pointerEvents : 'none',
+                fontFamily: this.options.fontFamily,
+                padding: this.options.padding + 'px',
+                paddingLeft: this.options.paddingLeft +'px'
             }
         });
 

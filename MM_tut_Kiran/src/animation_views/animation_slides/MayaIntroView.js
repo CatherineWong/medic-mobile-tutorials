@@ -110,7 +110,11 @@ define(function(require, exports, module) {
 			// sets inital opacity to 0
 			opacity: 0
 		});
-		this.add(placeChickens).add(chickens);
+
+		var bringToFront = new StateModifier();
+		bringToFront.setTransform(Transform.inFront);
+
+		this.add(placeChickens).add(bringToFront).add(chickens);
 
 		// animates x- and y-scale to 1
 		placeChickens.setTransform(
@@ -135,7 +139,11 @@ define(function(require, exports, module) {
 			align : [0.2, 0.55],
 			origin: [0.4, 0.0]
 		});
-		this.add(placeMaya).add(maya);
+
+		var bringToFront = new StateModifier();
+		bringToFront.setTransform(Transform.inFront);
+
+		this.add(placeMaya).add(bringToFront).add(maya);
 
 
 		placeMaya.setTransform(

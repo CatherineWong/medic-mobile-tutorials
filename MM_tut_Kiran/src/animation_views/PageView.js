@@ -15,17 +15,26 @@ define(function(require, exports, module) {
     var animationController = new AnimationController(); //Global animation controller
     var thisPageView; //Give global access to the page view to load animations
     var NavigationView = require('animation_views/NavigationView');
+    var MenuView = require('animation_views/MenuView');
+    var ProgressView = require('animation_views/ProgressView');
+    var StripData = require('Data/StripData');
+
 
     function PageView() {
         thisPageView = this;
+        this.menuToggle = true;
         View.apply(this, arguments);
 
         _createLayout.call(this);
+        _createMenuView.call(this);
+        _createProgress.call(this);
+        _createNavigationView.call(this);
         _createHeader.call(this);
         _createBody.call(this);
-	_createNavigationView.call(this);
+        _initializeAnimationController.call(this);
         _loadStartingAnimation.call(this); //Uncomment to add sample animation to body
         _setListeners.call(this);
+        //_createProgress.call(this);
 
     }
 
@@ -36,11 +45,6 @@ define(function(require, exports, module) {
         headerSize: 44
     };
 
-    var tutorialNames = [
-        "1) Overview", 
-        "2) Training your Clinic",
-        "3) Getting Going",
-        "4) Learn More"];
 
     function _createLayout() {
         this.layout = new HeaderFooter({
@@ -54,14 +58,36 @@ define(function(require, exports, module) {
         this.add(layoutModifier).add(this.layout);
     }
 
+    function _initializeAnimationController() {
+        animationController.initialize(thisPageView);
+    }
+
+    function _createNavigationView() {
+        this.navigationView = new NavigationView();
+        var navigationModifier = new StateModifier({
+            Transform: Transform.translate(0, 0, 0.3),
+            opacity: 0.7
+        });
+
+        thisPageView.navigationFrontModifier = new StateModifier({
+            transform: Transform.inFront
+        });
+
+        this.layout.content.add(navigationModifier).add(this.navigationFrontModifier).add(this.navigationView);
+    }
+
     function _createHeader() {
         var backgroundSurface = new Surface({
-            content : "MEDIC MOBILE FOR ANTENATAL CARE",
+            size: [undefined,80],
+            content : "Medic Mobile for Antenatal Care",
             properties: {
-                backgroundColor: 'black',
-                fontSize: "30px",
-                textAlign: "center",
-                color: 'white'
+                backgroundColor: '#000',
+                padding: '10px',
+                fontSize: '30pt',
+                textAlign: 'center',
+                textTransform: 'uppercase',
+                color: 'white',
+                fontFamily: 'FuturaPTWebLight'
             }
         });       
 
@@ -71,37 +97,56 @@ define(function(require, exports, module) {
 
         this.hamburgerSurface = new ImageSurface({
             size: [44, 44],
-            content: 'mm-assets/hamburger.png'
+            content: 'mm-assets/hamburger.svg',
+            properties: {
+                 zIndex: '1'
+            }
         });
 
-        var iconSurface = new ImageSurface({
-            size: [120, 40],
+        this.logoSurface = new Surface({
+            size: [280,100],
+            properties: {
+                backgroundColor: 'rgb(50,50,50)'
+            }
+        });    
+
+        this.iconSurface = new ImageSurface({
+            size: [170, 40],
             content: 'Medic-Mobile-logo+name_white150.png'
         });
 
         thisPageView.hamburgerModifier = new StateModifier({
-            origin: [0, 0.5],
-            align : [0, 0.5]
+            origin: [0, 0],
+            align : [0.01, 0.6]
         });
 
         thisPageView.iconModifier = new StateModifier({
-            origin: [0, 0.5],
-            align : [0.05, 0.5]
+            origin: [0, 0],
+            align : [0.06, 0.6]
+        });
+
+        thisPageView.logoModifier = new StateModifier({
+            origin: [0, 0],
+            align : [0, 0]
         });
         
 
         this.layout.header.add(thisPageView.hamburgerModifier).add(this.hamburgerSurface);
-        this.layout.header.add(thisPageView.iconModifier).add(iconSurface);
+        this.layout.header.add(thisPageView.iconModifier).add(this.iconSurface);
         this.layout.header.add(thisPageView.backgroundModifier).add(backgroundSurface);
-        
+        this.layout.header.add(thisPageView.logoModifier).add(this.logoSurface);
+
         _bringHeaderToFront();
+        //thisPageView.hamburgerModifier.setTransform(Transform.inFront);
     }
 
     function _bringHeaderToFront() {
         thisPageView.backgroundModifier.setTransform(Transform.inFront);
+        thisPageView.logoModifier.setTransform(Transform.inFront);
         thisPageView.iconModifier.setTransform(Transform.inFront);
         thisPageView.hamburgerModifier.setTransform(Transform.inFront);
-
+        thisPageView.navigationFrontModifier.setTransform(Transform.inFront);
+        thisPageView.menuModifier.setTransform(Transform.inFront);
     }
 
 
@@ -140,6 +185,30 @@ define(function(require, exports, module) {
         this.layout.content.add(baseModifier).add(baseView);
     }
 
+    function _createMenuView() {
+        this.menuView = new MenuView({ stripData: StripData });
+
+        var anotherModifier = new StateModifier ({
+            transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
+        });
+
+        thisPageView.menuModifier = new StateModifier();
+
+        this.add(this.menuModifier).add(anotherModifier).add(this.menuView);
+    }
+
+    function _createProgress() {
+        this.ProgressView = new ProgressView({ stripData: StripData });
+
+        var anotherModifier = new StateModifier ({
+            transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
+        });
+
+        this.menuModifier = new StateModifier();
+
+        this.add(this.menuModifier).add(anotherModifier).add(this.ProgressView);
+    }
+
     function _loadStartingAnimation() {
         var animationModifier = new StateModifier ({
             transform: Transform.behind
@@ -148,27 +217,63 @@ define(function(require, exports, module) {
         // var hariIntroView = new HariIntroView();
         // this.layout.content.add(animationModifier).add(hariIntroView);
 
+<<<<<<< HEAD
         var zoomOutTransitionView = new ZoomOutTransitionView();
         this.layout.content.add(animationModifier).add(zoomOutTransitionView);
+=======
+        animationController.loadAnimationView(thisPageView);
+>>>>>>> 83125d847d06afb74c4077fc543a389a9175d7b8
     }
 
-    function _createNavigationView() {
-        this.navigationView = new NavigationView();
-        var navigationModifier = new StateModifier({
-            Transform: Transform.translate(0, 0, 0.3),
-            opacity: 0.7
-        });
-
-        this.layout.content.add(navigationModifier).add(this.navigationView);
-    }
 
     function _setListeners() {
         this.hamburgerSurface.on('click', function() {
-            this._eventOutput.emit('menuToggle');
+            //_bringHeaderToFront();
+            _menuToggle();
+        }.bind(this));
+
+        this.navigationView.on('next', function() {
+            animationController.incrementTutorialCounts();
+            animationController.printDebugOutput();
+            animationController.loadAnimationView(thisPageView); 
+            _bringHeaderToFront();
+        }.bind(this));
+
+        this.navigationView.on('back', function() {
+            animationController.decrementTutorialCounts();
+            animationController.printDebugOutput();
+            animationController.loadAnimationView(thisPageView); 
+            _bringHeaderToFront();
         }.bind(this));
     } 
 
+    function _menuToggle() {
+        if(this.menuToggle) {
+            _topUp();
+            console.log("Current tutorial");
+        } else {
+            console.log("Current tutorial:");
+            _topDown();
+        }
+        this.menuToggle = !this.menuToggle;
+    }
 
+    function _topDown() {
+        thisPageView.menuModifier.setTransform(Transform.translate(0, -400, 0), {
+            duration: 300,
+            curve: 'easeOut'
+        });
+        //thisPageView.menuModifier.setTransform(Transform.inFront);
+    }
+
+    function _topUp() {
+        //thisPageView.menuModifier.setTransform(Transform.inFront);
+        thisPageView.menuModifier.setTransform(Transform.translate(0, 0, 0), {
+            duration: 300,
+            curve: 'easeOut'
+        });
+        //thisPageView.menuModifier.setTransform(Transform.inFront);
+    }
 
     /**
      * Handle keyboard inputs to advance through tutorials

@@ -111,7 +111,10 @@ define(function(require, exports, module) {
 			origin: [0.0, -0.2]
 		});
 
-		this.add(placeHari).add(hari);
+		var bringToFront = new StateModifier();
+		bringToFront.setTransform(Transform.inFront);
+
+		this.add(placeHari).add(bringToFront).add(hari);
 
 		placeHari.setTransform(
 			Transform.translate(700, 0, 0),

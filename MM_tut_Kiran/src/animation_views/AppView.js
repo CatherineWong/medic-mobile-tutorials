@@ -6,16 +6,16 @@ define(function(require, exports, module) {
     var EventHandler  = require('famous/core/EventHandler');
 
     var PageView = require('animation_views/PageView');
-    var MenuView = require('animation_views/MenuView');
-    var StripData = require('Data/StripData');
+    //var MenuView = require('animation_views/MenuView');
+    //var StripData = require('Data/StripData');
 
     function AppView() {
         View.apply(this, arguments);
 
         this.menuToggle = false;
         _createPageView.call(this);
-        _createMenuView.call(this);
-        _setListeners.call(this);
+        //_createMenuView.call(this);
+        //_setListeners.call(this);
     }
 
     AppView.prototype = Object.create(View.prototype);

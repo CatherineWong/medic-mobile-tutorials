@@ -10,65 +10,24 @@ define(function(require, exports, module) {
 	var ImageSurface = require('famous/surfaces/ImageSurface');
 	var Easing = require('famous/transitions/Easing');
 
-   function HariIntroView () {
+   function HariLaptopView () {
    		View.apply(this, arguments);
-   		_createBackground.call(this);
+   		//_createBackground.call(this);
    		_createHuts.call(this);
    		_createHari.call(this);
+   		_addLaptop.call(this);
    }
 
-   HariIntroView.prototype = Object.create(View.prototype);
-   HariIntroView.prototype.constructor = HariIntroView;
+   HariLaptopView.prototype = Object.create(View.prototype);
+   HariLaptopView.prototype.constructor = HariLaptopView;
 
-   HariIntroView.prototype.returnCaptionArray = function() {
+   HariLaptopView.prototype.returnCaptionArray = function() {
    		var captionText = ["Now, Hari’s clinic uses Medic Mobile software to keep track of pregnancies in Maya’s village."];
    		return captionText;	
    }
 
-   HariIntroView.DEFAULT_OPTIONS = {};
+   HariLaptopView.DEFAULT_OPTIONS = {};
 
-
-	function _createBackground() {
-		var background = new ImageSurface ({
-			size : [1700, 1200],
-			content: 'animation-assets/scene-1.svg'
-		});
-
-		var middleground = new ImageSurface ({
-			size : [1700, 1200],
-			content: 'animation-assets/hills-middle-ground.svg'
-
-		});
-
-		var placeForeground = new StateModifier({
-			align: [0.5, 0.5],
-			origin: [0.6, 0.45],
-			transform : Transform.translate(143, 30, 0)
-		});
-
-		var placeMiddleground = new StateModifier ({
-			align: [0.5, 0.5],
-			origin: [0.6, 0.45],
-			transform : Transform.translate(143, 30, 0)
-		});
-
-		var foreground = new ImageSurface ({
-			size : [1700, 1200],
-			content: 'animation-assets/hills-foreground.svg'
-
-		});
-
-		var placeBackground = new StateModifier({
-			align: [0.5, 0.5],
-			origin: [0.6, 0.45]
-		});
-
-		this.add(placeBackground).add(background);
-		this.add(placeMiddleground).add(middleground);
-		this.add(placeForeground).add(foreground);
-
-
-	}
 
 	function _createHuts() {
 
@@ -78,24 +37,12 @@ define(function(require, exports, module) {
 		});
 
 		var place_health_center= new StateModifier ({
-			align : [0.6, 0.5],
-			origin : [0.1, 0.5],
-			// sets initial x- and y-scale to be 0
-			transform: Transform.scale(0, 0, 1),
-			// sets inital opacity to 0
-			opacity: 0
+			align : [0.5, 0.5],
+			origin : [0.5, 0.5],
+			opacity: 1,
+			transform: Transform.behind
 		});
 		this.add(place_health_center).add(health_center);
-
-		// animates x- and y-scale to 1
-		place_health_center.setTransform(
-			Transform.scale(1, 1, 1),
-			{ duration : 1000, curve: Easing.outBack }
-		);
-		// animates opacity to 1
-		place_health_center.setOpacity(1, {
-			duration: 1000, curve: Easing.outBack
-		});
 	}
 
 
@@ -108,18 +55,46 @@ define(function(require, exports, module) {
 
 		var placeHari = new StateModifier ({
 			align: [0.0, 0.5],
-			origin: [0.0, -0.2]
+			origin: [0.0, -0.2],
+			transform: Transform.translate(700, 0, 0)
 		});
 
 		this.add(placeHari).add(hari);
 
 		placeHari.setTransform(
-			Transform.translate(400, 0, 0)
-			//{duration: 2000, curve: 'easeInOut'}
+			Transform.translate(580, 0, 0),
+			{duration: 1000, curve: Easing.easeInOut}
 		);
-
 	}
 
-	module.exports = HariIntroView;
+	function _addLaptop() {
+
+		var laptop_closed = new ImageSurface ({
+			size : [100, 100],
+			content: 'animation-assets/laptop-closed.svg'
+		});
+
+
+		var placeLaptop = new StateModifier ({
+			align: [0.0, 0.6],
+			origin: [0.0, -0.2],
+			opacity: 0,
+			transform: Transform.translate(870, 0, 0),
+			//transform: Transform.behind
+		});
+
+		var moveBack = new StateModifier ({transform: Transform.behind});
+
+		this.add(placeLaptop).add(moveBack).add(laptop_closed);
+		//Change the opacity after Hari walks by to reveal the laptop
+		setTimeout(function(){placeLaptop.setOpacity(1);}, 400);
+
+		setTimeout(function(){
+			laptop_closed.setContent('animation-assets/laptop-logo.svg'),
+			placeLaptop.setTransform(Transform.translate(870,-25,0))
+			}, 750);
+	}
+
+	module.exports = HariLaptopView;
 
 });
