@@ -216,7 +216,7 @@ define(function(require, exports, module) {
         var animationModifier = new StateModifier ({
             transform: Transform.behind
         });
-
+        animationController.loadAnimationView(thisPageView);
         // var hariIntroView = new HariIntroView();
         // this.layout.content.add(animationModifier).add(hariIntroView);
 
