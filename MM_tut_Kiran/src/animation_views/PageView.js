@@ -21,7 +21,7 @@ define(function(require, exports, module) {
 
     function PageView() {
         thisPageView = this;
-        this.menuToggle = false;
+        this.menuToggle = true;
         View.apply(this, arguments);
 
         _createLayout.call(this);
@@ -92,22 +92,22 @@ define(function(require, exports, module) {
             transform: Transform.behind
         });
 
-        var hamburgerSurface = new ImageSurface({
+        this.hamburgerSurface = new ImageSurface({
             size: [44, 44],
             content: 'mm-assets/hamburger.svg',
             properties: {
-                 zIndex: '10'
+                 zIndex: '1'
             }
         });
 
-        var logoSurface = new Surface({
+        this.logoSurface = new Surface({
             size: [280,100],
             properties: {
                 backgroundColor: 'rgb(50,50,50)'
             }
         });    
 
-        var iconSurface = new ImageSurface({
+        this.iconSurface = new ImageSurface({
             size: [170, 40],
             content: 'Medic-Mobile-logo+name_white150.png'
         });
@@ -128,13 +128,13 @@ define(function(require, exports, module) {
         });
         
 
-        this.layout.header.add(thisPageView.hamburgerModifier).add(hamburgerSurface);
-        this.layout.header.add(thisPageView.iconModifier).add(iconSurface);
+        this.layout.header.add(thisPageView.hamburgerModifier).add(this.hamburgerSurface);
+        this.layout.header.add(thisPageView.iconModifier).add(this.iconSurface);
         this.layout.header.add(thisPageView.backgroundModifier).add(backgroundSurface);
-        this.layout.header.add(thisPageView.logoModifier).add(logoSurface);
+        this.layout.header.add(thisPageView.logoModifier).add(this.logoSurface);
 
         _bringHeaderToFront();
-        thisPageView.hamburgerModifier.setTransform(Transform.inFront);
+        //thisPageView.hamburgerModifier.setTransform(Transform.inFront);
     }
 
     function _bringHeaderToFront() {
@@ -189,7 +189,7 @@ define(function(require, exports, module) {
             transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
         });
 
-        this.menuModifier = new StateModifier();
+        thisPageView.menuModifier = new StateModifier();
 
         this.add(this.menuModifier).add(anotherModifier).add(this.menuView);
     }
@@ -207,9 +207,10 @@ define(function(require, exports, module) {
 
 
     function _setListeners() {
-        /*this.hamburgerSurface.on('click', function() {
-            this._eventOutput.emit('menuToggle');
-        }.bind(this));*/
+        this.hamburgerSurface.on('click', function() {
+            //_bringHeaderToFront();
+            _menuToggle();
+        }.bind(this));
 
         this.navigationView.on('next', function() {
             animationController.incrementTutorialCounts();
@@ -224,11 +225,35 @@ define(function(require, exports, module) {
             animationController.loadAnimationView(thisPageView); 
             _bringHeaderToFront();
         }.bind(this));
-
-
     } 
 
+    function _menuToggle() {
+        if(this.menuToggle) {
+            _topUp();
+            console.log("Current tutorial");
+        } else {
+            console.log("Current tutorial:");
+            _topDown();
+        }
+        this.menuToggle = !this.menuToggle;
+    }
 
+    function _topDown() {
+        thisPageView.menuModifier.setTransform(Transform.translate(0, -400, 0), {
+            duration: 300,
+            curve: 'easeOut'
+        });
+        //thisPageView.menuModifier.setTransform(Transform.inFront);
+    }
+
+    function _topUp() {
+        //thisPageView.menuModifier.setTransform(Transform.inFront);
+        thisPageView.menuModifier.setTransform(Transform.translate(0, 0, 0), {
+            duration: 300,
+            curve: 'easeOut'
+        });
+        //thisPageView.menuModifier.setTransform(Transform.inFront);
+    }
 
     /**
      * Handle keyboard inputs to advance through tutorials
@@ -247,9 +272,6 @@ define(function(require, exports, module) {
             _bringHeaderToFront();
         }
      }); 
-
-    
-
 
     module.exports = PageView;
 });
