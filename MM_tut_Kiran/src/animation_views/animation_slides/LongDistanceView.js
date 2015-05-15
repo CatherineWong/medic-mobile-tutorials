@@ -247,37 +247,43 @@ define(function(require, exports, module) {
 
 		//go to next woman
 		this.sizeTransitionable.set([70, 70], {duration: 2000});
-		this.transitionableTransform.setTranslate([55, 70, 1], {duration: 2000});
+		this.transitionableTransform.setTranslate([55, 70, 0], {duration: 2000});
 
 		//pause
 		//this.transitionableTransform.setTranslate([55, 70, 0], {duration: 1000});
 
 		//go to next woman	
-		this.transitionableTransform.setTranslate([-300, 70, 2], {duration: 2000});
+		this.transitionableTransform.setTranslate([-300, 70, 0], {duration: 2000});
 
 		//pause
-		this.transitionableTransform.setTranslate([-300, 70, 2], {duration: 1000});
+		this.transitionableTransform.setTranslate([-300, 70, 0], {duration: 1000});
 
 		//go to road		
-		this.transitionableTransform.setTranslate([-300, 150, 3], {duration: 1000});
+		this.transitionableTransform.setTranslate([-300, 150, 0], {duration: 1000});
 		this.sizeTransitionable.set([70, 70], {duration: 5000});
 
-		this.transitionableTransform.setTranslate([55, 150, 4], {duration: 1000});
+		this.transitionableTransform.setTranslate([55, 150, 0], {duration: 1000});
 
-		this.transitionableTransform.setTranslate([275, 30, 4], {duration: 1000});
+		this.transitionableTransform.setTranslate([275, 30, 0], {duration: 1000});
 		this.sizeTransitionable.set([50, 50], {duration: 1000});
 
 		//turn1
-		this.transitionableTransform.setTranslate([205, 15, 5], {duration: 1000});
+		this.transitionableTransform.setTranslate([205, 15, 0], {duration: 1000});
 		this.sizeTransitionable.set([40, 40], {duration: 1000});
 
 		//turn2
-		this.transitionableTransform.setTranslate([290, 7, 6], {duration: 1000});
+		this.transitionableTransform.setTranslate([290, 7, 0], {duration: 1000});
 		this.sizeTransitionable.set([30, 30], {duration: 1000});
 
 		//turn3
-		this.transitionableTransform.setTranslate([245, -10, 7], {duration: 1000});
+		this.transitionableTransform.setTranslate([245, -10, 0], {duration: 1000});
 		this.sizeTransitionable.set([30, 30], {duration: 1000});
+
+	}
+
+	function _goRoad() {
+		this.transitionableTransform.setTranslate([-300, 150, 0], {duration: 1000});
+		this.sizeTransitionable.set([80, 80], {duration: 1000});
 	}
 
 
