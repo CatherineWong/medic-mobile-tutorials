@@ -17,6 +17,7 @@ define(function(require, exports, module) {
    		_createMaya.call(this);
    		_createPhone.call(this);
    		_createLalita.call(this);
+   		_createMessage.call(this);
    		
    }
 
@@ -74,14 +75,14 @@ define(function(require, exports, module) {
 
 		this.add(placeMaya).add(maya);
 
-		placeMaya.setTransform(
-			Transform.scale(1, 1, 1),
-			{ duration : 1000, curve: Easing.outBack }
-		);
-
 		placeMaya.setOpacity(
 			1,
 			{ duration: 1000, curve: Easing.outBack }
+		);
+
+		placeMaya.setTransform(
+			Transform.multiply(Transform.scale(1,1,1),Transform.inFront),
+			{ duration : 1000, curve: Easing.outBack }
 		);
 
 
@@ -138,6 +139,41 @@ define(function(require, exports, module) {
 		this.add(placePhone).add(movePhone).add(phone);
 	}
 
+	function _createMessage() {
+		var message = new ImageSurface ({
+			size : [10, 10],
+			content: 'animation-assets/Message-icon-grey.png'
+		});
+
+		var placeMessage = new StateModifier ({
+			align: [0.5, 0.5],
+			origin: [0.5, 0.5],
+			opacity: 1
+		});
+
+		placeMessage.setTransform(
+			Transform.translate(-650,150,0)
+		);
+
+		var moveMessage = new StateModifier();
+		moveMessage.setTransform(
+			Transform.translate(600, 0, 0),
+			{duration: 2000, curve: 'easeInOut'}
+		);
+
+		var showMessage = new StateModifier();
+
+		this.add(placeMessage).add(moveMessage).add(showMessage).add(message);
+	
+		setTimeout(function(){showMessage.setTransform(
+			Transform.scale(10, 10, 1),
+			{duration: 500, curve: 'easeInOut'}
+		)}, 2000);
+
+		//setTimeout(function(){showMessage.setOpacity(1)},1700);
+
+
+	}
 
 	module.exports = LalitaRegisteringMayaView;
 
