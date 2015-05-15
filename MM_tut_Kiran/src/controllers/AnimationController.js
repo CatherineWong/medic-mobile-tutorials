@@ -162,6 +162,9 @@ define(function(require, exports, module) {
                     currView = new LalitaRegisteringMayaView();
                     break;
                 case 10:
+                    currView = new LalitaRegisteringMayaView();
+                    break;
+                case 11:
                     currView = new LalitaConfirmView();
                 default:
                      //Temporary place holder to fade out to nothingness
