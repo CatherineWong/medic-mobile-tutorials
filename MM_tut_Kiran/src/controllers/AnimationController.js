@@ -17,7 +17,8 @@ define(function(require, exports, module) {
     var RenderController = require("famous/views/RenderController");
     var LongDistanceView = require('animation_views/animation_slides/LongDistanceView');
     var PaperPileupView = require('animation_views/animation_slides/PaperPileupView');
-    var LalitaRegisteringMayaView = require('animation_views/animation_slides/LalitaRegisteringMayaView')
+    var LalitaRegisteringMayaView = require('animation_views/animation_slides/LalitaRegisteringMayaView');
+    var LalitaToHariZoomView = require('animation_views/animation_slides/LalitaToHariZoomView');
     var LalitaConfirmView = require('animation_views/animation_slides/LalitaConfirmView');
 
     var tutorialLengths = [10, 4, 4, 4]; //Holds the lengths of each tutorial
@@ -162,7 +163,7 @@ define(function(require, exports, module) {
                     currView = new LalitaRegisteringMayaView();
                     break;
                 case 10:
-                    currView = new LalitaRegisteringMayaView();
+                    currView = new LalitaToHariZoomView();
                     break;
                 case 11:
                     currView = new LalitaConfirmView();
