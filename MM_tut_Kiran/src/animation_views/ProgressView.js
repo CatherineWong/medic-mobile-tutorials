@@ -13,6 +13,8 @@ define(function(require, exports, module) {
     var tutColor = '';
     var tutLength = 5; //AnimationController.getTutorialLength
 
+
+
     switch(tutNum) {
         case 1:
             tutColor = '#656912';

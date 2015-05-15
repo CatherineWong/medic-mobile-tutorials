@@ -25,8 +25,9 @@ define(function(require, exports, module) {
 
 	function _createBackground() {
 		var background = new ImageSurface ({
-			size : [undefined, undefined],
-			content: 'animation-assets/scene-background-repeat-h.svg'
+			size : [undefined, undefined]/*,
+			content: 'animation-assets/scene-background-repeat-h.svg',
+			backgroundRepeat: 'repeat-x'*/
 			//content: 'animation-assets/scene-1.svg'
 		});
 

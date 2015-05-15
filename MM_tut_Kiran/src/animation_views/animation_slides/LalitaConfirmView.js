@@ -263,9 +263,11 @@ function _createMovingTransitionBetweenScenes() {
 		var placeMessage = new StateModifier({
 			align : [1.2, 0.55],
 			origin: [0.4, 0.0],
-			opacity: .9,
-			transform: Transform.translate(-585, -85, 0)
+			opacity: .0,
+			transform: Transform.translate(-585-100, -85, 0)
 		});
+
+		placeMessage.setOpacity(.9, {duration: 500, curve : 'easeInOut'});
 
 		var toFront = new StateModifier({transform: Transform.inFront})
 
@@ -277,9 +279,9 @@ function _createMovingTransitionBetweenScenes() {
 			placeLalita.setOpacity(1),
 			placeLalita.setAlign([-1.8, 0.55], {duration : 2000, curve : 'easeInOut'}),
 			placePhone.setAlign([-1.8, 0.55], {duration : 2000, curve : 'easeInOut'}),
-			placeMessage.setAlign([0, 0.55], {duration : 4000, curve : 'easeInOut'}),
-			placeMessage.setOrigin([0.0, 0], {duration : 4000, curve : 'easeInOut'}),
-			placeMessage.setTransform(Transform.translate(870, -85, 0), {duration : 4000, curve : 'easeInOut'})
+			placeMessage.setAlign([0, 0.55], {duration : 3500, curve : 'easeInOut'}),
+			placeMessage.setOrigin([0.0, 0], {duration : 3500, curve : 'easeInOut'}),
+			placeMessage.setTransform(Transform.translate(870, -85, 0), {duration : 3500, curve : 'easeInOut'})
 		}, 1000);
 
 		this.add(placePhone).add(phone);
