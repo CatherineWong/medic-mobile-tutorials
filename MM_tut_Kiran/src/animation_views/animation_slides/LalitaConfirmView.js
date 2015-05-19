@@ -248,30 +248,35 @@ function _createMovingTransitionBetweenScenes() {
 			Transform.translate(-585, 15, 0)
 		);
 
-		var message = new Surface({
-		  size: [170, 60],
-		  content: 'Maya has successfully delivered!',
-		  properties: {
-		  	textAlign: 'left',
-    		padding: '5px',
-		    backgroundColor: '#64a2c7', //#8799BC
-		    color: 'white',
-		    borderRadius: '7px'
-		  }
+		var message = new ImageSurface ({
+			size : [1, 1],
+			content: 'animation-assets/Message-icon-grey.png'
 		});
 
-		var placeMessage = new StateModifier({
-			align : [1.2, 0.55],
+		var placeMessage = new StateModifier ({
+			align: [1.2, 0.55],
 			origin: [0.4, 0.0],
-			opacity: .0,
-			transform: Transform.translate(-585-100, -85, 0)
+			opacity: 1
 		});
 
-		placeMessage.setOpacity(.9, {duration: 500, curve : 'easeInOut'});
+		placeMessage.setTransform(
+			Transform.translate(-570 - 200,-100 + 200,1)
+		);
 
-		var toFront = new StateModifier({transform: Transform.inFront})
+		var moveMessage = new StateModifier();
+		moveMessage.setTransform(
+			Transform.translate(200, -200, 1),
+			{duration: 1000, curve: 'easeInOut'}
+		);
 
-		this.add(placeMessage).add(toFront).add(message);
+		var showMessage = new StateModifier();
+
+		this.add(placeMessage).add(moveMessage).add(showMessage).add(message);
+	
+		setTimeout(function(){showMessage.setTransform(
+			Transform.scale(100, 100, 1),
+			{duration: 500, curve: Easing.outBack}
+		)}, 1000);
 
 
 		//Move out Lalita and then add her cell phone.
@@ -279,10 +284,10 @@ function _createMovingTransitionBetweenScenes() {
 			placeLalita.setOpacity(1),
 			placeLalita.setAlign([-1.8, 0.55], {duration : 2000, curve : 'easeInOut'}),
 			placePhone.setAlign([-1.8, 0.55], {duration : 2000, curve : 'easeInOut'}),
-			placeMessage.setAlign([0, 0.55], {duration : 3500, curve : 'easeInOut'}),
-			placeMessage.setOrigin([0.0, 0], {duration : 3500, curve : 'easeInOut'}),
-			placeMessage.setTransform(Transform.translate(870, -85, 0), {duration : 3500, curve : 'easeInOut'})
-		}, 1000);
+			placeMessage.setAlign([0, 0.55], {duration : 2000, curve : 'easeInOut'}),
+			placeMessage.setOrigin([0.0, 0], {duration : 2000, curve : 'easeInOut'}),
+			placeMessage.setTransform(Transform.translate(870 - 200, -100 + 200, 0), {duration : 2000, curve : 'easeInOut'})
+		}, 2000);
 
 		this.add(placePhone).add(phone);
 	}
