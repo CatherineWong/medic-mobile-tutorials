@@ -199,12 +199,7 @@ define(function(require, exports, module) {
     }
 
     function _createProgress() {
-<<<<<<< Updated upstream
-        this.ProgressView = new ProgressView({ stripData: StripData });
 
-        var tempModifier = new StateModifier ({
-=======
-        //alert(animationController.getCurrTutorialSlide());
         this.ProgressView = new ProgressView({ 
             stripData: StripData,
             currTutorial: animationController.getCurrTutorial(),
@@ -212,13 +207,12 @@ define(function(require, exports, module) {
         });
         //alert(animationController.getCurrTutorial());
         var anotherModifier = new StateModifier ({
->>>>>>> Stashed changes
             transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
         });
 
         thisPageView.progressModifier = new StateModifier();
 
-        this.add(thisPageView.progressModifier).add(tempModifier).add(this.ProgressView);
+        this.add(thisPageView.progressModifier).add(anotherModifier).add(this.ProgressView);
     }
 
     function _loadStartingAnimation() {
