@@ -37,7 +37,8 @@ define(function(require, exports, module) {
                 textAlign: 'center',
                 borderTopStyle: 'solid',
                 borderTopColor: '#93989B',
-                borderTopWidth: '1px'
+                borderTopWidth: '1px',
+                cursor: 'pointer'
             }
         });
 

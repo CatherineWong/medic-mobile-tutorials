@@ -199,9 +199,20 @@ define(function(require, exports, module) {
     }
 
     function _createProgress() {
+<<<<<<< Updated upstream
         this.ProgressView = new ProgressView({ stripData: StripData });
 
         var tempModifier = new StateModifier ({
+=======
+        //alert(animationController.getCurrTutorialSlide());
+        this.ProgressView = new ProgressView({ 
+            stripData: StripData,
+            currTutorial: animationController.getCurrTutorial(),
+            numberFilled: animationController.getCurrTutorialSlide() 
+        });
+        //alert(animationController.getCurrTutorial());
+        var anotherModifier = new StateModifier ({
+>>>>>>> Stashed changes
             transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
         });
 
@@ -282,12 +293,14 @@ define(function(require, exports, module) {
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView); 
             _bringHeaderToFront();
+            _createProgress.call(this);
 
         } else if (e.which === 37) { //Left arrow key
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView); 
             _bringHeaderToFront();
+            _createProgress.call(this);
         }
      }); 
 

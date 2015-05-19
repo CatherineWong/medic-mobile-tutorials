@@ -25,6 +25,7 @@ define(function(require, exports, module) {
             size: [50, 50],
             content: 'src/back_arrow.svg',
             properties: {
+                cursor: 'pointer'
                 //marginLeft: (sidebarWidth + 50) + 'px',
                 //marginTop: (headerBar.size[1]+progressBar.size[1]) + 'px'
             }
@@ -43,6 +44,7 @@ define(function(require, exports, module) {
             size: [50, 50],
             content: 'src/next_arrow.svg',
             properties: {
+                cursor: 'pointer'
                 //marginLeft: (sidebarWidth + headerBar.size[0] - 50) + 'px',
                 //marginTop: (headerBar.size[1]+progressBar.size[1]) + 'px'
             }
@@ -51,7 +53,8 @@ define(function(require, exports, module) {
         var placeNextArrow = new StateModifier({
             align: [0.95, 0.5],
             origin: [1, 0.5],
-            Transform: Transform.front
+            Transform: Transform.front,
+
         }); 
         
         this.add(placeNextArrow).add(this.nextArrow);
