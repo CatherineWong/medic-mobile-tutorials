@@ -31,10 +31,10 @@ define(function(require, exports, module) {
         default:
             tutColor = '#000';
     }
-
+    var filledColor = "red";
+    var numFilled = 3;
     function MenuView() {
         View.apply(this, arguments);
-
         _createProgressBars.call(this);
     }
 
@@ -43,7 +43,8 @@ define(function(require, exports, module) {
 
     MenuView.DEFAULT_OPTIONS = {
         length: tutLength,
-        backgroundColor: tutColor,
+        backgroundFilledColor: filledColor,
+        backgroundUnfilledColor: tutColor,
         stripData: {},
         topOffset: 80,
         leftOffset: 280,
@@ -57,11 +58,18 @@ define(function(require, exports, module) {
         var xOffset = this.options.leftOffset;
 
         for (var i = 0; i < this.options.length; i++) {
+            var backColor ="";
+            if (i < this.options.numberFilled) {
+                backColor = this.options.backgroundFilledColor;
+            }
+            else {
+                backColor = this.options.backgroundUnfilledColor;
+            }
             var stripView = new StripView({
                 //iconUrl: this.options.stripData[i].iconUrl,
                 //title: "",
                 length: this.options.length,
-                backgroundColor: this.options.backgroundColor
+                backgroundColor: backColor
             });
 
             var stripModifier = new StateModifier({
@@ -75,6 +83,9 @@ define(function(require, exports, module) {
         }
     }
 
+    function _updateProgressBar(slideNumber) {
+
+    }
 
 
     module.exports = MenuView;

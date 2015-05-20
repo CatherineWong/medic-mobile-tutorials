@@ -199,15 +199,20 @@ define(function(require, exports, module) {
     }
 
     function _createProgress() {
-        this.ProgressView = new ProgressView({ stripData: StripData });
 
-        var tempModifier = new StateModifier ({
+        this.ProgressView = new ProgressView({ 
+            stripData: StripData,
+            currTutorial: animationController.getCurrTutorial(),
+            numberFilled: animationController.getCurrTutorialSlide() 
+        });
+        //alert(animationController.getCurrTutorial());
+        var anotherModifier = new StateModifier ({
             transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
         });
 
         thisPageView.progressModifier = new StateModifier();
 
-        this.add(thisPageView.progressModifier).add(tempModifier).add(this.ProgressView);
+        this.add(thisPageView.progressModifier).add(anotherModifier).add(this.ProgressView);
     }
 
     function _loadStartingAnimation() {
@@ -282,12 +287,14 @@ define(function(require, exports, module) {
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView); 
             _bringHeaderToFront();
+            _createProgress.call(this);
 
         } else if (e.which === 37) { //Left arrow key
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView); 
             _bringHeaderToFront();
+            _createProgress.call(this);
         }
      }); 
 
