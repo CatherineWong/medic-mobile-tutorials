@@ -146,7 +146,7 @@ define(function(require, exports, module) {
         thisPageView.iconModifier.setTransform(Transform.inFront);
         thisPageView.hamburgerModifier.setTransform(Transform.inFront);
         thisPageView.navigationFrontModifier.setTransform(Transform.inFront);
-        thisPageView.menuModifier.setTransform(Transform.inFront);
+        if (!this.menuToggle) thisPageView.menuModifier.setTransform(Transform.inFront);
         thisPageView.progressModifier.setTransform(Transform.inFront);
     }
 

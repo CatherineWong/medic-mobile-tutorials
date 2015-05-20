@@ -98,6 +98,11 @@ define(function(require, exports, module) {
 
 	}
 
+	var alignx = 0.5;
+	var aligny = 0.55;
+	var originx = 0.5;
+	var originy = 0.5;
+
 	function _createHuts() {
 		var huts_one = new ImageSurface ({
 			size : [200, 140],
@@ -105,9 +110,9 @@ define(function(require, exports, module) {
 		});
 
 		var place_huts_one = new StateModifier ({
-			align : [0.4, 0.5],
-			origin : [0.7, 0.5],
-			transform : Transform.translate(-150, 70, 0)
+			align : [alignx, aligny],
+			origin : [originx, originy],
+			transform : Transform.translate(-300, 70, 0)
 		});
 
 		var huts_two = new ImageSurface ({
@@ -116,9 +121,9 @@ define(function(require, exports, module) {
 		});
 
 		var place_huts_two = new StateModifier ({
-			align : [0.5, 0.5],
-			origin : [0.5, 0.5],
-			transform : Transform.translate(30, 70, 0)
+			align : [alignx, aligny],
+			origin : [originx, originy],
+			transform : Transform.translate(30,70, 0)
 		});
 
 		var health_center = new ImageSurface ({
@@ -127,8 +132,8 @@ define(function(require, exports, module) {
 		});
 
 		var place_health_center= new StateModifier ({
-			align : [0.5, 0.5],
-			origin : [0.5, 0.5],
+			align : [alignx, aligny],
+			origin : [originx, originy],
 			transform : Transform.translate(380, 15, 0)
 		});
 
@@ -147,7 +152,7 @@ define(function(require, exports, module) {
 		var placePath = new StateModifier ({
 			align: [0.5, 0.55],
 			origin: [0.5, 0.5],
-			transform: Transform.translate(5, 125, 0)
+			transform: Transform.translate(5, 155, 0)
 		});
 
 		this.add(placePath).add(path);
@@ -162,8 +167,8 @@ define(function(require, exports, module) {
 
 		var placePreg_wom = new StateModifier ({
 			align: [0.5, 0.55],
-			origin: [0.5, 0.5],
-			transform: Transform.translate(-200, 75, 0)
+			origin: [originx, originy],
+			transform: Transform.translate(-200, 105, 0)
 		});
 
 		this.add(placePreg_wom).add(preg_wom);
@@ -175,8 +180,8 @@ define(function(require, exports, module) {
 
 		var placePreg_wom2 = new StateModifier ({
 			align: [0.5, 0.55],
-			origin: [0.5, 0.5],
-			transform: Transform.translate(145, 85, 0)
+			origin: [originx, originy],
+			transform: Transform.translate(145, 105, 0)
 		});
 
 		this.add(placePreg_wom2).add(preg_wom2);
@@ -188,8 +193,8 @@ define(function(require, exports, module) {
 
 		var placePreg_wom3 = new StateModifier ({
 			align: [0.5, 0.55],
-			origin: [0.5, 0.5],
-			transform: Transform.translate(125, 15, 0)
+			origin: [originx, originy],
+			transform: Transform.translate(125, 45, 0)
 		});
 
 		this.add(placePreg_wom3).add(preg_wom3);
@@ -206,8 +211,8 @@ define(function(require, exports, module) {
 
 		var placeCHW = new Modifier ({
 			align: [0.5, 0.55],
-			origin: [0.5, 0.5],
-			transform: Transform.translate(145, 15, 0)
+			origin: [originx, originy],
+			transform: Transform.translate(145, 45, 0)
 		});
 
 
@@ -216,7 +221,7 @@ define(function(require, exports, module) {
 
 		this.modifier = new Modifier({
 			align: [0.5, 0.55],
-			origin: [0.5, 0.5],
+			origin: [originx, originy],
   			size: this.sizeTransitionable,
   			transform: this.transitionableTransform
   			//content : 'animation-assets/chw-female-clipboard.svg'
@@ -247,44 +252,40 @@ define(function(require, exports, module) {
 
 		//go to next woman
 		this.sizeTransitionable.set([70, 70], {duration: 2000});
-		this.transitionableTransform.setTranslate([55, 70, 0], {duration: 2000});
+		this.transitionableTransform.setTranslate([55, 70, 1], {duration: 2000});
 
 		//pause
 		//this.transitionableTransform.setTranslate([55, 70, 0], {duration: 1000});
 
 		//go to next woman	
-		this.transitionableTransform.setTranslate([-300, 70, 0], {duration: 2000});
+		this.transitionableTransform.setTranslate([-300, 70, 2], {duration: 2000});
 
 		//pause
-		this.transitionableTransform.setTranslate([-300, 70, 0], {duration: 1000});
+		this.transitionableTransform.setTranslate([-300, 70, 3], {duration: 1000});
 
 		//go to road		
-		this.transitionableTransform.setTranslate([-300, 150, 0], {duration: 1000});
+		this.transitionableTransform.setTranslate([-300, 150, 4], {duration: 1000});
 		this.sizeTransitionable.set([70, 70], {duration: 5000});
 
-		this.transitionableTransform.setTranslate([55, 150, 0], {duration: 1000});
+		this.transitionableTransform.setTranslate([55, 150, 5], {duration: 1000});
 
-		this.transitionableTransform.setTranslate([275, 30, 0], {duration: 1000});
+		this.transitionableTransform.setTranslate([275, 30, 6], {duration: 1000});
 		this.sizeTransitionable.set([50, 50], {duration: 1000});
 
 		//turn1
-		this.transitionableTransform.setTranslate([205, 15, 0], {duration: 1000});
+		this.transitionableTransform.setTranslate([205, 15, 7], {duration: 1000});
 		this.sizeTransitionable.set([40, 40], {duration: 1000});
 
 		//turn2
-		this.transitionableTransform.setTranslate([290, 7, 0], {duration: 1000});
+		this.transitionableTransform.setTranslate([290, 7, 8], {duration: 1000});
 		this.sizeTransitionable.set([30, 30], {duration: 1000});
 
 		//turn3
-		this.transitionableTransform.setTranslate([245, -10, 0], {duration: 1000});
+		this.transitionableTransform.setTranslate([245, -10, 9], {duration: 1000});
 		this.sizeTransitionable.set([30, 30], {duration: 1000});
 
 	}
 
-	function _goRoad() {
-		this.transitionableTransform.setTranslate([-300, 150, 0], {duration: 1000});
-		this.sizeTransitionable.set([80, 80], {duration: 1000});
-	}
 
 
 

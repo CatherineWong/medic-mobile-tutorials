@@ -133,6 +133,7 @@ define(function(require, exports, module) {
         if (currTutorial == 0) {
             switch (currTutorialSlide) {
                 case 0:
+                    //currView = new LongDistanceView();
                     currView = new HariIntroView();
                     break;
                 case 1:
