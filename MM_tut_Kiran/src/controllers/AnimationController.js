@@ -20,6 +20,8 @@ define(function(require, exports, module) {
     var LalitaRegisteringMayaView = require('animation_views/animation_slides/LalitaRegisteringMayaView');
     var LalitaToHariZoomView = require('animation_views/animation_slides/LalitaToHariZoomView');
     var LalitaConfirmView = require('animation_views/animation_slides/LalitaConfirmView');
+    var SplitScreenView = require('animation_views/animation_slides/SplitScreenView');
+    var RegisterView = require('animation_views/animation_slides/RegisterView');
 
     var tutorialLengths = [12, 4, 4, 4]; //Holds the lengths of each tutorial
     var currTutorial = 0;
@@ -133,7 +135,7 @@ define(function(require, exports, module) {
         if (currTutorial == 0) {
             switch (currTutorialSlide) {
                 case 0:
-                    //currView = new LongDistanceView();
+                    //currView = new SplitScreenView();
                     currView = new HariIntroView();
                     break;
                 case 1:
@@ -168,12 +170,24 @@ define(function(require, exports, module) {
                     break;
                 case 11:
                     currView = new LalitaConfirmView();
+                    break;
                 default:
                      //Temporary place holder to fade out to nothingness
                     break; 
             }
             
-        } 
+        } else if (currTutorial == 1) {
+            switch (currTutorialSlide) {
+                case 0:
+                    currView = new SplitScreenView();
+                    break;
+                case 1:
+                    currView = new RegisterView();
+                    break;  
+                default:
+                    break;
+            } 
+        }
 
         return currView;
     }

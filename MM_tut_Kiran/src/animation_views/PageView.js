@@ -64,6 +64,8 @@ define(function(require, exports, module) {
 
     function _createNavigationView() {
         this.navigationView = new NavigationView();
+
+        //changed from 0.3
         var navigationModifier = new StateModifier({
             Transform: Transform.translate(0, 0, 0.3),
             opacity: 0.7
@@ -287,14 +289,16 @@ define(function(require, exports, module) {
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView); 
             _bringHeaderToFront();
-            _createProgress.call(this);
+            //_createProgress();
+            //_createProgress.call(this);
 
         } else if (e.which === 37) { //Left arrow key
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView); 
             _bringHeaderToFront();
-            _createProgress.call(this);
+            //_createProgress();
+            //_createProgress.call(this);
         }
      }); 
 
