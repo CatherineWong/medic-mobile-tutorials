@@ -149,7 +149,7 @@ function _createMovingTransitionBetweenScenes() {
 			placeTree.setAlign([-.3, .5], {duration: 3000, curve: 'easeInOut'});
 			placeTree2.setAlign([-.6, .6], {duration: 3000, curve: 'easeInOut'});
 			placeTree3.setAlign([-.9, .4], {duration: 3000, curve: 'easeInOut'});
-		}, 1000);
+		}, 2000);
 
 	}
 
@@ -208,7 +208,7 @@ function _createMovingTransitionBetweenScenes() {
 			placeChickens.setAlign([-2.7, 0.7], {duration : 2000, curve: 'easeInOut'}),
 			placeHut.setOpacity(1),
 			placeHut.setAlign([-2.5, 0.5], {duration : 2000, curve: 'easeInOut'})
-		}, 1000);
+		}, 2000);
 
 	}
 
