@@ -247,14 +247,14 @@ define(function(require, exports, module) {
             progressView.decrementProgressBar(animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
         }.bind(this));
+
+        
     } 
 
     function _menuToggle() {
         if(this.menuToggle) {
             _topUp();
-            console.log("Current tutorial");
         } else {
-            console.log("Current tutorial:");
             _topDown();
             //_bringHeaderToFront();
         }

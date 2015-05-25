@@ -119,9 +119,9 @@ define(function(require, exports, module) {
      * Used to load the next animation view; also returns the current caption
      */
     AnimationController.prototype.loadAnimationView = function(pageView, captionSurface) {
-        renderController.hide(); // TODO: use a rendercontroller callback to avoid rendering issues
+        renderController.hide(); 
         var currView = _getNextAnimationView();
-        renderController.show(currView); // TODO: create a render node to send to back
+        renderController.show(currView); 
         var captionArray = null;
         if (currView != null) captionArray = currView.returnCaptionArray();
 
