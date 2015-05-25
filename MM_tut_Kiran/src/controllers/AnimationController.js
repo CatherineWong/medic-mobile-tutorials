@@ -195,8 +195,8 @@ define(function(require, exports, module) {
                     break;
                 case 4:
                     currView = new RegisterView();
-                    break;  
-                case 7: //CHANGE THIS to 7
+                    break; 
+                case 6: 
                     currView = new Two_EightCellView();
                     break;
                 default:
