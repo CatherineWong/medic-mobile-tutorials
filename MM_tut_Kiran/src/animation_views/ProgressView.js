@@ -15,28 +15,9 @@ define(function(require, exports, module) {
 
     var bars = [];
 
-    var filledColor = 'red';
+    var filledColor = '';
     var unfilledColor = '';
-    switch(tutNum) {
-        case 1:
-            unfilledColor = '#656912';
-            filledColor = '#B5BD21';
-            break;
-        case 2:
-            unfilledColor = '#984A3C';
-            filledColor = '#F47963';
-            break;
-        case 3:
-            unfilledColor = '#3F6464';
-            filledColor = '#79B1B1';
-            break;
-        case 4:
-            unfilledColor = '#A27513';
-            filledColor = '#E9A722';
-            break;
-        default:
-            filledColor = '#000';
-    }
+    
     
     var numFilled = 3;
     function ProgressView() {
@@ -53,22 +34,43 @@ define(function(require, exports, module) {
         backgroundUnfilledColor: unfilledColor,
         stripData: {},
         topOffset: 56, //(80 * 0.7)
-        leftOffset: 196, //(280 * 0.7)
-        stripLeftOffset: (screen.width - 196)/tutLength,
-        
+        leftOffset: 196, //(280 * 0.7)        
     };
 
     
 
     function _createProgressBars() {
+
+        switch(this.options.currentTutorial) {
+            case 0:
+                unfilledColor = '#656912';
+                filledColor = '#B5BD21';
+                break;
+            case 1:
+                unfilledColor = '#984A3C';
+                filledColor = '#F47963';
+                break;
+            case 2:
+                unfilledColor = '#3F6464';
+                filledColor = '#79B1B1';
+                break;
+            case 3:
+                unfilledColor = '#A27513';
+                filledColor = '#E9A722';
+                break;
+            default:
+                filledColor = '#000';
+        }
+
         this.stripModifiers = [];
         var yOffset = this.options.topOffset;
         var xOffset = this.options.leftOffset;
-        for (var i = 0; i < this.options.length; i++) {
+        var leftOffset = (screen.width - 196)/this.options.tutorialLength;
+        for (var i = 0; i < this.options.tutorialLength; i++) {
             var progressBarView = new ProgressBarView({
-                length: this.options.length,
-                backgroundFilledColor: this.options.backgroundFilledColor,
-                backgroundUnfilledColor: this.options.backgroundUnfilledColor
+                length: this.options.tutorialLength,
+                backgroundFilledColor: filledColor,
+                backgroundUnfilledColor: unfilledColor
             });
 
             bars.push(progressBarView);
@@ -80,7 +82,7 @@ define(function(require, exports, module) {
             this.stripModifiers.push(stripModifier);
             this.add(stripModifier).add(progressBarView);
 
-            xOffset += this.options.stripLeftOffset;
+            xOffset += leftOffset;
         }
         for (var i = 0; i < bars.length; i++) {
             console.log(bars[i].getBackgroundColor());
