@@ -8,8 +8,6 @@ define(function(require, exports, module) {
     var HariIntroView = require('animation_views/animation_slides/HariIntroView');
     var MayaIntroView = require('animation_views/animation_slides/MayaIntroView');
     var LalitaIntroView = require('animation_views/animation_slides/LalitaIntroView');
-    var ZoomOutIntroView = require('animation_views/animation_slides/ZoomOutIntroView');
-    var ZoomOutTransitionView = require('animation_views/animation_slides/ZoomOutTransitionView');
     var HariLaptopView = require('animation_views/animation_slides/HariLaptopView');
     var LalitaCellView = require('animation_views/animation_slides/LalitaCellView');
     var Transform       = require('famous/core/Transform');
@@ -25,8 +23,9 @@ define(function(require, exports, module) {
     var Two_OneIntroMayaAndHariView = require('animation_views/animation_slides/Two_OneIntroMayaAndHariView');
     var Two_TwoIntroMayaHariCellView = require('animation_views/animation_slides/Two_TwoIntroMayaHariCellView');
     var Two_ThreeZoomToHariView = require('animation_views/animation_slides/Two_ThreeZoomToHariView');
+    var One_ThreeZoomOutTransitionView = require('animation_views/animation_slides/One_ThreeZoomOutTransitionView');
 
-    var tutorialLengths = [12, 5, 4, 4]; //Holds the lengths of each tutorial
+    var tutorialLengths = [11, 5, 4, 4]; //Holds the lengths of each tutorial
     var currTutorial = 0;
     var currTutorialSlide = 0;
     var renderController;
@@ -148,30 +147,27 @@ define(function(require, exports, module) {
                     currView = new LalitaIntroView();
                     break;
                 case 3: 
-                    currView = new ZoomOutTransitionView();
+                    currView = new One_ThreeZoomOutTransitionView();
                     break;
                 case 4:
-                    currView = new ZoomOutIntroView();
-                    break;
-                case 5:
                     currView = new HariLaptopView();
                     break;
-                case 6:
+                case 5:
                     currView = new LalitaCellView();
                     break;
-                case 7:
+                case 6:
                     currView = new LongDistanceView();
                     break;
-                case 8:
+                case 7:
                     currView = new PaperPileupView_1_3();
                     break;
-                case 9:
+                case 8:
                     currView = new LalitaRegisteringMayaView();
                     break;
-                case 10:
+                case 9:
                     currView = new LalitaToHariZoomView();
                     break;
-                case 11:
+                case 10:
                     currView = new LalitaConfirmView_1_8();
                     break;
                 default:
