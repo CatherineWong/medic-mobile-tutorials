@@ -253,6 +253,7 @@ define(function(require, exports, module) {
         // this.layout.content.add(animationModifier).add(hariIntroView);
 
         animationController.loadAnimationView(thisPageView, thisPageView.footerSurface);
+        progressView.updateProgressBar(animationController.getCurrTutorialSlide());
     }
 
 
@@ -315,13 +316,14 @@ define(function(require, exports, module) {
             animationController.incrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-            progressView.updateProgressBar(3);
+            progressView.updateProgressBar(animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
 
         } else if (e.which === 37) { //Left arrow key
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
+            progressView.updateProgressBar(animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
         }
      }); 
