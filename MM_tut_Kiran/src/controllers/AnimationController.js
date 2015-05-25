@@ -8,8 +8,8 @@ define(function(require, exports, module) {
     var HariIntroView = require('animation_views/animation_slides/HariIntroView');
     var MayaIntroView = require('animation_views/animation_slides/MayaIntroView');
     var LalitaIntroView = require('animation_views/animation_slides/LalitaIntroView');
-    var HariLaptopView = require('animation_views/animation_slides/HariLaptopView');
-    var LalitaCellView = require('animation_views/animation_slides/LalitaCellView');
+    var HariLaptopView_1_4 = require('animation_views/animation_slides/HariLaptopView_1_4');
+    var LalitaCellView_1_4 = require('animation_views/animation_slides/LalitaCellView_1_4');
     var Transform       = require('famous/core/Transform');
     var Easing = require('famous/transitions/Easing');
     var RenderController = require("famous/views/RenderController");
@@ -153,10 +153,10 @@ define(function(require, exports, module) {
                     currView = new One_ThreeZoomOutTransitionView();
                     break;
                 case 4:
-                    currView = new HariLaptopView();
+                    currView = new HariLaptopView_1_4();
                     break;
                 case 5:
-                    currView = new LalitaCellView();
+                    currView = new LalitaCellView_1_4();
                     break;
                 case 6:
                     currView = new LongDistanceView();
