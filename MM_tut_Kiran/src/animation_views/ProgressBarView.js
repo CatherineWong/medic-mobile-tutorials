@@ -46,13 +46,9 @@ define(function(require, exports, module) {
     }
 
     ProgressBarView.prototype.setBackgroundColor = function() {
-        alert('honestly tho');
-        console.log(this.backgroundSurface.properties.backgroundColor);
-        //this.backgroundSurface.properties.backgroundColor = 'red';//this.options.backgroundFilledColor;
         this.backgroundSurface.setProperties({
-            backgroundColor: 'red'
-        });
-        console.log(this.backgroundSurface.properties.backgroundColor);
+            backgroundColor: 'red' // Sets the background color
+        }); 
     }
     //
 

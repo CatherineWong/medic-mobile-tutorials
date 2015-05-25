@@ -84,8 +84,6 @@ define(function(require, exports, module) {
     }
 
     ProgressView.prototype.updateProgressBar = function(slideNumber) {
-        alert('ugh why');
-        alert(slideNumber);
         console.log(bars[slideNumber]);
         console.log("ProgressView:" + bars[slideNumber].getBackgroundColor());
         bars[slideNumber].setBackgroundColor();
