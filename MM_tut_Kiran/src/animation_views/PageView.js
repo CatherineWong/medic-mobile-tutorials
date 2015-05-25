@@ -9,7 +9,6 @@ define(function(require, exports, module) {
     var ImageSurface = require('famous/surfaces/ImageSurface');
     var FastClick       = require('famous/inputs/FastClick');
     var BaseView = require('animation_views/BaseView');
-    var HariIntroView = require('animation_views/animation_slides/HariIntroView');
     var ZoomOutIntroView = require('animation_views/animation_slides/ZoomOutIntroView');
     var AnimationController = require('controllers/AnimationController'); // Controller for the tutorial loading logic
     var animationController = new AnimationController(); //Global animation controller
@@ -150,9 +149,9 @@ define(function(require, exports, module) {
             size: [undefined,75], //(undefined * 0.7, 80 * 0.7)
             content : "This is a caption",
             properties: {
-                backgroundColor: '#000',
+                backgroundColor: '#323232',
                 padding: '10px',
-                fontSize: '18pt', //(30 * 0.7)
+                fontSize: '16pt', //(30 * 0.7)
                 textAlign: 'center',
                 color: 'white',
                 fontFamily: 'FuturaPTWebLight'
@@ -178,33 +177,6 @@ define(function(require, exports, module) {
         thisPageView.progressModifier.setTransform(Transform.inFront);
         thisPageView.footerBackgroundModifier.setTransform(Transform.inFront);
     }
-
-
-    /*var sidebarWidth = 180;
-    var sidebarHeight = 420;
-    sidebar_backgroundColor = '#D8D8D8';
-
-    var sideBarContent = '<div class="button incomplete selected" onclick="selectTutorial(this)">' + tutorialNames[0] + '</div>';
-    for (var i = 1; i < tutorialNames.length; i++) {
-        sideBarContent += '<div class="button incomplete" onclick="selectTutorial(this)">' + tutorialNames[i] + '</div>'
-    }
-
-    function _createBody() {
-        this.sideSurface = new Surface({
-            content: '<div id="tutorials"> Tutorials </div>' + sideBarContent,
-            size: [sidebarWidth, sidebarHeight], 
-            properties: {
-                boxShadow: '1px 0px 2px #888888',
-                backgroundColor: sidebar_backgroundColor,
-                borderRightStyle: 'solid',
-                borderRightWidth: '1px',
-                borderRightColor: '#848484',
-                fontSize: "100px"
-            }
-        });
-
-        this.layout.content.add(this.sideSurface);
-    }*/
 
     function _createBody() {
         var baseView = new BaseView();
@@ -249,11 +221,8 @@ define(function(require, exports, module) {
             transform: Transform.behind
         });
 
-        // var hariIntroView = new HariIntroView();
-        // this.layout.content.add(animationModifier).add(hariIntroView);
-
         animationController.loadAnimationView(thisPageView, thisPageView.footerSurface);
-        progressView.updateProgressBar(animationController.getCurrTutorialSlide());
+        progressView.incrementProgressBar(animationController.getCurrTutorialSlide());
     }
 
 
@@ -267,7 +236,7 @@ define(function(require, exports, module) {
             animationController.incrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-            progressView.updateProgressBar(animationController.getCurrTutorialSlide());
+            progressView.incrementProgressBar(animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
         }.bind(this));
 
@@ -275,17 +244,17 @@ define(function(require, exports, module) {
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-            progressView.updateProgressBar(animationController.getCurrTutorialSlide());
+            progressView.decrementProgressBar(animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
         }.bind(this));
+
+        
     } 
 
     function _menuToggle() {
         if(this.menuToggle) {
             _topUp();
-            console.log("Current tutorial");
         } else {
-            console.log("Current tutorial:");
             _topDown();
             //_bringHeaderToFront();
         }
@@ -318,14 +287,14 @@ define(function(require, exports, module) {
             animationController.incrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-            progressView.updateProgressBar(animationController.getCurrTutorialSlide());
+            progressView.incrementProgressBar(animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
 
         } else if (e.which === 37) { //Left arrow key
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-            progressView.updateProgressBar(animationController.getCurrTutorialSlide());
+            progressView.decrementProgressBar(animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
         }
      }); 

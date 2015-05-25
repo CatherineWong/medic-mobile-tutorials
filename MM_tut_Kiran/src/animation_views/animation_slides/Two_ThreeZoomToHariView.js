@@ -20,7 +20,7 @@ define(function(require, exports, module) {
    Two_ThreeZoomToHariView.prototype.constructor = Two_ThreeZoomToHariView;
 
    Two_ThreeZoomToHariView.prototype.returnCaptionArray = function() {
-   		var captionText = ["Back at the clinic, Hari can view these messages, along with information about the registered patients, using the Medic Mobile software on his computer."];
+   		var captionText = ["Back at the clinic, Hari can view these messages, along with information about the registered patients, using the Medic Mobile software on her computer."];
    		return captionText;	
    }
 

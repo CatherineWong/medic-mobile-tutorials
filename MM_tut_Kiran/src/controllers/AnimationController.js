@@ -5,11 +5,11 @@
 define(function(require, exports, module) {
     var DEBUG = true; //When true, prints debugging info to the console
     var StateModifier = require('famous/modifiers/StateModifier');
-    var HariIntroView = require('animation_views/animation_slides/HariIntroView');
-    var MayaIntroView = require('animation_views/animation_slides/MayaIntroView');
-    var LalitaIntroView = require('animation_views/animation_slides/LalitaIntroView');
-    var HariLaptopView = require('animation_views/animation_slides/HariLaptopView');
-    var LalitaCellView = require('animation_views/animation_slides/LalitaCellView');
+    var One_OneHariIntroView = require('animation_views/animation_slides/One_OneHariIntroView');
+    var One_TwoMayaIntroView = require('animation_views/animation_slides/One_TwoMayaIntroView');
+    var One_ThreeLalitaIntroView = require('animation_views/animation_slides/One_ThreeLalitaIntroView');
+    var HariLaptopView_1_4 = require('animation_views/animation_slides/HariLaptopView_1_4');
+    var LalitaCellView_1_4 = require('animation_views/animation_slides/LalitaCellView_1_4');
     var Transform       = require('famous/core/Transform');
     var Easing = require('famous/transitions/Easing');
     var RenderController = require("famous/views/RenderController");
@@ -23,7 +23,7 @@ define(function(require, exports, module) {
     var Two_OneIntroMayaAndHariView = require('animation_views/animation_slides/Two_OneIntroMayaAndHariView');
     var Two_TwoIntroMayaHariCellView = require('animation_views/animation_slides/Two_TwoIntroMayaHariCellView');
     var Two_ThreeZoomToHariView = require('animation_views/animation_slides/Two_ThreeZoomToHariView');
-    var One_ThreeZoomOutTransitionView = require('animation_views/animation_slides/One_ThreeZoomOutTransitionView');
+    var One_FourZoomOutTransitionView = require('animation_views/animation_slides/One_FourZoomOutTransitionView');
 
     var tutorialLengths = [11, 5, 4, 4]; //Holds the lengths of each tutorial
     var currTutorial = 0;
@@ -119,9 +119,9 @@ define(function(require, exports, module) {
      * Used to load the next animation view; also returns the current caption
      */
     AnimationController.prototype.loadAnimationView = function(pageView, captionSurface) {
-        renderController.hide(); // TODO: use a rendercontroller callback to avoid rendering issues
+        renderController.hide(); 
         var currView = _getNextAnimationView();
-        renderController.show(currView); // TODO: create a render node to send to back
+        renderController.show(currView); 
         var captionArray = null;
         if (currView != null) captionArray = currView.returnCaptionArray();
 
@@ -141,22 +141,22 @@ define(function(require, exports, module) {
             switch (currTutorialSlide) {
                 case 0:
                     //currView = new SplitScreenView();
-                    currView = new HariIntroView();
+                    currView = new One_OneHariIntroView();
                     break;
                 case 1:
-                    currView = new MayaIntroView();
+                    currView = new One_TwoMayaIntroView();
                     break;
                 case 2: 
-                    currView = new LalitaIntroView();
+                    currView = new One_ThreeLalitaIntroView();
                     break;
                 case 3: 
-                    currView = new One_ThreeZoomOutTransitionView();
+                    currView = new One_FourZoomOutTransitionView();
                     break;
                 case 4:
-                    currView = new HariLaptopView();
+                    currView = new HariLaptopView_1_4();
                     break;
                 case 5:
-                    currView = new LalitaCellView();
+                    currView = new LalitaCellView_1_4();
                     break;
                 case 6:
                     currView = new LongDistanceView();
