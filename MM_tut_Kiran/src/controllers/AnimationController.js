@@ -116,7 +116,7 @@ define(function(require, exports, module) {
     /**
      * Used to load the next animation view; also returns the current caption
      */
-    AnimationController.prototype.loadAnimationView = function(pageView) {
+    AnimationController.prototype.loadAnimationView = function(pageView, captionSurface) {
         renderController.hide(); // TODO: use a rendercontroller callback to avoid rendering issues
         var currView = _getNextAnimationView();
         renderController.show(currView); // TODO: create a render node to send to back
@@ -124,6 +124,11 @@ define(function(require, exports, module) {
         if (currView != null) captionArray = currView.returnCaptionArray();
 
         if (DEBUG) console.log(captionArray); 
+
+        // Update the provided caption view
+        if (DEBUG) console.log("Previous content: " + captionSurface.content);
+        captionSurface.content = captionArray;
+        if (DEBUG) console.log("Now content: " + captionSurface.content);
         return captionArray;
 
         //Redraw all of the other layers on top

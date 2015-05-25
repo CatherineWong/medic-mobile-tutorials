@@ -31,6 +31,8 @@ define(function(require, exports, module) {
         _createProgress.call(this);
         _createNavigationView.call(this);
         _createHeader.call(this);
+        _createFooter.call(this);
+        _bringHeaderToFront.call(this);
         _createBody.call(this);
         _initializeAnimationController.call(this);
         _loadStartingAnimation.call(this); //Uncomment to add sample animation to body
@@ -98,6 +100,7 @@ define(function(require, exports, module) {
             transform: Transform.behind
         });
 
+
         this.hamburgerSurface = new ImageSurface({
             size: [31, 31], //(44 * 0.7, 44 * 0.7)
             content: 'mm-assets/hamburger.svg',
@@ -139,10 +142,32 @@ define(function(require, exports, module) {
         this.layout.header.add(thisPageView.backgroundModifier).add(backgroundSurface);
         this.layout.header.add(thisPageView.logoModifier).add(this.logoSurface);
 
-        _bringHeaderToFront();
         //thisPageView.hamburgerModifier.setTransform(Transform.inFront);
     }
 
+    function _createFooter() {  
+        thisPageView.footerSurface = new Surface({
+            size: [undefined,56], //(undefined * 0.7, 80 * 0.7)
+            content : "This is a caption",
+            properties: {
+                backgroundColor: '#000',
+                padding: '10px',
+                fontSize: '18pt', //(30 * 0.7)
+                textAlign: 'center',
+                color: 'white',
+                fontFamily: 'FuturaPTWebLight'
+            }
+        });  
+
+        thisPageView.footerBackgroundModifier = new StateModifier({
+            transform: Transform.inFront
+        });
+
+        this.layout.footer.add(thisPageView.footerBackgroundModifier).add(thisPageView.footerSurface);
+        thisPageView.footerBackgroundModifier.setTransform(Transform.inFront);
+    }
+
+    /** Called to redraw the framework - brings header surfaces to the front **/
     function _bringHeaderToFront() {
         thisPageView.backgroundModifier.setTransform(Transform.inFront);
         thisPageView.logoModifier.setTransform(Transform.inFront);
@@ -151,6 +176,7 @@ define(function(require, exports, module) {
         thisPageView.navigationFrontModifier.setTransform(Transform.inFront);
         if (!this.menuToggle) thisPageView.menuModifier.setTransform(Transform.inFront);
         thisPageView.progressModifier.setTransform(Transform.inFront);
+        thisPageView.footerBackgroundModifier.setTransform(Transform.inFront);
     }
 
 
@@ -226,7 +252,7 @@ define(function(require, exports, module) {
         // var hariIntroView = new HariIntroView();
         // this.layout.content.add(animationModifier).add(hariIntroView);
 
-        animationController.loadAnimationView(thisPageView);
+        animationController.loadAnimationView(thisPageView, thisPageView.footerSurface);
     }
 
 
@@ -239,14 +265,14 @@ define(function(require, exports, module) {
         this.navigationView.on('next', function() {
             animationController.incrementTutorialCounts();
             animationController.printDebugOutput();
-            animationController.loadAnimationView(thisPageView); 
+            animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
             _bringHeaderToFront();
         }.bind(this));
 
         this.navigationView.on('back', function() {
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
-            animationController.loadAnimationView(thisPageView); 
+            animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
             _bringHeaderToFront();
         }.bind(this));
     } 
@@ -288,15 +314,14 @@ define(function(require, exports, module) {
         if(e.which === 39) { //Right arrow key
             animationController.incrementTutorialCounts();
             animationController.printDebugOutput();
-            animationController.loadAnimationView(thisPageView); 
-            alert('hi');
-            //progressView.updateProgressBar(3);
+            animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
+            progressView.updateProgressBar(3);
             _bringHeaderToFront();
 
         } else if (e.which === 37) { //Left arrow key
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
-            animationController.loadAnimationView(thisPageView); 
+            animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
             _bringHeaderToFront();
         }
      }); 
