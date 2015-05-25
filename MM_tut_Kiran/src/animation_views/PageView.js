@@ -9,7 +9,6 @@ define(function(require, exports, module) {
     var ImageSurface = require('famous/surfaces/ImageSurface');
     var FastClick       = require('famous/inputs/FastClick');
     var BaseView = require('animation_views/BaseView');
-    var HariIntroView = require('animation_views/animation_slides/HariIntroView');
     var ZoomOutIntroView = require('animation_views/animation_slides/ZoomOutIntroView');
     var AnimationController = require('controllers/AnimationController'); // Controller for the tutorial loading logic
     var animationController = new AnimationController(); //Global animation controller
@@ -150,9 +149,9 @@ define(function(require, exports, module) {
             size: [undefined,75], //(undefined * 0.7, 80 * 0.7)
             content : "This is a caption",
             properties: {
-                backgroundColor: '#000',
+                backgroundColor: '#323232',
                 padding: '10px',
-                fontSize: '18pt', //(30 * 0.7)
+                fontSize: '16pt', //(30 * 0.7)
                 textAlign: 'center',
                 color: 'white',
                 fontFamily: 'FuturaPTWebLight'
@@ -248,9 +247,6 @@ define(function(require, exports, module) {
         var animationModifier = new StateModifier ({
             transform: Transform.behind
         });
-
-        // var hariIntroView = new HariIntroView();
-        // this.layout.content.add(animationModifier).add(hariIntroView);
 
         animationController.loadAnimationView(thisPageView, thisPageView.footerSurface);
         progressView.updateProgressBar(animationController.getCurrTutorialSlide());
