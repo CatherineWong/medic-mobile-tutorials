@@ -16,23 +16,18 @@ define(function(require, exports, module) {
     StripView.prototype.constructor = StripView;
 
     StripView.DEFAULT_OPTIONS = {
-        width: 280, 
-        height: 20,
-        fontSize: 20,
-        padding: 13,
-        paddingLeft: 30,
-        fontFamily: 'FuturaPTWebLight',
-        textColor: 'white', //'#E1E6E9',
+        width: 196, //(280 * 0.7)
+        height: 14, //(20 * 0.7)
+        padding: 8, //(13 * 0.7)
         backgroundOpacity: 0.8
     };
 
 
     function _createBackground() {
         var backgroundSurface = new Surface({
-            size: [(screen.width - 280)/this.options.length, this.options.height],
+            size: [(screen.width - 196)/this.options.length, this.options.height],
             properties: {
                 backgroundColor: this.options.backgroundColor,
-                textAlign: 'center',
                 borderRightStyle: 'solid',
                 borderRightColor: '#93989B',
                 borderRightWidth: '1px'

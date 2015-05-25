@@ -17,11 +17,11 @@ define(function(require, exports, module) {
     StripView.prototype.constructor = StripView;
 
     StripView.DEFAULT_OPTIONS = {
-        width: 280,
-        height: 60,
-        fontSize: 20,
-        padding: 13,
-        paddingLeft: 30,
+        width: 196, //(280 * .7)
+        height: 42, //(60 * .7)
+        fontSize: 14, //(20 * .7)
+        padding: 11, //(13 * .7) 
+        paddingLeft: 21, //(30 * .7)
         fontFamily: 'FuturaPTWebLight',
         backgroundColor: 'rgb(50,50,50)',
         textColor: 'white', //'#E1E6E9',

@@ -46,9 +46,9 @@ define(function(require, exports, module) {
         backgroundFilledColor: filledColor,
         backgroundUnfilledColor: tutColor,
         stripData: {},
-        topOffset: 80,
-        leftOffset: 280,
-        stripLeftOffset: (screen.width - 280)/tutLength,
+        topOffset: 56, //(80 * 0.7)
+        leftOffset: 196, //(280 * 0.7)
+        stripLeftOffset: (screen.width - 196)/tutLength,
         
     };
 

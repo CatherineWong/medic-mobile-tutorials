@@ -80,12 +80,12 @@ define(function(require, exports, module) {
 
     function _createHeader() {
         var backgroundSurface = new Surface({
-            size: [undefined,80],
+            size: [undefined,56], //(undefined * 0.7, 80 * 0.7)
             content : "Medic Mobile for Antenatal Care",
             properties: {
                 backgroundColor: '#000',
                 padding: '10px',
-                fontSize: '30pt',
+                fontSize: '21pt', //(30 * 0.7)
                 textAlign: 'center',
                 textTransform: 'uppercase',
                 color: 'white',
@@ -98,7 +98,7 @@ define(function(require, exports, module) {
         });
 
         this.hamburgerSurface = new ImageSurface({
-            size: [44, 44],
+            size: [31, 31], //(44 * 0.7, 44 * 0.7)
             content: 'mm-assets/hamburger.svg',
             properties: {
                  zIndex: '1'
@@ -106,25 +106,25 @@ define(function(require, exports, module) {
         });
 
         this.logoSurface = new Surface({
-            size: [280,100],
+            size: [196,70], //(280 * 0.7, 100 * 0.7)
             properties: {
                 backgroundColor: 'rgb(50,50,50)'
             }
         });    
 
         this.iconSurface = new ImageSurface({
-            size: [170, 40],
+            size: [119, 28], //(170 * 0.7, 40 * 0.7)
             content: 'Medic-Mobile-logo+name_white150.png'
         });
 
         thisPageView.hamburgerModifier = new StateModifier({
             origin: [0, 0],
-            align : [0.01, 0.6]
+            align : [0.007, 0.42] //(.01 * 0.7, 0.6 * 0.7)
         });
 
         thisPageView.iconModifier = new StateModifier({
             origin: [0, 0],
-            align : [0.06, 0.6]
+            align : [0.042, 0.42] //(.06 * 0.7, 0.6 * 0.7)
         });
 
         thisPageView.logoModifier = new StateModifier({
