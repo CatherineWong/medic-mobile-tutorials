@@ -16,10 +16,10 @@ define(function(require, exports, module) {
     var Easing = require('famous/transitions/Easing');
     var RenderController = require("famous/views/RenderController");
     var LongDistanceView = require('animation_views/animation_slides/LongDistanceView');
-    var PaperPileupView = require('animation_views/animation_slides/PaperPileupView');
+    var PaperPileupView_1_3 = require('animation_views/animation_slides/PaperPileupView_1_3');
     var LalitaRegisteringMayaView = require('animation_views/animation_slides/LalitaRegisteringMayaView');
     var LalitaToHariZoomView = require('animation_views/animation_slides/LalitaToHariZoomView');
-    var LalitaConfirmView = require('animation_views/animation_slides/LalitaConfirmView');
+    var LalitaConfirmView_1_8 = require('animation_views/animation_slides/LalitaConfirmView_1_8');
     var SplitScreenView = require('animation_views/animation_slides/SplitScreenView');
     var RegisterView = require('animation_views/animation_slides/RegisterView');
     var Two_OneIntroMayaAndHariView = require('animation_views/animation_slides/Two_OneIntroMayaAndHariView');
@@ -163,7 +163,7 @@ define(function(require, exports, module) {
                     currView = new LongDistanceView();
                     break;
                 case 8:
-                    currView = new PaperPileupView();
+                    currView = new PaperPileupView_1_3();
                     break;
                 case 9:
                     currView = new LalitaRegisteringMayaView();
@@ -172,7 +172,7 @@ define(function(require, exports, module) {
                     currView = new LalitaToHariZoomView();
                     break;
                 case 11:
-                    currView = new LalitaConfirmView();
+                    currView = new LalitaConfirmView_1_8();
                     break;
                 default:
                      //Temporary place holder to fade out to nothingness

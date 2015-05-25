@@ -47,7 +47,7 @@ define(function(require, exports, module) {
 		
 		var hari = new ImageSurface ({
 			size : [500, 240],
-			content: 'animation-assets/i-chw-male50.svg'
+			content: 'animation-assets/nurse.svg'
 		});
 
 
@@ -75,7 +75,7 @@ define(function(require, exports, module) {
 
 		this.add(placeLaptop).add(moveBack).add(laptop);
 
-		//Moves elements off screen at a rate of 1 align per second.
+		//Moves elements on screen at a rate of 1 align per second.
 		setTimeout(function(){
 			placeHari.setAlign(
 				[0, .5],
@@ -146,9 +146,9 @@ function _createMovingTransitionBetweenScenes() {
 			placeTree2.setOpacity(1);
 			placeTree3.setOpacity(1);
 			placeTree.setOpacity(1);
-			placeTree.setAlign([-.3, .5], {duration: 3000, curve: 'easeInOut'});
-			placeTree2.setAlign([-.6, .6], {duration: 3000, curve: 'easeInOut'});
-			placeTree3.setAlign([-.9, .4], {duration: 3000, curve: 'easeInOut'});
+			placeTree.setAlign([-1.3, .5], {duration: 3000, curve: 'easeInOut'});
+			placeTree2.setAlign([-1.6, .6], {duration: 3000, curve: 'easeInOut'});
+			placeTree3.setAlign([-1.9, .4], {duration: 3000, curve: 'easeInOut'});
 		}, 2000);
 
 	}

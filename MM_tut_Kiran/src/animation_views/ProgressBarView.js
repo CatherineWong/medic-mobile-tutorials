@@ -42,7 +42,7 @@ define(function(require, exports, module) {
     }
 
     function _getBackgroundColor() {
-        
+        return this.options.backgroundColor;
     }
 
     module.exports = ProgressBarView;
