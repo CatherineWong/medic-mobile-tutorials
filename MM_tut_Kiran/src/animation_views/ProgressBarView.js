@@ -16,7 +16,7 @@ define(function(require, exports, module) {
     StripView.prototype.constructor = StripView;
 
     StripView.DEFAULT_OPTIONS = {
-        width: 280,
+        width: 280, 
         height: 20,
         fontSize: 20,
         padding: 13,
