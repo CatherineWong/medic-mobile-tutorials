@@ -34,15 +34,15 @@ define(function(require, exports, module) {
     }
     var filledColor = "red";
     var numFilled = 3;
-    function MenuView() {
+    function ProgressView() {
         View.apply(this, arguments);
         _createProgressBars.call(this);
     }
 
-    MenuView.prototype = Object.create(View.prototype);
-    MenuView.prototype.constructor = MenuView;
+    ProgressView.prototype = Object.create(View.prototype);
+    ProgressView.prototype.constructor = ProgressView;
 
-    MenuView.DEFAULT_OPTIONS = {
+    ProgressView.DEFAULT_OPTIONS = {
         length: tutLength,
         backgroundFilledColor: filledColor,
         backgroundUnfilledColor: tutColor,
@@ -61,13 +61,13 @@ define(function(require, exports, module) {
             var backColor ="";
             if (i < this.options.numberFilled) {
                 backColor = this.options.backgroundFilledColor;
+                console.log(this.options.backgroundFilledColor);
             }
             else {
                 backColor = this.options.backgroundUnfilledColor;
+                console.log(this.options.backgroundUnfilledColor);
             }
             var progressBarView = new ProgressBarView({
-                //iconUrl: this.options.stripData[i].iconUrl,
-                //title: "",
                 length: this.options.length,
                 backgroundColor: backColor
             });
@@ -84,7 +84,7 @@ define(function(require, exports, module) {
             xOffset += this.options.stripLeftOffset;
         }
         for (var i = 0; i < bars.length; i++) {
-            //console.log(bars[i].backColor);
+            //console.log(bars[i]._getBackgroundColor());
         }
     }
 
@@ -93,5 +93,5 @@ define(function(require, exports, module) {
     }
 
 
-    module.exports = MenuView;
+    module.exports = ProgressView;
 });
