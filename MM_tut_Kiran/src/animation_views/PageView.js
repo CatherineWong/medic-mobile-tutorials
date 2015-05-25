@@ -149,9 +149,9 @@ define(function(require, exports, module) {
             size: [undefined,75], //(undefined * 0.7, 80 * 0.7)
             content : "This is a caption",
             properties: {
-                backgroundColor: '#000',
+                backgroundColor: '#323232',
                 padding: '10px',
-                fontSize: '18pt', //(30 * 0.7)
+                fontSize: '16pt', //(30 * 0.7)
                 textAlign: 'center',
                 color: 'white',
                 fontFamily: 'FuturaPTWebLight'
