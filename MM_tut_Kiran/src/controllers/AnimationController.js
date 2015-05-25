@@ -22,8 +22,11 @@ define(function(require, exports, module) {
     var LalitaConfirmView = require('animation_views/animation_slides/LalitaConfirmView');
     var SplitScreenView = require('animation_views/animation_slides/SplitScreenView');
     var RegisterView = require('animation_views/animation_slides/RegisterView');
+    var Two_OneIntroMayaAndHariView = require('animation_views/animation_slides/Two_OneIntroMayaAndHariView');
+    var Two_TwoIntroMayaHariCellView = require('animation_views/animation_slides/Two_TwoIntroMayaHariCellView');
+    var Two_ThreeZoomToHariView = require('animation_views/animation_slides/Two_ThreeZoomToHariView');
 
-    var tutorialLengths = [12, 4, 4, 4]; //Holds the lengths of each tutorial
+    var tutorialLengths = [12, 5, 4, 4]; //Holds the lengths of each tutorial
     var currTutorial = 0;
     var currTutorialSlide = 0;
     var renderController;
@@ -132,7 +135,7 @@ define(function(require, exports, module) {
     /** Controls the logic to determine which animation to load */
     function _getNextAnimationView() {
         var currView = null;
-        if (currTutorial == 0) {
+        if (currTutorial == 0) {                   
             switch (currTutorialSlide) {
                 case 0:
                     //currView = new SplitScreenView();
@@ -179,9 +182,18 @@ define(function(require, exports, module) {
         } else if (currTutorial == 1) {
             switch (currTutorialSlide) {
                 case 0:
-                    currView = new SplitScreenView();
+                    currView = new Two_OneIntroMayaAndHariView();
                     break;
                 case 1:
+                    currView = new Two_TwoIntroMayaHariCellView();
+                    break;
+                case 2:
+                    currView = new Two_ThreeZoomToHariView();
+                    break;
+                case 3:
+                    currView = new SplitScreenView();
+                    break;
+                case 4:
                     currView = new RegisterView();
                     break;  
                 default:
