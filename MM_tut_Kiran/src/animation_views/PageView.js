@@ -178,33 +178,6 @@ define(function(require, exports, module) {
         thisPageView.footerBackgroundModifier.setTransform(Transform.inFront);
     }
 
-
-    /*var sidebarWidth = 180;
-    var sidebarHeight = 420;
-    sidebar_backgroundColor = '#D8D8D8';
-
-    var sideBarContent = '<div class="button incomplete selected" onclick="selectTutorial(this)">' + tutorialNames[0] + '</div>';
-    for (var i = 1; i < tutorialNames.length; i++) {
-        sideBarContent += '<div class="button incomplete" onclick="selectTutorial(this)">' + tutorialNames[i] + '</div>'
-    }
-
-    function _createBody() {
-        this.sideSurface = new Surface({
-            content: '<div id="tutorials"> Tutorials </div>' + sideBarContent,
-            size: [sidebarWidth, sidebarHeight], 
-            properties: {
-                boxShadow: '1px 0px 2px #888888',
-                backgroundColor: sidebar_backgroundColor,
-                borderRightStyle: 'solid',
-                borderRightWidth: '1px',
-                borderRightColor: '#848484',
-                fontSize: "100px"
-            }
-        });
-
-        this.layout.content.add(this.sideSurface);
-    }*/
-
     function _createBody() {
         var baseView = new BaseView();
 
