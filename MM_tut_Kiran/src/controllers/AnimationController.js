@@ -182,8 +182,7 @@ define(function(require, exports, module) {
         } else if (currTutorial == 1) {
             switch (currTutorialSlide) {
                 case 0:
-                    currView = new Two_EightCellView();
-                    // currView = new Two_OneIntroMayaAndHariView();
+                    currView = new Two_OneIntroMayaAndHariView();
                     break;
                 case 1:
                     currView = new Two_TwoIntroMayaHariCellView();
@@ -197,7 +196,7 @@ define(function(require, exports, module) {
                 case 4:
                     currView = new RegisterView();
                     break;  
-                case 5: //CHANGE THIS to 7
+                case 7: //CHANGE THIS to 7
                     currView = new Two_EightCellView();
                     break;
                 default:
