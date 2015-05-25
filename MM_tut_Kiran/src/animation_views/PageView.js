@@ -200,10 +200,10 @@ define(function(require, exports, module) {
     }
 
     function _createProgress() {
-
         progressView = new ProgressView({ 
             stripData: StripData,
-            currTutorial: animationController.getCurrTutorial()
+            currentTutorial: animationController.getCurrTutorial(),
+            tutorialLength: animationController.getTutorialLength(animationController.getCurrTutorial())
         });
 
         //alert(animationController.getCurrTutorial());
