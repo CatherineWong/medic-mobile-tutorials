@@ -147,7 +147,7 @@ define(function(require, exports, module) {
 
     function _createFooter() {  
         thisPageView.footerSurface = new Surface({
-            size: [undefined,56], //(undefined * 0.7, 80 * 0.7)
+            size: [undefined,75], //(undefined * 0.7, 80 * 0.7)
             content : "This is a caption",
             properties: {
                 backgroundColor: '#000',
