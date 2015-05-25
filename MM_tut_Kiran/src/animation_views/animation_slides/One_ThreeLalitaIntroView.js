@@ -10,22 +10,22 @@ define(function(require, exports, module) {
 	var ImageSurface = require('famous/surfaces/ImageSurface');
 	var Easing = require('famous/transitions/Easing');
 
-   function LalitaIntroView () {
+   function One_ThreeLalitaIntroView () {
    		View.apply(this, arguments);
    		// _createBackground.call(this);
    		_createHuts.call(this);
    		_createLalita.call(this);
    }
 
-   LalitaIntroView.prototype = Object.create(View.prototype);
-   LalitaIntroView.prototype.constructor = LalitaIntroView;
+   One_ThreeLalitaIntroView.prototype = Object.create(View.prototype);
+   One_ThreeLalitaIntroView.prototype.constructor = One_ThreeLalitaIntroView;
 
-   LalitaIntroView.prototype.returnCaptionArray = function() {
+   One_ThreeLalitaIntroView.prototype.returnCaptionArray = function() {
    		var captionText = ["This is Lalita. Lalita is a community health worker in Maya’s village."];
    		return captionText;	
    }
 
-   LalitaIntroView.DEFAULT_OPTIONS = {};
+   One_ThreeLalitaIntroView.DEFAULT_OPTIONS = {};
 
 
 	function _createBackground() {
@@ -144,6 +144,6 @@ define(function(require, exports, module) {
 
 	}
 
-	module.exports = LalitaIntroView;
+	module.exports = One_ThreeLalitaIntroView;
 
 });

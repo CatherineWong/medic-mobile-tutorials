@@ -5,9 +5,8 @@
 define(function(require, exports, module) {
     var DEBUG = true; //When true, prints debugging info to the console
     var StateModifier = require('famous/modifiers/StateModifier');
-    var HariIntroView = require('animation_views/animation_slides/HariIntroView');
-    var MayaIntroView = require('animation_views/animation_slides/MayaIntroView');
-    var LalitaIntroView = require('animation_views/animation_slides/LalitaIntroView');
+    var One_TwoMayaIntroView = require('animation_views/animation_slides/One_TwoMayaIntroView');
+    var One_ThreeLalitaIntroView = require('animation_views/animation_slides/One_ThreeLalitaIntroView');
     var HariLaptopView = require('animation_views/animation_slides/HariLaptopView');
     var LalitaCellView = require('animation_views/animation_slides/LalitaCellView');
     var Transform       = require('famous/core/Transform');
@@ -23,7 +22,8 @@ define(function(require, exports, module) {
     var Two_OneIntroMayaAndHariView = require('animation_views/animation_slides/Two_OneIntroMayaAndHariView');
     var Two_TwoIntroMayaHariCellView = require('animation_views/animation_slides/Two_TwoIntroMayaHariCellView');
     var Two_ThreeZoomToHariView = require('animation_views/animation_slides/Two_ThreeZoomToHariView');
-    var One_ThreeZoomOutTransitionView = require('animation_views/animation_slides/One_ThreeZoomOutTransitionView');
+    var One_FourZoomOutTransitionView = require('animation_views/animation_slides/One_FourZoomOutTransitionView');
+    var One_OneHariIntroView = require('animation_views/animation_slides/One_OneHariIntroView');
 
     var tutorialLengths = [11, 5, 4, 4]; //Holds the lengths of each tutorial
     var currTutorial = 0;
@@ -143,16 +143,16 @@ define(function(require, exports, module) {
             switch (currTutorialSlide) {
                 case 0:
                     //currView = new SplitScreenView();
-                    currView = new HariIntroView();
+                    currView = new One_OneHariIntroView();
                     break;
                 case 1:
-                    currView = new MayaIntroView();
+                    currView = new One_TwoMayaIntroView();
                     break;
                 case 2: 
-                    currView = new LalitaIntroView();
+                    currView = new One_ThreeLalitaIntroView();
                     break;
                 case 3: 
-                    currView = new One_ThreeZoomOutTransitionView();
+                    currView = new One_FourZoomOutTransitionView();
                     break;
                 case 4:
                     currView = new HariLaptopView();

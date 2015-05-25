@@ -1,4 +1,4 @@
-/* MayaIntroView -- view where Maya is first introduced. */
+/* Tutorial 1 Slide 2 -- MayaIntroView -- view where Maya is first introduced. */
 
 
 define(function(require, exports, module) {
@@ -10,65 +10,22 @@ define(function(require, exports, module) {
 	var ImageSurface = require('famous/surfaces/ImageSurface');
 	var Easing = require('famous/transitions/Easing');
 
-   function MayaIntroView () {
+   function One_TwoMayaIntroView () {
    		View.apply(this, arguments);
-   		// _createBackground.call(this);
    		_createHuts.call(this);
    		_createMaya.call(this);
    }
 
-   MayaIntroView.prototype = Object.create(View.prototype);
-   MayaIntroView.prototype.constructor = MayaIntroView;
+   One_TwoMayaIntroView.prototype = Object.create(View.prototype);
+   One_TwoMayaIntroView.prototype.constructor = One_TwoMayaIntroView;
 
-   MayaIntroView.prototype.returnCaptionArray = function() {
+   One_TwoMayaIntroView.prototype.returnCaptionArray = function() {
    		var captionText = ["This is Maya. She’s just learned that she is pregnant for the first time. Congratulations, Maya!"];
    		return captionText;	
    }
 
-   MayaIntroView.DEFAULT_OPTIONS = {};
+   One_TwoMayaIntroView.DEFAULT_OPTIONS = {};
 
-
-	function _createBackground() {
-		var background = new ImageSurface ({
-			size : [1700, 1200],
-			content: 'animation-assets/scene-1.svg'
-		});
-
-		var middleground = new ImageSurface ({
-			size : [1700, 1200],
-			content: 'animation-assets/hills-middle-ground.svg'
-
-		});
-
-		var placeForeground = new StateModifier({
-			align: [0.5, 0.5],
-			origin: [0.6, 0.45],
-			transform : Transform.translate(143, 30, 0)
-		});
-
-		var placeMiddleground = new StateModifier ({
-			align: [0.5, 0.5],
-			origin: [0.6, 0.45],
-			transform : Transform.translate(143, 30, 0)
-		});
-
-		var foreground = new ImageSurface ({
-			size : [1700, 1200],
-			content: 'animation-assets/hills-foreground.svg'
-
-		});
-
-		var placeBackground = new StateModifier({
-			align: [0.5, 0.5],
-			origin: [0.6, 0.4]
-		});
-
-		this.add(placeBackground).add(background);
-		this.add(placeMiddleground).add(middleground);
-		this.add(placeForeground).add(foreground);
-
-
-	}
 
 	function _createHuts() {
 
@@ -153,6 +110,6 @@ define(function(require, exports, module) {
 
 	}
 
-	module.exports = MayaIntroView;
+	module.exports = One_TwoMayaIntroView;
 
 });
