@@ -80,7 +80,6 @@ define(function(require, exports, module) {
         for (var i = 0; i < bars.length; i++) {
             console.log(bars[i].getBackgroundColor());
         }
-        //bars[2].setBackgroundColor();
     }
 
     ProgressView.prototype.updateProgressBar = function(slideNumber) {
