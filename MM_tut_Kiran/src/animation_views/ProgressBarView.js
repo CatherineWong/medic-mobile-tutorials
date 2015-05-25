@@ -29,8 +29,8 @@ define(function(require, exports, module) {
             properties: {
                 backgroundColor: this.options.backgroundUnfilledColor,
                 borderRightStyle: 'solid',
-                borderRightColor: '#93989B',
-                borderRightWidth: '1px'
+                borderRightColor: '#757C81',
+                borderRightWidth: '3px'
             }
         });
 
