@@ -54,7 +54,7 @@ define(function(require, exports, module) {
 		var placeHari = new StateModifier ({
 			align: [1.5, 0.5],
 			origin: [0.0, -0.2],
-			transform: Transform.translate(580, 0, 0)
+			transform: Transform.translate(580, -20, 0)
 		});
 
 		this.add(placeHari).add(hari);
@@ -250,18 +250,35 @@ function _createMovingTransitionBetweenScenes() {
 
 		var message = new ImageSurface ({
 			size : [1, 1],
-			content: 'animation-assets/Message-icon-grey.png'
+			content: 'animation-assets/Message-icon-blank.png'
+		});
+
+		var message_text = new Surface({
+		  size: [1, 1],
+		  content: 'Maya has successfully delivered!',
+		  properties: {
+		  	textAlign: 'left',
+    		padding: '5px',
+		    // backgroundColor: '#64a2c7', //#8799BC
+		    // color: 'white',
+		    borderRadius: '7px'
+		  }
+		});
+
+		var placeText = new StateModifier ({
+			align: [1.2, 0.55],
+			origin: [0.4, 0.0],
+			opacity: 1,
+			transform: Transform.translate(-570 - 200,-100 + 200,1)
 		});
 
 		var placeMessage = new StateModifier ({
 			align: [1.2, 0.55],
 			origin: [0.4, 0.0],
-			opacity: 1
+			opacity: 1,
+			transform: Transform.translate(-570 - 200,-100 + 200,1)
 		});
 
-		placeMessage.setTransform(
-			Transform.translate(-570 - 200,-100 + 200,1)
-		);
 
 		var moveMessage = new StateModifier();
 		moveMessage.setTransform(
@@ -273,10 +290,11 @@ function _createMovingTransitionBetweenScenes() {
 
 		this.add(placeMessage).add(moveMessage).add(showMessage).add(message);
 	
-		setTimeout(function(){showMessage.setTransform(
+		setTimeout(function(){
+			showMessage.setTransform(
 			Transform.scale(100, 100, 1),
-			{duration: 500, curve: Easing.outBack}
-		)}, 1000);
+			{duration: 500, curve: Easing.outBack})
+		}, 1000);
 
 
 		//Move out Lalita and then add her cell phone.

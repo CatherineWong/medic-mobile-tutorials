@@ -21,7 +21,7 @@ define(function(require, exports, module) {
    LalitaCellView.prototype.constructor = LalitaCellView;
 
    LalitaCellView.prototype.returnCaptionArray = function() {
-   		var captionText = ["Medic Mobile lets community health workers use cell phones to register and track patients, which can reduce time spent on recording data to only 1 day month."];
+   		var captionText = ["Medic Mobile lets community health workers use cell phones to register and track patients, which can reduce time spent on recording data to only 1 day per month."];
    		return captionText;	
    }
 
@@ -54,7 +54,7 @@ define(function(require, exports, module) {
 		var placeHari = new StateModifier ({
 			align: [0.0, 0.5],
 			origin: [0.0, -0.2],
-			transform: Transform.translate(580, 0, 0)
+			transform: Transform.translate(580, -20, 0)
 		});
 
 		this.add(placeHari).add(hari);

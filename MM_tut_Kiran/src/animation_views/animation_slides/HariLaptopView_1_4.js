@@ -56,13 +56,13 @@ define(function(require, exports, module) {
 		var placeHari = new StateModifier ({
 			align: [0.0, 0.5],
 			origin: [0.0, -0.2],
-			transform: Transform.translate(700, 0, 0)
+			transform: Transform.translate(700, -20, 0)
 		});
 
 		this.add(placeHari).add(hari);
 
 		placeHari.setTransform(
-			Transform.translate(580, 0, 0),
+			Transform.translate(580, -20, 0),
 			{duration: 1000, curve: Easing.easeInOut}
 		);
 	}
