@@ -47,7 +47,7 @@ define(function(require, exports, module) {
 		
 		var hari = new ImageSurface ({
 			size : [500, 240],
-			content: 'animation-assets/i-chw-male50.svg'
+			content: 'animation-assets/nurse.svg'
 		});
 
 
