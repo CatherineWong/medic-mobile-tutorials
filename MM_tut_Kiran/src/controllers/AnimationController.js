@@ -128,9 +128,7 @@ define(function(require, exports, module) {
         if (DEBUG) console.log(captionArray); 
 
         // Update the provided caption view
-        if (DEBUG) console.log("Previous content: " + captionSurface.content);
-        captionSurface.content = captionArray;
-        if (DEBUG) console.log("Now content: " + captionSurface.content);
+        captionSurface.setContent(captionArray);
         return captionArray;
 
         //Redraw all of the other layers on top
