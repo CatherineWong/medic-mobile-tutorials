@@ -11,6 +11,7 @@ define(function(require, exports, module) {
 
         _createBackground.call(this);
         _createTitle.call(this);
+        _setListeners.call(this);
     }
 
     StripView.prototype = Object.create(View.prototype);
@@ -30,7 +31,7 @@ define(function(require, exports, module) {
 
 
     function _createBackground() {
-        var backgroundSurface = new Surface({
+        this.backgroundSurface = new Surface({
             size: [this.options.width, this.options.height],
             properties: {
                 backgroundColor: this.options.backgroundColor,
@@ -46,26 +47,44 @@ define(function(require, exports, module) {
             opacity : this.options.backgroundOpacity
         });
 
-        this.add(backgroundModifier).add(backgroundSurface);
+        this.add(backgroundModifier).add(this.backgroundSurface);
     }
 
      function _createTitle() {
-        var titleSurface = new Surface({
+        this.titleSurface = new Surface({
             size: [true, true],
             content: this.options.title,
             properties: {
                 color: this.options.textColor,
                 fontSize: this.options.fontSize + 'px',
                 textAlign : 'center',
-                pointerEvents : 'none',
                 fontFamily: this.options.fontFamily,
                 padding: this.options.padding + 'px',
-                paddingLeft: this.options.paddingLeft +'px'
+                paddingLeft: this.options.paddingLeft +'px',
+                cursor: 'pointer'
             }
         });
 
-        this.add(titleSurface);
+        this.add(this.titleSurface);
     }
+
+    function _setListeners() {
+        this.titleSurface.on('click', function() {
+            this._eventOutput.emit('stripViewClick');
+        }.bind(this));
+
+        this.titleSurface.on('mouseover', function() {
+            this._eventOutput.emit('stripViewMouseOver');
+        }.bind(this));
+        
+        this.backgroundSurface.on('click', function() {
+            this._eventOutput.emit('stripViewClick');
+        }.bind(this));
+
+        this.backgroundSurface.on('mouseover', function() {
+            this._eventOutput.emit('stripViewMouseOver');
+        }.bind(this));
+    } 
 
     module.exports = StripView;
 });

@@ -104,7 +104,8 @@ define(function(require, exports, module) {
             size: [31, 31], //(44 * 0.7, 44 * 0.7)
             content: 'mm-assets/hamburger.svg',
             properties: {
-                 zIndex: '1'
+                 zIndex: '1',
+                 cursor: 'pointer'
             }
         });
 
@@ -166,7 +167,7 @@ define(function(require, exports, module) {
         thisPageView.footerBackgroundModifier.setTransform(Transform.inFront);
     }
 
-    /** Called to redraw the framework - brings header surfaces to the front **/
+    /** Called to redraw the framework - brings header and footer surfaces to the front **/
     function _bringHeaderToFront() {
         thisPageView.backgroundModifier.setTransform(Transform.inFront);
         thisPageView.logoModifier.setTransform(Transform.inFront);
@@ -248,7 +249,7 @@ define(function(require, exports, module) {
             _bringHeaderToFront();
         }.bind(this));
 
-        
+       // TODO: set the menu click and hover here
     } 
 
     function _menuToggle() {

@@ -9,10 +9,13 @@ define(function(require, exports, module) {
     var StripView = require('animation_views/StripView');
     var StripTitleView = require('animation_views/StripTitleView');
 
+    var stripViews = [];
+
     function MenuView() {
         View.apply(this, arguments);
 
         _createStripViews.call(this);
+        _setListeners.call(this);
     }
 
     MenuView.prototype = Object.create(View.prototype);
@@ -48,6 +51,8 @@ define(function(require, exports, module) {
                 title: this.options.stripData[i].title
             });
 
+            stripViews.push(stripView);
+
             var stripModifier = new StateModifier({
                 transform: Transform.translate(0, yOffset, 0)
             });
@@ -58,6 +63,19 @@ define(function(require, exports, module) {
             yOffset += this.options.stripOffset;
         }
     }
+
+    /** Set listeners on all of the strips for click and hover*/
+    function _setListeners() {
+        for (var i=0; i < this.options.stripData.length; i++) {
+            stripViews[i].on('stripViewClick', function() {
+                this._eventOutput.emit('menuViewClick');
+            }.bind(this));
+
+            stripViews[i].on('stripViewMouseOver', function() {
+                this._eventOutput.emit('menuViewMouseOver');
+            }.bind(this));
+        }
+    } 
 
 
 
