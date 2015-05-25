@@ -267,6 +267,7 @@ define(function(require, exports, module) {
             animationController.incrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
+            progressView.updateProgressBar(animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
         }.bind(this));
 
@@ -274,6 +275,7 @@ define(function(require, exports, module) {
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
+            progressView.updateProgressBar(animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
         }.bind(this));
     } 
