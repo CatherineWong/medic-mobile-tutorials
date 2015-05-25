@@ -24,8 +24,9 @@ define(function(require, exports, module) {
     var Two_TwoIntroMayaHariCellView = require('animation_views/animation_slides/Two_TwoIntroMayaHariCellView');
     var Two_ThreeZoomToHariView = require('animation_views/animation_slides/Two_ThreeZoomToHariView');
     var One_FourZoomOutTransitionView = require('animation_views/animation_slides/One_FourZoomOutTransitionView');
+    var Two_EightCellView = require('animation_views/animation_slides/Two_EightCellView');
 
-    var tutorialLengths = [11, 5, 4, 4]; //Holds the lengths of each tutorial
+    var tutorialLengths = [11, 12, 4, 4]; //Holds the lengths of each tutorial
     var currTutorial = 0;
     var currTutorialSlide = 0;
     var renderController;
@@ -137,7 +138,7 @@ define(function(require, exports, module) {
     /** Controls the logic to determine which animation to load */
     function _getNextAnimationView() {
         var currView = null;
-        if (currTutorial == 0) {                   
+        if (currTutorial == 6) {                   
             switch (currTutorialSlide) {
                 case 0:
                     //currView = new SplitScreenView();
@@ -178,10 +179,11 @@ define(function(require, exports, module) {
                     break; 
             }
             
-        } else if (currTutorial == 1) {
+        } else if (currTutorial == 0) {
             switch (currTutorialSlide) {
                 case 0:
-                    currView = new Two_OneIntroMayaAndHariView();
+                    currView = new Two_EightCellView();
+                    // currView = new Two_OneIntroMayaAndHariView();
                     break;
                 case 1:
                     currView = new Two_TwoIntroMayaHariCellView();
@@ -195,6 +197,9 @@ define(function(require, exports, module) {
                 case 4:
                     currView = new RegisterView();
                     break;  
+                case 5: //CHANGE THIS to 7
+                    currView = new Two_EightCellView();
+                    break;
                 default:
                     break;
             } 
