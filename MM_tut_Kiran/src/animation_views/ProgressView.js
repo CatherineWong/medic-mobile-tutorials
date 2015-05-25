@@ -15,24 +15,29 @@ define(function(require, exports, module) {
 
     var bars = [];
 
-
+    var filledColor = 'red';
+    var unfilledColor = '';
     switch(tutNum) {
         case 1:
-            tutColor = '#656912';
+            unfilledColor = '#656912';
+            filledColor = '#B5BD21';
             break;
         case 2:
-            tutColor = '#984A3C';
+            unfilledColor = '#984A3C';
+            filledColor = '#F47963';
             break;
         case 3:
-            tutColor = '#3F6464';
+            unfilledColor = '#3F6464';
+            filledColor = '#79B1B1';
             break;
         case 4:
-            tutColor = '#A27513';
+            unfilledColor = '#A27513';
+            filledColor = '#E9A722';
             break;
         default:
-            tutColor = '#000';
+            filledColor = '#000';
     }
-    var filledColor = "red";
+    
     var numFilled = 3;
     function ProgressView() {
         View.apply(this, arguments);
@@ -45,7 +50,7 @@ define(function(require, exports, module) {
     ProgressView.DEFAULT_OPTIONS = {
         length: tutLength,
         backgroundFilledColor: filledColor,
-        backgroundUnfilledColor: tutColor,
+        backgroundUnfilledColor: unfilledColor,
         stripData: {},
         topOffset: 56, //(80 * 0.7)
         leftOffset: 196, //(280 * 0.7)
@@ -82,11 +87,12 @@ define(function(require, exports, module) {
         }
     }
 
-    ProgressView.prototype.updateProgressBar = function(slideNumber) {
-        console.log(bars[slideNumber]);
-        console.log("ProgressView:" + bars[slideNumber].getBackgroundColor());
-        bars[slideNumber].setBackgroundColor();
-        console.log("ProgressView:" + bars[slideNumber].getBackgroundColor());
+    ProgressView.prototype.incrementProgressBar = function(slideNumber) {
+        bars[slideNumber].fillBackgroundColor();
+    }
+
+    ProgressView.prototype.decrementProgressBar = function(slideNumber) {
+        bars[slideNumber+1].unfillBackgroundColor();
     }
 
     module.exports = ProgressView;

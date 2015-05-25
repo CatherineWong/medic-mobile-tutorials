@@ -222,7 +222,7 @@ define(function(require, exports, module) {
         });
 
         animationController.loadAnimationView(thisPageView, thisPageView.footerSurface);
-        progressView.updateProgressBar(animationController.getCurrTutorialSlide());
+        progressView.incrementProgressBar(animationController.getCurrTutorialSlide());
     }
 
 
@@ -236,7 +236,7 @@ define(function(require, exports, module) {
             animationController.incrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-            progressView.updateProgressBar(animationController.getCurrTutorialSlide());
+            progressView.incrementProgressBar(animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
         }.bind(this));
 
@@ -244,7 +244,7 @@ define(function(require, exports, module) {
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-            progressView.updateProgressBar(animationController.getCurrTutorialSlide());
+            progressView.decrementProgressBar(animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
         }.bind(this));
     } 
@@ -287,14 +287,14 @@ define(function(require, exports, module) {
             animationController.incrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-            progressView.updateProgressBar(animationController.getCurrTutorialSlide());
+            progressView.incrementProgressBar(animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
 
         } else if (e.which === 37) { //Left arrow key
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-            progressView.updateProgressBar(animationController.getCurrTutorialSlide());
+            progressView.decrementProgressBar(animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
         }
      }); 

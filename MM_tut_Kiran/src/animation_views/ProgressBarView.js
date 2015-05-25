@@ -45,12 +45,17 @@ define(function(require, exports, module) {
         return this.backgroundSurface.properties.backgroundColor;
     }
 
-    ProgressBarView.prototype.setBackgroundColor = function() {
+    ProgressBarView.prototype.fillBackgroundColor = function() {
         this.backgroundSurface.setProperties({
-            backgroundColor: 'red' // Sets the background color
+            backgroundColor: this.options.backgroundFilledColor 
         }); 
     }
-    //
+
+    ProgressBarView.prototype.unfillBackgroundColor = function() {
+        this.backgroundSurface.setProperties({
+            backgroundColor: this.options.backgroundUnfilledColor 
+        }); 
+    }
 
     module.exports = ProgressBarView;
 });
