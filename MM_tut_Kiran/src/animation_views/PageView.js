@@ -17,6 +17,7 @@ define(function(require, exports, module) {
     var NavigationView = require('animation_views/NavigationView');
     var MenuView = require('animation_views/MenuView');
     var ProgressView = require('animation_views/ProgressView');
+    var progressView;
     var StripData = require('Data/StripData');
 
 
@@ -202,11 +203,11 @@ define(function(require, exports, module) {
 
     function _createProgress() {
 
-        this.ProgressView = new ProgressView({ 
+        progressView = new ProgressView({ 
             stripData: StripData,
-            currTutorial: animationController.getCurrTutorial(),
-            numberFilled: animationController.getCurrTutorialSlide() 
+            currTutorial: animationController.getCurrTutorial()
         });
+
         //alert(animationController.getCurrTutorial());
         var anotherModifier = new StateModifier ({
             transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
@@ -214,7 +215,7 @@ define(function(require, exports, module) {
 
         thisPageView.progressModifier = new StateModifier();
 
-        this.add(thisPageView.progressModifier).add(anotherModifier).add(this.ProgressView);
+        this.add(thisPageView.progressModifier).add(anotherModifier).add(progressView);
     }
 
     function _loadStartingAnimation() {
@@ -288,17 +289,15 @@ define(function(require, exports, module) {
             animationController.incrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView); 
+            alert('hi');
+            //progressView.updateProgressBar(3);
             _bringHeaderToFront();
-            //_createProgress();
-            //_createProgress.call(this);
 
         } else if (e.which === 37) { //Left arrow key
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView); 
             _bringHeaderToFront();
-            //_createProgress();
-            //_createProgress.call(this);
         }
      }); 
 

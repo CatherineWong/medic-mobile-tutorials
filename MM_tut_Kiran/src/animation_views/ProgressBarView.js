@@ -24,10 +24,10 @@ define(function(require, exports, module) {
 
 
     function _createBackground() {
-        var backgroundSurface = new Surface({
+        this.backgroundSurface = new Surface({
             size: [(screen.width - 196)/this.options.length, this.options.height],
             properties: {
-                backgroundColor: this.options.backgroundColor,
+                backgroundColor: this.options.backgroundUnfilledColor,
                 borderRightStyle: 'solid',
                 borderRightColor: '#93989B',
                 borderRightWidth: '1px'
@@ -38,12 +38,20 @@ define(function(require, exports, module) {
             opacity : this.options.backgroundOpacity
         });
 
-        this.add(backgroundModifier).add(backgroundSurface);
+        this.add(backgroundModifier).add(this.backgroundSurface);
     }
 
-    function _getBackgroundColor() {
-        return this.options.backgroundColor;
+    ProgressBarView.prototype.getBackgroundColor = function() {
+        return this.backgroundSurface.properties.backgroundColor;
     }
+
+    ProgressBarView.prototype.setBackgroundColor = function() {
+        alert('honestly tho');
+        console.log(this.backgroundSurface.properties.backgroundColor);
+        this.backgroundSurface.properties.backgroundColor = 'red';//this.options.backgroundFilledColor;
+        console.log(this.backgroundSurface.properties.backgroundColor);
+    }
+    //
 
     module.exports = ProgressBarView;
 });

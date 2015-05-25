@@ -53,23 +53,17 @@ define(function(require, exports, module) {
         
     };
 
+    
+
     function _createProgressBars() {
         this.stripModifiers = [];
         var yOffset = this.options.topOffset;
         var xOffset = this.options.leftOffset;
         for (var i = 0; i < this.options.length; i++) {
-            var backColor ="";
-            if (i < this.options.numberFilled) {
-                backColor = this.options.backgroundFilledColor;
-                console.log(this.options.backgroundFilledColor);
-            }
-            else {
-                backColor = this.options.backgroundUnfilledColor;
-                console.log(this.options.backgroundUnfilledColor);
-            }
             var progressBarView = new ProgressBarView({
                 length: this.options.length,
-                backgroundColor: backColor
+                backgroundFilledColor: this.options.backgroundFilledColor,
+                backgroundUnfilledColor: this.options.backgroundUnfilledColor
             });
 
             bars.push(progressBarView);
@@ -84,14 +78,19 @@ define(function(require, exports, module) {
             xOffset += this.options.stripLeftOffset;
         }
         for (var i = 0; i < bars.length; i++) {
-            //console.log(bars[i]._getBackgroundColor());
+            console.log(bars[i].getBackgroundColor());
         }
+        //bars[2].setBackgroundColor();
     }
 
-    function _updateProgressBar(slideNumber) {
-
+    ProgressView.prototype.updateProgressBar = function(slideNumber) {
+        alert('ugh why');
+        alert(slideNumber);
+        console.log(bars[slideNumber]);
+        console.log("ProgressView:" + bars[slideNumber].getBackgroundColor());
+        bars[slideNumber].setBackgroundColor();
+        console.log("ProgressView:" + bars[slideNumber].getBackgroundColor());
     }
-
 
     module.exports = ProgressView;
 });
