@@ -138,7 +138,7 @@ define(function(require, exports, module) {
     /** Controls the logic to determine which animation to load */
     function _getNextAnimationView() {
         var currView = null;
-        if (currTutorial == 6) {                   
+        if (currTutorial == 0) {                   
             switch (currTutorialSlide) {
                 case 0:
                     //currView = new SplitScreenView();
@@ -179,7 +179,7 @@ define(function(require, exports, module) {
                     break; 
             }
             
-        } else if (currTutorial == 0) {
+        } else if (currTutorial == 1) {
             switch (currTutorialSlide) {
                 case 0:
                     currView = new Two_EightCellView();
