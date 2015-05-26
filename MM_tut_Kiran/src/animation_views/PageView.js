@@ -362,11 +362,21 @@ define(function(require, exports, module) {
             _bringHeaderToFront();
 
         } else if (e.which === 37) { //Left arrow key
+            if (animationController.getCurrTutorialSlide() == 0) {
+                var indexBefore = animationController.getCurrTutorial()-1;
+                progressView[animationController.getCurrTutorial()-1].resetProgressBar(indexBefore,animationController.getTutorialLength(indexBefore));
+                
+            }
+            
+            
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-            _progressToFront();
+
             progressView[animationController.getCurrTutorial()].decrementProgressBar(animationController.getCurrTutorial(), animationController.getCurrTutorialSlide());
+            _progressToFront();
+            /*alert("slide: " + animationController.getCurrTutorialSlide());
+            alert("tutorial: " + animationController.getCurrTutorial());*/
             _bringHeaderToFront();
         }
      }); 

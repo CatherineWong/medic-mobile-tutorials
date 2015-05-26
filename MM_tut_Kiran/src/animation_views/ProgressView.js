@@ -97,10 +97,15 @@ define(function(require, exports, module) {
         bars[tutorialNumber][slideNumber+1].unfillBackgroundColor();
     }
 
-    ProgressView.prototype.resetProgressBar = function(tutorialNumber,  slideNumber) {
-        for (var i = 10; i > 0; i++) {
+    ProgressView.prototype.resetProgressBar = function(tutorialNumber, tutorialLength) {
+        for (var i = tutorialLength-1; i > 0; i--) {
             bars[tutorialNumber][i].unfillBackgroundColor();
         }
+        /*bars[tutorialNumber][4].unfillBackgroundColor();
+        bars[tutorialNumber][5].unfillBackgroundColor();
+        /*for (var i = 6; i > 0; i++) {
+            bars[tutorialNumber][i].unfillBackgroundColor();
+        }*/
     }
 
     module.exports = ProgressView;
