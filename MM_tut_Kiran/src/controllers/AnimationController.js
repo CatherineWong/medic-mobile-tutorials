@@ -25,11 +25,8 @@ define(function(require, exports, module) {
     var Two_ThreeZoomToHariView = require('animation_views/animation_slides/Two_ThreeZoomToHariView');
     var One_FourZoomOutTransitionView = require('animation_views/animation_slides/One_FourZoomOutTransitionView');
     var Two_EightCellView = require('animation_views/animation_slides/Two_EightCellView');
-<<<<<<< HEAD
     var Two_NineClipboardView = require('animation_views/animation_slides/Two_NineClipboardView');
-=======
     var Two_ElevenUserGuide = require('animation_views/animation_slides/Two_ElevenUserGuide');
->>>>>>> b425268e3c545cc59b946d782e0df6de4cfc86b9
 
     var tutorialLengths = [11, 12, 4, 4]; //Holds the lengths of each tutorial
     var currTutorial = 0;
