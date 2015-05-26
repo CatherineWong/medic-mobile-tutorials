@@ -12,7 +12,6 @@ define(function(require, exports, module) {
 
    function Two_TwoIntroMayaHariCellView () {
    		View.apply(this, arguments);
-   		// _createBackground.call(this);
    		_createHuts.call(this);
    		_createLalitaAndMaya.call(this);
    		_createCellPhone.call(this);
@@ -27,49 +26,6 @@ define(function(require, exports, module) {
    }
 
    Two_TwoIntroMayaHariCellView.DEFAULT_OPTIONS = {};
-
-
-	function _createBackground() {
-		var background = new ImageSurface ({
-			size : [1700, 1200],
-			content: 'animation-assets/scene-1.svg'
-		});
-
-		var middleground = new ImageSurface ({
-			size : [1700, 1200],
-			content: 'animation-assets/hills-middle-ground.svg'
-
-		});
-
-		var placeForeground = new StateModifier({
-			align: [0.5, 0.5],
-			origin: [0.6, 0.45],
-			transform : Transform.translate(143, 30, 0)
-		});
-
-		var placeMiddleground = new StateModifier ({
-			align: [0.5, 0.5],
-			origin: [0.6, 0.45],
-			transform : Transform.translate(143, 30, 0)
-		});
-
-		var foreground = new ImageSurface ({
-			size : [1700, 1200],
-			content: 'animation-assets/hills-foreground.svg'
-
-		});
-
-		var placeBackground = new StateModifier({
-			align: [0.5, 0.5],
-			origin: [0.6, 0.4]
-		});
-
-		this.add(placeBackground).add(background);
-		this.add(placeMiddleground).add(middleground);
-		this.add(placeForeground).add(foreground);
-
-
-	}
 
 	function _createHuts() {
 

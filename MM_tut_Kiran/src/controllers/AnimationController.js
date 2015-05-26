@@ -27,8 +27,9 @@ define(function(require, exports, module) {
     var Two_EightCellView = require('animation_views/animation_slides/Two_EightCellView');
     var Two_NineClipboardView = require('animation_views/animation_slides/Two_NineClipboardView');
     var Two_ElevenUserGuide = require('animation_views/animation_slides/Two_ElevenUserGuide');
+    var Two_TenVisitMayaView = require('animation_views/animation_slides/Two_TenVisitMayaView');
 
-    var tutorialLengths = [11, 12, 4, 4]; //Holds the lengths of each tutorial
+    var tutorialLengths = [11, 13, 4, 4]; //Holds the lengths of each tutorial
     var currTutorial = 0;
     var currTutorialSlide = 0;
     var renderController;
@@ -208,6 +209,9 @@ define(function(require, exports, module) {
                     currView = new Two_NineClipboardView();
                     break;
                 case 8:
+                    currView = new Two_TenVisitMayaView();
+                    break;
+                case 9:
                     currView = new Two_ElevenUserGuide();
                     break;
                 default:
