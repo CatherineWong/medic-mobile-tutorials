@@ -90,14 +90,17 @@ define(function(require, exports, module) {
     }
 
     ProgressView.prototype.incrementProgressBar = function(tutorialNumber, slideNumber) {
-        /*alert(tutorialNumber);
-        alert(slideNumber);*/
         bars[tutorialNumber][slideNumber].fillBackgroundColor();
-        //console.log(filledColor);
     }
 
     ProgressView.prototype.decrementProgressBar = function(tutorialNumber,  slideNumber) {
         bars[tutorialNumber][slideNumber+1].unfillBackgroundColor();
+    }
+
+    ProgressView.prototype.resetProgressBar = function(tutorialNumber,  slideNumber) {
+        for (var i = 10; i > 0; i++) {
+            bars[tutorialNumber][i].unfillBackgroundColor();
+        }
     }
 
     module.exports = ProgressView;

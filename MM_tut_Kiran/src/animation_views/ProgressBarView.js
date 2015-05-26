@@ -19,7 +19,7 @@ define(function(require, exports, module) {
         width: 196, //(280 * 0.7)
         height: 14, //(20 * 0.7)
         padding: 8, //(13 * 0.7)
-        backgroundOpacity: 0.5//
+        backgroundOpacity: 1//0.5//1
     };
 
 

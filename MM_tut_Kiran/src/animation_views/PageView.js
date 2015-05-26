@@ -175,7 +175,7 @@ define(function(require, exports, module) {
         thisPageView.hamburgerModifier.setTransform(Transform.inFront);
         thisPageView.navigationFrontModifier.setTransform(Transform.inFront);
         if (!this.menuToggle) thisPageView.menuModifier.setTransform(Transform.inFront);
-        progressViewModifier[animationController.getCurrTutorial()].setTransform(Transform.inFront);
+        //progressViewModifier[animationController.getCurrTutorial()].setTransform(Transform.inFront);
         thisPageView.footerBackgroundModifier.setTransform(Transform.inFront);
     }
 
@@ -201,25 +201,44 @@ define(function(require, exports, module) {
     }
 
     function _createProgress() {
-       for (var i = 0; i < StripData.length; i++) {
+      /*progressView[0] = new ProgressView({ 
+            stripData: StripData,
+            currentTutorial: 0,//animationController.getCurrTutorial(),
+            tutorialLength: animationController.getTutorialLength(0)//,animationController.getCurrTutorial()
+        });
+        progressViewModifier[0] = new StateModifier ({
+            transform: Transform.translate(100, 100, 0.2)   //use this z axis to bring in front of surface
+        });
+
+        thisPageView.add(progressViewModifier[0]).add(progressView[0]);*/
+
+       for (var i = 0; i < 3; i++) {
             progressView[i] = new ProgressView({ 
                 stripData: StripData,
                 currentTutorial: i,//animationController.getCurrTutorial(),
                 tutorialLength: animationController.getTutorialLength(i)//,animationController.getCurrTutorial()
             });
-
             progressViewModifier[i] = new StateModifier ({
-                transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
+                transform: Transform.translate(0,0, -i)   //use this z axis to bring in front of surface
             });
-
 
             thisPageView.add(progressViewModifier[i]).add(progressView[i]);
         }
-        
+        progressViewModifier[0].setTransform(Transform.translate(0,0,5));
+        progressViewModifier[1].setTransform(Transform.translate(0,0,0));
+        progressViewModifier[2].setTransform(Transform.translate(0,0,0));
+        //progressView[0].incrementProgressBar(animationController.getCurrTutorial(),4);
     }
 
     function _progressToFront() {
-        progressViewModifier[animationController.getCurrTutorial()].setTransform(Transform.inFront);
+        for (var i = 0; i < 3; i++) {
+            if (animationController.getCurrTutorial() == i) {
+                progressViewModifier[i].setTransform(Transform.translate(0,0,5));
+            }
+            else {
+                progressViewModifier[i].setTransform(Transform.translate(0,0,0));
+            }
+        }
     }
 
     function _loadStartingAnimation() {
@@ -229,6 +248,8 @@ define(function(require, exports, module) {
 
         animationController.loadAnimationView(thisPageView, thisPageView.footerSurface);
         progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(),animationController.getCurrTutorialSlide());
+        //progressView[0].incrementProgressBar(animationController.getCurrTutorial(),2);
+
     }
 
 
@@ -303,8 +324,8 @@ define(function(require, exports, module) {
             if (animationController.getCurrTutorialSlide() == 0) {
                 console.log(progressView);
                 _progressToFront();
-                //_createProgress.call(this);
-                progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(),animationController.getCurrTutorialSlide());                
+                progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(),animationController.getCurrTutorialSlide());
+                //progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(),animationController.getCurrTutorialSlide());                
             }
             else {
                 progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(), animationController.getCurrTutorialSlide());
@@ -315,6 +336,7 @@ define(function(require, exports, module) {
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
+            _progressToFront();
             progressView[animationController.getCurrTutorial()].decrementProgressBar(animationController.getCurrTutorial(), animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
         }
