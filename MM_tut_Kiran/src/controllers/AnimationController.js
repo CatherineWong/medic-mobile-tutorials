@@ -25,6 +25,7 @@ define(function(require, exports, module) {
     var Two_ThreeZoomToHariView = require('animation_views/animation_slides/Two_ThreeZoomToHariView');
     var One_FourZoomOutTransitionView = require('animation_views/animation_slides/One_FourZoomOutTransitionView');
     var Two_EightCellView = require('animation_views/animation_slides/Two_EightCellView');
+    var Two_NineClipboardView = require('animation_views/animation_slides/Two_NineClipboardView');
 
     var tutorialLengths = [11, 12, 4, 4]; //Holds the lengths of each tutorial
     var currTutorial = 0;
@@ -138,7 +139,7 @@ define(function(require, exports, module) {
     /** Controls the logic to determine which animation to load */
     function _getNextAnimationView() {
         var currView = null;
-        if (currTutorial == 0) {                   
+        if (currTutorial == 6) {     //CHANGE THIS               
             switch (currTutorialSlide) {
                 case 0:
                     //currView = new SplitScreenView();
@@ -176,10 +177,10 @@ define(function(require, exports, module) {
                     break;
                 default:
                      //Temporary place holder to fade out to nothingness
-                    break; 
+                    break;
             }
             
-        } else if (currTutorial == 1) {
+        } else if (currTutorial == 0) {
             switch (currTutorialSlide) {
                 case 0:
                     currView = new Two_OneIntroMayaAndHariView();
@@ -196,8 +197,14 @@ define(function(require, exports, module) {
                 case 4:
                     currView = new RegisterView();
                     break; 
+                case 5:
+                    // This is for Kiran
+                    break;
                 case 6: 
                     currView = new Two_EightCellView();
+                    break;
+                case 7:
+                    currView = new Two_NineClipboardView();
                     break;
                 default:
                     break;

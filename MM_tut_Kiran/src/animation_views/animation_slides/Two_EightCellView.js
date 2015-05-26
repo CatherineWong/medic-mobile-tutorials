@@ -1,4 +1,6 @@
-/* 2.8 Tutorial 2 Slide 8 --  Two_EightCellView*/
+/* 2.8 Tutorial 2 Slide 8 --  Two_EightCellView
+TO DO: add a facebook esque bubble with the message on it that shows up on the phone
+*/
 
 define(function(require, exports, module) {
 
