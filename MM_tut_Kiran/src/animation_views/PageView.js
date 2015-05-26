@@ -16,7 +16,7 @@ define(function(require, exports, module) {
     var NavigationView = require('animation_views/NavigationView');
     var MenuView = require('animation_views/MenuView');
     var ProgressView = require('animation_views/ProgressView');
-    var progressView;
+    var progressView = [];
     var StripData = require('Data/StripData');
 
 
@@ -201,20 +201,20 @@ define(function(require, exports, module) {
     }
 
     function _createProgress() {
-        progressView = new ProgressView({ 
+        progressView.push(new ProgressView({ 
             stripData: StripData,
             currentTutorial: animationController.getCurrTutorial(),
             tutorialLength: animationController.getTutorialLength(animationController.getCurrTutorial())
-        });
+        }));
+        //console.log(progressView);
 
-        //alert(animationController.getCurrTutorial());
         var anotherModifier = new StateModifier ({
             transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
         });
 
         thisPageView.progressModifier = new StateModifier();
 
-        this.add(thisPageView.progressModifier).add(anotherModifier).add(progressView);
+        thisPageView.add(thisPageView.progressModifier).add(anotherModifier).add(progressView[animationController.getCurrTutorial()]);
     }
 
     function _loadStartingAnimation() {
@@ -223,7 +223,7 @@ define(function(require, exports, module) {
         });
 
         animationController.loadAnimationView(thisPageView, thisPageView.footerSurface);
-        progressView.incrementProgressBar(animationController.getCurrTutorialSlide());
+        progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(),animationController.getCurrTutorialSlide());
     }
 
 
@@ -237,7 +237,7 @@ define(function(require, exports, module) {
             animationController.incrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-            progressView.incrementProgressBar(animationController.getCurrTutorialSlide());
+            progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(), animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
         }.bind(this));
 
@@ -245,7 +245,7 @@ define(function(require, exports, module) {
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-            progressView.decrementProgressBar(animationController.getCurrTutorialSlide());
+            progressView[animationController.getCurrTutorial()].decrementProgressBar(animationController.getCurrTutorial(), animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
         }.bind(this));
 
@@ -290,17 +290,33 @@ define(function(require, exports, module) {
      */
      Engine.on('keydown', function(e) {
         if(e.which === 39) { //Right arrow key
+            
+
             animationController.incrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-            progressView.incrementProgressBar(animationController.getCurrTutorialSlide());
+            /*alert('length'+animationController.getTutorialLength(animationController.getCurrTutorial()));
+            alert('tutorial #: '+animationController.getCurrTutorial());
+            alert('slide #: '+animationController.getCurrTutorialSlide());*/
+            if (animationController.getCurrTutorialSlide() == 0) {
+                _createProgress.call(this);
+                //alert(animationController.getCurrTutorial());
+                progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(),animationController.getCurrTutorialSlide());
+                //_loadStartingAnimation.call(this);
+            }
+            else {
+                /*console.log(animationController.getCurrTutorial());
+                console.log(progressView[animationController.getCurrTutorial()]);
+                console.log(progressView);*/
+                progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(), animationController.getCurrTutorialSlide());
+            }
             _bringHeaderToFront();
 
         } else if (e.which === 37) { //Left arrow key
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-            progressView.decrementProgressBar(animationController.getCurrTutorialSlide());
+            progressView[animationController.getCurrTutorial()].decrementProgressBar(animationController.getCurrTutorial(), animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
         }
      }); 

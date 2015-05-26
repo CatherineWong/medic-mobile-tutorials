@@ -18,7 +18,6 @@ define(function(require, exports, module) {
     var filledColor = '';
     var unfilledColor = '';
     
-    
     var numFilled = 3;
     function ProgressView() {
         View.apply(this, arguments);
@@ -30,8 +29,6 @@ define(function(require, exports, module) {
 
     ProgressView.DEFAULT_OPTIONS = {
         length: tutLength,
-        backgroundFilledColor: filledColor,
-        backgroundUnfilledColor: unfilledColor,
         stripData: {},
         topOffset: 56, //(80 * 0.7)
         leftOffset: 196, //(280 * 0.7)        
@@ -40,7 +37,7 @@ define(function(require, exports, module) {
     
 
     function _createProgressBars() {
-
+        var thisrow = [];
         switch(this.options.currentTutorial) {
             case 0:
                 unfilledColor = '#656912';
@@ -61,7 +58,8 @@ define(function(require, exports, module) {
             default:
                 filledColor = '#000';
         }
-
+        /*alert(unfilledColor);
+        alert(filledColor);*/
         this.stripModifiers = [];
         var yOffset = this.options.topOffset;
         var xOffset = this.options.leftOffset;
@@ -72,8 +70,9 @@ define(function(require, exports, module) {
                 backgroundFilledColor: filledColor,
                 backgroundUnfilledColor: unfilledColor
             });
+            
 
-            bars.push(progressBarView);
+            thisrow.push(progressBarView);
 
             var stripModifier = new StateModifier({
                 transform: Transform.translate(xOffset, yOffset, 0)
@@ -84,17 +83,21 @@ define(function(require, exports, module) {
 
             xOffset += leftOffset;
         }
-        for (var i = 0; i < bars.length; i++) {
-            console.log(bars[i].getBackgroundColor());
-        }
+        /*for (var i = 0; i < bars.length; i++) {
+            console.log('back'+bars[i].getBackgroundColor());
+        }*/
+        bars.push(thisrow);
     }
 
-    ProgressView.prototype.incrementProgressBar = function(slideNumber) {
-        bars[slideNumber].fillBackgroundColor();
+    ProgressView.prototype.incrementProgressBar = function(tutorialNumber, slideNumber) {
+        /*alert(tutorialNumber);
+        alert(slideNumber);*/
+        bars[tutorialNumber][slideNumber].fillBackgroundColor();
+        //console.log(filledColor);
     }
 
-    ProgressView.prototype.decrementProgressBar = function(slideNumber) {
-        bars[slideNumber+1].unfillBackgroundColor();
+    ProgressView.prototype.decrementProgressBar = function(tutorialNumber,  slideNumber) {
+        bars[tutorialNumber][slideNumber+1].unfillBackgroundColor();
     }
 
     module.exports = ProgressView;
