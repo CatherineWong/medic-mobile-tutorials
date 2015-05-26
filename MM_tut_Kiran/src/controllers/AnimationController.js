@@ -20,6 +20,8 @@ define(function(require, exports, module) {
     var LalitaConfirmView_1_8 = require('animation_views/animation_slides/LalitaConfirmView_1_8');
     var SplitScreenView = require('animation_views/animation_slides/SplitScreenView');
     var RegisterView = require('animation_views/animation_slides/RegisterView');
+    var One_SixMedicMobileMessagesLalitaView = require('animation_views/animation_slides/One_SixMedicMobileMessagesLalitaView');
+    var One_SixLalitaVisitsMayaView = require('animation_views/animation_slides/One_SixLalitaVisitsMayaView');
     var Two_OneIntroMayaAndHariView = require('animation_views/animation_slides/Two_OneIntroMayaAndHariView');
     var Two_TwoIntroMayaHariCellView = require('animation_views/animation_slides/Two_TwoIntroMayaHariCellView');
     var Two_ThreeZoomToHariView = require('animation_views/animation_slides/Two_ThreeZoomToHariView');
@@ -28,6 +30,7 @@ define(function(require, exports, module) {
     var Two_NineClipboardView = require('animation_views/animation_slides/Two_NineClipboardView');
     var Two_ElevenUserGuide = require('animation_views/animation_slides/Two_ElevenUserGuide');
     var Two_TenVisitMayaView = require('animation_views/animation_slides/Two_TenVisitMayaView');
+    var Two_TwelveMessageView = require('animation_views/animation_slides/Two_TwelveMessageView');
 
     var tutorialLengths = [11, 13, 4, 4]; //Holds the lengths of each tutorial
     var currTutorial = 0;
@@ -83,7 +86,13 @@ define(function(require, exports, module) {
         return tutorialLengths[tutorialNum];
     }
 
-
+    /**
+     * Sets the tutorial to the start of a given tutorial
+     */
+    AnimationController.prototype.setStartOfTutorial = function(tutorialNum) {
+        currTutorial = tutorialNum;
+        currTutorialSlide = 0;
+    }
     /**
      * Called when the next button is clicked to increment the index counters accordingly
      */
@@ -138,6 +147,7 @@ define(function(require, exports, module) {
         //Redraw all of the other layers on top
     }
 
+
     /** Controls the logic to determine which animation to load */
     function _getNextAnimationView() {
         var currView = null;
@@ -172,9 +182,15 @@ define(function(require, exports, module) {
                     currView = new LalitaRegisteringMayaView();
                     break;
                 case 9:
-                    currView = new LalitaToHariZoomView();
+                    currView = new One_SixMedicMobileMessagesLalitaView();
                     break;
                 case 10:
+                    currView = new One_SixLalitaVisitsMayaView();
+                    break;
+                case 11:
+                    currView = new LalitaToHariZoomView();
+                    break;
+                case 12:
                     currView = new LalitaConfirmView_1_8();
                     break;
                 default:
@@ -213,6 +229,9 @@ define(function(require, exports, module) {
                     break;
                 case 9:
                     currView = new Two_ElevenUserGuide();
+                    break;
+                case 10:
+                    currView = new Two_TwelveMessageView();
                     break;
                 default:
                     break;

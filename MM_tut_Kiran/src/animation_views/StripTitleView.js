@@ -21,7 +21,7 @@ define(function(require, exports, module) {
         height: 42, //(280 * .7)
         fontSize: 21, //(30 * .7)
         padding: 9, //(13 * .7) 
-        paddingLeft: 46, //(65 * .7)
+        paddingLeft: 60, 
         fontFamily: 'FuturaPTWebMedium',
         backgroundColor: 'rgb(50,50,50)',
         textColor: '#E1E6E9',
@@ -62,6 +62,7 @@ define(function(require, exports, module) {
 
         this.add(titleSurface);
     }
+
 
     module.exports = StripTitleView;
 });

@@ -1,6 +1,7 @@
 /*** MenuView.js ***/
 
 define(function(require, exports, module) {
+    var DEBUG = true;
     var View          = require('famous/core/View');
     var Surface       = require('famous/core/Surface');
     var Transform     = require('famous/core/Transform');
@@ -29,6 +30,9 @@ define(function(require, exports, module) {
 
     function _createStripViews() {
         this.stripModifiers = [];
+
+        var colors = ['#B5BD21','#F47963','#79B1B1','#E9A722'];
+
         var yOffset = this.options.topOffset;
 
             var stripView = new StripTitleView({
@@ -46,9 +50,11 @@ define(function(require, exports, module) {
             yOffset += this.options.stripOffset;
 
         for (var i = 0; i < this.options.stripData.length; i++) {
+
             var stripView = new StripView({
                 //iconUrl: this.options.stripData[i].iconUrl,
-                title: this.options.stripData[i].title
+                title: this.options.stripData[i].title,
+                selectColor: colors[i]
             });
 
             stripViews.push(stripView);
@@ -70,34 +76,34 @@ define(function(require, exports, module) {
         var i = 0;
         stripViews[i].on('stripViewClick', function() {
                 this._eventOutput.emit('menuViewClick' + i);
-                console.log('clicked' + i);
+                if (DEBUG) console.log('menuViewClick' + i);
             }.bind(this));
 
             stripViews[i].on('stripViewMouseOver', function() {
                 this._eventOutput.emit('menuViewMouseOver' + i);
-                console.log('moused over: ' + i);
+                if (DEBUG) console.log('menuViewMouseOver' + i);
             }.bind(this));
 
         var j = 1;
         stripViews[j].on('stripViewClick', function() {
                 this._eventOutput.emit('menuViewClick' + j);
-                console.log('clicked' + j);
+                if (DEBUG) console.log('menuViewClick' + j);
             }.bind(this));
 
         stripViews[j].on('stripViewMouseOver', function() {
             this._eventOutput.emit('menuViewMouseOver' + j);
-            console.log('moused over: ' + j);
+            if (DEBUG) console.log('menuViewMouseOver' + j);
         }.bind(this));
 
         var k = 2;
         stripViews[k].on('stripViewClick', function() {
                 this._eventOutput.emit('menuViewClick' + k);
-                console.log('clicked' + k);
+                if (DEBUG) console.log('menuViewClick' + k);
             }.bind(this));
 
         stripViews[k].on('stripViewMouseOver', function() {
             this._eventOutput.emit('menuViewMouseOver' + k);
-            console.log('moused over: ' + k);
+           if (DEBUG) console.log('menuViewMouseOver' + k);
         }.bind(this));
   
     } 
