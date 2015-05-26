@@ -9,8 +9,9 @@ define(function(require, exports, module) {
 
     var StripView = require('animation_views/StripView');
     var StripTitleView = require('animation_views/StripTitleView');
+    var colors = ['#B5BD21','#F47963','#79B1B1','#E9A722'];
 
-    var stripViews = [];
+    stripViews = [];
 
     function MenuView() {
         View.apply(this, arguments);
@@ -31,7 +32,7 @@ define(function(require, exports, module) {
     function _createStripViews() {
         this.stripModifiers = [];
 
-        var colors = ['#B5BD21','#F47963','#79B1B1','#E9A722'];
+        
 
         var yOffset = this.options.topOffset;
 
@@ -68,13 +69,28 @@ define(function(require, exports, module) {
 
             yOffset += this.options.stripOffset;
         }
+        //stripViews[1].selectMe();
     }
+
+    MenuView.prototype.dostuff = function() {
+        alert('hi');
+    }
+
+    /*MenuView.prototype.colorSelected = function(whichButton) {
+        alert('in');
+        /*this.stripViews[whichButton].setProperties({
+            color: 'red'
+        }); 
+    }*/
 
     /** Set listeners on all of the strips for click and hover*/
     function _setListeners() {
         /* The fact that we need to do this is actually ridiculous...not sure why normal for loops don't work */
-        var i = 0;
+        var i = 0; var j = 1; var k = 2;
         stripViews[i].on('stripViewClick', function() {
+                stripViews[i].selectMe(colors[i]); 
+                stripViews[j].unselectMe(); 
+                stripViews[k].unselectMe();
                 this._eventOutput.emit('menuViewClick' + i);
                 if (DEBUG) console.log('menuViewClick' + i);
             }.bind(this));
@@ -84,8 +100,11 @@ define(function(require, exports, module) {
                 if (DEBUG) console.log('menuViewMouseOver' + i);
             }.bind(this));
 
-        var j = 1;
+        
         stripViews[j].on('stripViewClick', function() {
+                stripViews[i].unselectMe(); 
+                stripViews[j].selectMe(colors[j]); 
+                stripViews[k].unselectMe();
                 this._eventOutput.emit('menuViewClick' + j);
                 if (DEBUG) console.log('menuViewClick' + j);
             }.bind(this));
@@ -95,8 +114,11 @@ define(function(require, exports, module) {
             if (DEBUG) console.log('menuViewMouseOver' + j);
         }.bind(this));
 
-        var k = 2;
+        
         stripViews[k].on('stripViewClick', function() {
+                stripViews[i].unselectMe(); 
+                stripViews[j].unselectMe(); 
+                stripViews[k].selectMe(colors[k]);
                 this._eventOutput.emit('menuViewClick' + k);
                 if (DEBUG) console.log('menuViewClick' + k);
             }.bind(this));

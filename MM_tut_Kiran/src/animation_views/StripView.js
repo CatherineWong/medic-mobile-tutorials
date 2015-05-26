@@ -24,6 +24,7 @@ define(function(require, exports, module) {
         padding: 11, //(13 * .7) 
         paddingLeft: 21, //(30 * .7)
         fontFamily: 'FuturaPTWebLight',
+        fontSelectedFamily: 'FuturaPTWebMedium',
         backgroundColor: 'rgb(50,50,50)',
         textColor: 'white', //'#E1E6E9',
         backgroundOpacity: 0.8
@@ -67,11 +68,19 @@ define(function(require, exports, module) {
         this.add(this.titleSurface);
     }
 
-    StripView.prototype.selectMe = function() {
+    StripView.prototype.selectMe = function(color) {
         this.titleSurface.setProperties({
-            color: this.options.selectColor
+            color: color,
+            fontFamily: this.options.fontSelectedFamily
         }); 
     }
+    StripView.prototype.unselectMe = function() {
+        this.titleSurface.setProperties({
+            color: 'white',
+            fontFamily: this.options.fontFamily
+        }); 
+    }
+
 
     function _setListeners() {
         this.titleSurface.on('click', function() {
@@ -79,6 +88,7 @@ define(function(require, exports, module) {
         }.bind(this));
 
         this.titleSurface.on('mouseover', function() {
+
             this._eventOutput.emit('stripViewMouseOver');
         }.bind(this));
         

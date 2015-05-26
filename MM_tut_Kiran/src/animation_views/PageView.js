@@ -325,7 +325,10 @@ define(function(require, exports, module) {
         animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
         _progressToFront();
         progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(),animationController.getCurrTutorialSlide());
+        
         _bringHeaderToFront();
+        //alert('inman');
+        //this.menuView.dostuff();
     }
 
     function _menuToggle() {
