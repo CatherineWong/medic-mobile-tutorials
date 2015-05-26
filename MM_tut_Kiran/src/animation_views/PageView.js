@@ -275,13 +275,42 @@ define(function(require, exports, module) {
             _bringHeaderToFront();
         }.bind(this));
 
-       /*for (var i=0; i < StripData.length; i++) {
-            this.menuView.on('menuViewClick' + i, function() {
-                console.log("Hello");
+       /** Set listeners for the strips - for whatever reason, must be set individually */
+        var n = 0;
+        var j = 1;
+        var k = 2;
+        /** On click: menus should update the animation to the start of the tutorial */
+        this.menuView.on('menuViewClick' + n, function() {
+                console.log("Clicked" + n);
+                _loadAnimationAfterMenuClick(n);
             }.bind(this));
 
-        }*/
+        this.menuView.on('menuViewClick' + j, function() {
+                console.log("Clicked" + j);
+                _loadAnimationAfterMenuClick(j);
+            }.bind(this));
+        this.menuView.on('menuViewClick' + k, function() {
+                console.log("Clicked" + k);
+                _loadAnimationAfterMenuClick(k);
+            }.bind(this));
+
+        /** On mouse over: the menus should show the coloration */
+        this.menuView.on('menuViewMouseOver' + n, function() {
+                console.log("Moused" + n);
+            }.bind(this));
+        this.menuView.on('menuViewMouseOver' + j, function() {
+                console.log("Moused" + j);
+            }.bind(this));
+        this.menuView.on('menuViewMouseOver' + k, function() {
+                console.log("Moused" + k);
+            }.bind(this));
     } 
+
+    function _loadAnimationAfterMenuClick(currentTutorial) {
+        animationController.setStartOfTutorial(currentTutorial);
+        animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
+        _bringHeaderToFront();
+    }
 
     function _menuToggle() {
         if(this.menuToggle) {
