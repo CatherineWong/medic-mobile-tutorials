@@ -249,7 +249,12 @@ define(function(require, exports, module) {
             _bringHeaderToFront();
         }.bind(this));
 
-       // TODO: set the menu click and hover here
+       /*for (var i=0; i < StripData.length; i++) {
+            this.menuView.on('menuViewClick' + i, function() {
+                console.log("Hello");
+            }.bind(this));
+
+        }*/
     } 
 
     function _menuToggle() {
