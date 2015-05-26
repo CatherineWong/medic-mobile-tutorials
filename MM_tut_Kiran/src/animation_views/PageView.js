@@ -303,6 +303,7 @@ define(function(require, exports, module) {
                 //alert(animationController.getCurrTutorial());
                 progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(),animationController.getCurrTutorialSlide());
                 //_loadStartingAnimation.call(this);
+                
             }
             else {
                 /*console.log(animationController.getCurrTutorial());

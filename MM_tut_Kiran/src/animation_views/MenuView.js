@@ -29,6 +29,9 @@ define(function(require, exports, module) {
 
     function _createStripViews() {
         this.stripModifiers = [];
+
+        var colors = ['#B5BD21','#F47963','#79B1B1','#E9A722'];
+
         var yOffset = this.options.topOffset;
 
             var stripView = new StripTitleView({
@@ -46,9 +49,11 @@ define(function(require, exports, module) {
             yOffset += this.options.stripOffset;
 
         for (var i = 0; i < this.options.stripData.length; i++) {
+
             var stripView = new StripView({
                 //iconUrl: this.options.stripData[i].iconUrl,
-                title: this.options.stripData[i].title
+                title: this.options.stripData[i].title,
+                selectColor: colors[i]
             });
 
             stripViews.push(stripView);

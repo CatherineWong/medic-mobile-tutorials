@@ -64,8 +64,13 @@ define(function(require, exports, module) {
                 cursor: 'pointer'
             }
         });
-
         this.add(this.titleSurface);
+    }
+
+    StripView.prototype.selectMe = function() {
+        this.titleSurface.setProperties({
+            color: this.options.selectColor
+        }); 
     }
 
     function _setListeners() {
