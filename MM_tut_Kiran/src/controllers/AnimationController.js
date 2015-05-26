@@ -22,6 +22,8 @@ define(function(require, exports, module) {
     var LalitaConfirmView = require('animation_views/animation_slides/LalitaConfirmView');
     var SplitScreenView = require('animation_views/animation_slides/SplitScreenView');
     var RegisterView = require('animation_views/animation_slides/RegisterView');
+    var RegisteredView = require('animation_views/animation_slides/RegisteredView');
+    //var RotateView = require('animation_views/animation_slides/RotateView');
 
     var tutorialLengths = [12, 4, 4, 4]; //Holds the lengths of each tutorial
     var currTutorial = 0;
@@ -137,6 +139,7 @@ define(function(require, exports, module) {
                 case 0:
                     //currView = new SplitScreenView();
                     currView = new HariIntroView();
+                    //currView = new RotateView();
                     break;
                 case 1:
                     currView = new MayaIntroView();
@@ -179,11 +182,23 @@ define(function(require, exports, module) {
         } else if (currTutorial == 1) {
             switch (currTutorialSlide) {
                 case 0:
-                    currView = new SplitScreenView();
+                    //currView = new SplitScreenView();
                     break;
                 case 1:
+                    //currView = new RegisterView();
+                    break;
+                case 2:
+                    //currView = new RegisteredView();
+                    break; 
+                case 3:
+                    currView = new SplitScreenView();
+                    break;
+                case 4:
                     currView = new RegisterView();
-                    break;  
+                    break;
+                case 5:
+                    currView = new RegisteredView();
+                    break; 
                 default:
                     break;
             } 

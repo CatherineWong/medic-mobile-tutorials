@@ -35,6 +35,46 @@ define(function(require, exports, module) {
 
     function _placeHari() {
 
+
+    	//white surface on the left
+   		var background = new Surface({
+   			size : [605, 550],
+   			//content : 'To register Maya, you should type “R 5 Maya” into the phone below',
+   			properties : {
+   				color : 'black',
+   				textAlign : 'left',
+   				backgroundColor: 'gray'
+   			}
+   		});
+
+   		var backgroundModifier = new StateModifier({
+   			align : [0.5, 0.5],
+   			origin : [1, 0.45],
+   			transform : Transform.translate(0,8,-0.1)
+   		});
+
+   		this.add(backgroundModifier).add(background);
+
+
+   		//gray surface on the right
+   		var background2 = new Surface({
+   			size : [605, 550],
+   			//content :'animation-assets/phone_logo.svg'
+   			properties : {
+   				color : 'black',
+   				textAlign : 'left',
+   				backgroundColor: 'white'
+   			}
+   		});
+
+   		var backgroundModifier2 = new StateModifier({
+   			align : [1, 0.5],
+   			origin : [1, 0.45],
+   			transform : Transform.translate(0,8,-0.1)
+   		});
+
+   		this.add(backgroundModifier2).add(background2);
+
     	var background = new Surface({
     		size : [800, 800],
     		background : 'Black' 
@@ -59,7 +99,6 @@ define(function(require, exports, module) {
 		var laptop = new ImageSurface ({
 			//size : [100, 100],
 			opacity : 1,
-			backgroundColor : 'White',
 			content: 'animation-assets/laptop-logo.svg'
 		});
 
@@ -165,14 +204,14 @@ define(function(require, exports, module) {
 		
 
 		this.placeHari.setTransform(
-			Transform.translate(120, 110, 0),
+			Transform.translate(160, 110, 0),
 			{duration: 2500, curve: 'easeInOut'}
 		);
 
 
 
 		this.placeLaptop.setTransform(
-			Transform.translate(40, 0, 0),
+			Transform.translate(80, 0, 0),
 			{duration: 2500, curve: 'easeInOut'}
 		);
 	}
@@ -190,12 +229,12 @@ define(function(require, exports, module) {
 
 		this.placePhone.setTransform(
 			Transform.translate(-280, 0, 0),
-			{duration: 2500, curve: 'easeOut'}
+			{duration: 2500}
 		);
 
 		this.placeLaptop.setTransform(
-			Transform.translate(280, 0, 0),
-			{duration: 2500, curve: 'easeOut'}
+			Transform.translate(300, 0, 0),
+			{duration: 2500}
 		);
 
 		/*this.placePhone.setTransform(
@@ -228,11 +267,11 @@ define(function(require, exports, module) {
  	}
 
  	function _moveandzoom() {
- 		this.sizeTransitionable.set([100, 100], {duration : 2500});
- 		this.sizeTransitionable2.set([45, 45], {duration : 2500});
+ 		this.sizeTransitionable.set([100, 100], {duration : 3500});
+ 		this.sizeTransitionable2.set([45, 45], {duration : 3500});
 
- 		this.sizeTransitionable.set([600, 600], {duration : 1000});
- 		this.sizeTransitionable2.set([250, 250], {duration : 1000});
+ 		this.sizeTransitionable.set([550, 600], {duration : 1500});
+ 		this.sizeTransitionable2.set([540, 470], {duration : 1500});
 
 
  		//this.transitionableTransform.setTranslate([40, 0, 0], {duration: 2500});
