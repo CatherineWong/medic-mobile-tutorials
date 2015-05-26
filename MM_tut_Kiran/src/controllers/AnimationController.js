@@ -25,6 +25,7 @@ define(function(require, exports, module) {
     var Two_ThreeZoomToHariView = require('animation_views/animation_slides/Two_ThreeZoomToHariView');
     var One_FourZoomOutTransitionView = require('animation_views/animation_slides/One_FourZoomOutTransitionView');
     var Two_EightCellView = require('animation_views/animation_slides/Two_EightCellView');
+    var Two_ElevenUserGuide = require('animation_views/animation_slides/Two_ElevenUserGuide');
 
     var tutorialLengths = [11, 12, 4, 4]; //Holds the lengths of each tutorial
     var currTutorial = 0;
@@ -142,7 +143,7 @@ define(function(require, exports, module) {
             switch (currTutorialSlide) {
                 case 0:
                     //currView = new SplitScreenView();
-                    currView = new One_OneHariIntroView();
+                    currView = new Two_ElevenUserGuide();
                     break;
                 case 1:
                     currView = new One_TwoMayaIntroView();
@@ -197,6 +198,9 @@ define(function(require, exports, module) {
                     currView = new RegisterView();
                     break; 
                 case 6: 
+                    currView = new Two_EightCellView();
+                    break;
+                case 7:
                     currView = new Two_EightCellView();
                     break;
                 default:
