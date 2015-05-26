@@ -323,6 +323,8 @@ define(function(require, exports, module) {
     function _loadAnimationAfterMenuClick(currentTutorial) {
         animationController.setStartOfTutorial(currentTutorial);
         animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
+        _progressToFront();
+        progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(),animationController.getCurrTutorialSlide());
         _bringHeaderToFront();
     }
 
