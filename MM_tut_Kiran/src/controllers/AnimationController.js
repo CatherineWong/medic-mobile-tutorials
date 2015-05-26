@@ -143,7 +143,7 @@ define(function(require, exports, module) {
             switch (currTutorialSlide) {
                 case 0:
                     //currView = new SplitScreenView();
-                    currView = new Two_ElevenUserGuide();
+                    currView = new One_OneHariIntroView();
                     break;
                 case 1:
                     currView = new One_TwoMayaIntroView();
@@ -202,6 +202,9 @@ define(function(require, exports, module) {
                     break;
                 case 7:
                     currView = new Two_EightCellView();
+                    break;
+                case 8:
+                    currView = new Two_ElevenUserGuide();
                     break;
                 default:
                     break;
