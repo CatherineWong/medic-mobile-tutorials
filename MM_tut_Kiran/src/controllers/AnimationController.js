@@ -1,31 +1,39 @@
-/** 
+/*
 * AnimationController: controls the incrementation and decrementation to determine which tutorial to load at which point;
 * also handles current captions
 */
 define(function(require, exports, module) {
     var DEBUG = true; //When true, prints debugging info to the console
     var StateModifier = require('famous/modifiers/StateModifier');
-    var HariIntroView = require('animation_views/animation_slides/HariIntroView');
-    var MayaIntroView = require('animation_views/animation_slides/MayaIntroView');
-    var LalitaIntroView = require('animation_views/animation_slides/LalitaIntroView');
-    var ZoomOutIntroView = require('animation_views/animation_slides/ZoomOutIntroView');
-    var ZoomOutTransitionView = require('animation_views/animation_slides/ZoomOutTransitionView');
-    var HariLaptopView = require('animation_views/animation_slides/HariLaptopView');
-    var LalitaCellView = require('animation_views/animation_slides/LalitaCellView');
+    var One_OneHariIntroView = require('animation_views/animation_slides/One_OneHariIntroView');
+    var One_TwoMayaIntroView = require('animation_views/animation_slides/One_TwoMayaIntroView');
+    var One_ThreeLalitaIntroView = require('animation_views/animation_slides/One_ThreeLalitaIntroView');
+    var HariLaptopView_1_4 = require('animation_views/animation_slides/HariLaptopView_1_4');
+    var LalitaCellView_1_4 = require('animation_views/animation_slides/LalitaCellView_1_4');
     var Transform       = require('famous/core/Transform');
     var Easing = require('famous/transitions/Easing');
     var RenderController = require("famous/views/RenderController");
     var LongDistanceView = require('animation_views/animation_slides/LongDistanceView');
-    var PaperPileupView = require('animation_views/animation_slides/PaperPileupView');
+    var PaperPileupView_1_3 = require('animation_views/animation_slides/PaperPileupView_1_3');
     var LalitaRegisteringMayaView = require('animation_views/animation_slides/LalitaRegisteringMayaView');
     var LalitaToHariZoomView = require('animation_views/animation_slides/LalitaToHariZoomView');
-    var LalitaConfirmView = require('animation_views/animation_slides/LalitaConfirmView');
+    var LalitaConfirmView_1_8 = require('animation_views/animation_slides/LalitaConfirmView_1_8');
     var SplitScreenView = require('animation_views/animation_slides/SplitScreenView');
     var RegisterView = require('animation_views/animation_slides/RegisterView');
     var RegisteredView = require('animation_views/animation_slides/RegisteredView');
-    //var RotateView = require('animation_views/animation_slides/RotateView');
+    var One_SixMedicMobileMessagesLalitaView = require('animation_views/animation_slides/One_SixMedicMobileMessagesLalitaView');
+    var One_SixLalitaVisitsMayaView = require('animation_views/animation_slides/One_SixLalitaVisitsMayaView');
+    var Two_OneIntroMayaAndHariView = require('animation_views/animation_slides/Two_OneIntroMayaAndHariView');
+    var Two_TwoIntroMayaHariCellView = require('animation_views/animation_slides/Two_TwoIntroMayaHariCellView');
+    var Two_ThreeZoomToHariView = require('animation_views/animation_slides/Two_ThreeZoomToHariView');
+    var One_FourZoomOutTransitionView = require('animation_views/animation_slides/One_FourZoomOutTransitionView');
+    var Two_EightCellView = require('animation_views/animation_slides/Two_EightCellView');
+    var Two_NineClipboardView = require('animation_views/animation_slides/Two_NineClipboardView');
+    var Two_ElevenUserGuide = require('animation_views/animation_slides/Two_ElevenUserGuide');
+    var Two_TenVisitMayaView = require('animation_views/animation_slides/Two_TenVisitMayaView');
+    var Two_TwelveMessageView = require('animation_views/animation_slides/Two_TwelveMessageView');
 
-    var tutorialLengths = [12, 4, 4, 4]; //Holds the lengths of each tutorial
+    var tutorialLengths = [11, 13, 4, 4]; //Holds the lengths of each tutorial
     var currTutorial = 0;
     var currTutorialSlide = 0;
     var renderController;
@@ -79,7 +87,13 @@ define(function(require, exports, module) {
         return tutorialLengths[tutorialNum];
     }
 
-
+    /**
+     * Sets the tutorial to the start of a given tutorial
+     */
+    AnimationController.prototype.setStartOfTutorial = function(tutorialNum) {
+        currTutorial = tutorialNum;
+        currTutorialSlide = 0;
+    }
     /**
      * Called when the next button is clicked to increment the index counters accordingly
      */
@@ -118,87 +132,108 @@ define(function(require, exports, module) {
     /**
      * Used to load the next animation view; also returns the current caption
      */
-    AnimationController.prototype.loadAnimationView = function(pageView) {
-        renderController.hide(); // TODO: use a rendercontroller callback to avoid rendering issues
+    AnimationController.prototype.loadAnimationView = function(pageView, captionSurface) {
+        renderController.hide(); 
         var currView = _getNextAnimationView();
-        renderController.show(currView); // TODO: create a render node to send to back
+        renderController.show(currView); 
         var captionArray = null;
         if (currView != null) captionArray = currView.returnCaptionArray();
 
         if (DEBUG) console.log(captionArray); 
+
+        // Update the provided caption view
+        captionSurface.setContent(captionArray);
         return captionArray;
 
         //Redraw all of the other layers on top
     }
 
+
     /** Controls the logic to determine which animation to load */
     function _getNextAnimationView() {
         var currView = null;
-        if (currTutorial == 0) {
+        if (currTutorial == 0) {              
             switch (currTutorialSlide) {
                 case 0:
                     //currView = new SplitScreenView();
-                    currView = new HariIntroView();
-                    //currView = new RotateView();
+                    currView = new One_OneHariIntroView();
                     break;
                 case 1:
-                    currView = new MayaIntroView();
+                    currView = new One_TwoMayaIntroView();
                     break;
                 case 2: 
-                    currView = new LalitaIntroView();
+                    currView = new One_ThreeLalitaIntroView();
                     break;
                 case 3: 
-                    currView = new ZoomOutTransitionView();
+                    currView = new One_FourZoomOutTransitionView();
                     break;
                 case 4:
-                    currView = new ZoomOutIntroView();
+                    currView = new HariLaptopView_1_4();
                     break;
                 case 5:
-                    currView = new HariLaptopView();
+                    currView = new LalitaCellView_1_4();
                     break;
                 case 6:
-                    currView = new LalitaCellView();
-                    break;
-                case 7:
                     currView = new LongDistanceView();
                     break;
-                case 8:
-                    currView = new PaperPileupView();
+                case 7:
+                    currView = new PaperPileupView_1_3();
                     break;
-                case 9:
+                case 8:
                     currView = new LalitaRegisteringMayaView();
                     break;
+                case 9:
+                    currView = new One_SixMedicMobileMessagesLalitaView();
+                    break;
                 case 10:
-                    currView = new LalitaToHariZoomView();
+                    currView = new One_SixLalitaVisitsMayaView();
                     break;
                 case 11:
-                    currView = new LalitaConfirmView();
+                    currView = new LalitaToHariZoomView();
+                    break;
+                case 12:
+                    currView = new LalitaConfirmView_1_8();
                     break;
                 default:
                      //Temporary place holder to fade out to nothingness
-                    break; 
+                    break;
             }
             
         } else if (currTutorial == 1) {
             switch (currTutorialSlide) {
                 case 0:
-                    //currView = new SplitScreenView();
+                    currView = new Two_OneIntroMayaAndHariView();
                     break;
                 case 1:
-                    //currView = new RegisterView();
+                    currView = new Two_TwoIntroMayaHariCellView();
                     break;
                 case 2:
-                    //currView = new RegisteredView();
-                    break; 
+                    currView = new Two_ThreeZoomToHariView();
+                    break;
                 case 3:
                     currView = new SplitScreenView();
                     break;
                 case 4:
                     currView = new RegisterView();
-                    break;
+                    break; 
                 case 5:
                     currView = new RegisteredView();
-                    break; 
+                    break;
+                case 6: 
+                    currView = new Two_EightCellView();
+                    break;
+                case 7:
+                    currView = new Two_NineClipboardView();
+                    break;
+                case 8:
+                    currView = new Two_TenVisitMayaView();
+                    break;
+                case 9:
+                    currView = new Two_ElevenUserGuide();
+                    break;
+                case 10:
+                    currView = new Two_TwelveMessageView();
+                    break;
                 default:
                     break;
             } 
@@ -206,8 +241,6 @@ define(function(require, exports, module) {
 
         return currView;
     }
-
-
 
     module.exports = AnimationController;
 

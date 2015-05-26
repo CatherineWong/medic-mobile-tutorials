@@ -1,4 +1,4 @@
-/*** StripView.js ***/
+/*** ProgressBarView.js ***/
 
 define(function(require, exports, module) {
     var View          = require('famous/core/View');
@@ -6,36 +6,31 @@ define(function(require, exports, module) {
     var Transform     = require('famous/core/Transform');
     var StateModifier = require('famous/modifiers/StateModifier');
 
-    function StripView() {
+    function ProgressBarView() {
         View.apply(this, arguments);
 
         _createBackground.call(this);
     }
 
-    StripView.prototype = Object.create(View.prototype);
-    StripView.prototype.constructor = StripView;
+    ProgressBarView.prototype = Object.create(View.prototype);
+    ProgressBarView.prototype.constructor = ProgressBarView;
 
-    StripView.DEFAULT_OPTIONS = {
-        width: 280,
-        height: 20,
-        fontSize: 20,
-        padding: 13,
-        paddingLeft: 30,
-        fontFamily: 'FuturaPTWebLight',
-        textColor: 'white', //'#E1E6E9',
-        backgroundOpacity: 0.8
+    ProgressBarView.DEFAULT_OPTIONS = {
+        width: 196, //(280 * 0.7)
+        height: 14, //(20 * 0.7)
+        padding: 8, //(13 * 0.7)
+        backgroundOpacity: 1//0.5//1
     };
 
 
     function _createBackground() {
-        var backgroundSurface = new Surface({
-            size: [(screen.width - 280)/this.options.length, this.options.height],
+        this.backgroundSurface = new Surface({
+            size: [(screen.width - 196)/this.options.length, this.options.height],
             properties: {
-                backgroundColor: this.options.backgroundColor,
-                textAlign: 'center',
+                backgroundColor: this.options.backgroundUnfilledColor,
                 borderRightStyle: 'solid',
-                borderRightColor: '#93989B',
-                borderRightWidth: '1px'
+                borderRightColor: '#757C81',
+                borderRightWidth: '3px'
             }
         });
 
@@ -43,8 +38,24 @@ define(function(require, exports, module) {
             opacity : this.options.backgroundOpacity
         });
 
-        this.add(backgroundModifier).add(backgroundSurface);
+        this.add(backgroundModifier).add(this.backgroundSurface);
     }
 
-    module.exports = StripView;
+    ProgressBarView.prototype.getBackgroundColor = function() {
+        return this.backgroundSurface.properties.backgroundColor;
+    }
+
+    ProgressBarView.prototype.fillBackgroundColor = function() {
+        this.backgroundSurface.setProperties({
+            backgroundColor: this.options.backgroundFilledColor 
+        }); 
+    }
+
+    ProgressBarView.prototype.unfillBackgroundColor = function() {
+        this.backgroundSurface.setProperties({
+            backgroundColor: this.options.backgroundUnfilledColor 
+        }); 
+    }
+
+    module.exports = ProgressBarView;
 });

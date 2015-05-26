@@ -1,4 +1,4 @@
-/* Tutorial 1 Slide 3: ZoomOutTransitionView -- move the CHW + pregnant lady + village off, have some trees zoom by, jump over to where Hari is and zoom out! */
+/* Tutorial 1 Slide 4: ZoomOutTransitionView -- move the CHW + pregnant lady + village off, have some trees zoom by, jump over to where Hari is and zoom out! */
 
 
 define(function(require, exports, module) {
@@ -10,22 +10,22 @@ define(function(require, exports, module) {
 	var ImageSurface = require('famous/surfaces/ImageSurface');
 	var Easing = require('famous/transitions/Easing');
 
-	function ZoomOutTransitionView () {
+	function One_FourZoomOutTransitionView () {
    		View.apply(this, arguments);
    		_createAndMoveBackground.call(this);
    		_createMovingTransitionBetweenScenes.call(this);
    		_finalZoom.call(this);
 	}
 
-   ZoomOutTransitionView.prototype = Object.create(View.prototype);
-   ZoomOutTransitionView.prototype.constructor = ZoomOutTransitionView;
+   One_FourZoomOutTransitionView.prototype = Object.create(View.prototype);
+   One_FourZoomOutTransitionView.prototype.constructor = One_FourZoomOutTransitionView;
 
-   ZoomOutTransitionView.prototype.returnCaptionArray = function() {
+   One_FourZoomOutTransitionView.prototype.returnCaptionArray = function() {
    		var captionText = ["Unfortunately, Maya lives X hours away from the nearest health provider, Hari’s clinic. She has never visited the clinic before."];
    		return captionText;	
    }
 
-   ZoomOutTransitionView.DEFAULT_OPTIONS = {};
+   One_FourZoomOutTransitionView.DEFAULT_OPTIONS = {};
 
 
 	function _createAndMoveBackground() {
@@ -196,7 +196,7 @@ define(function(require, exports, module) {
 
 	}
 
-	module.exports = ZoomOutTransitionView;
+	module.exports = One_FourZoomOutTransitionView;
 
 });
 

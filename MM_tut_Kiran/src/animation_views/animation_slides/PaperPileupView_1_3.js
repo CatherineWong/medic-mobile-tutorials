@@ -50,25 +50,26 @@ define(function(require, exports, module) {
 	function _createHari() {
 		var hari = new ImageSurface ({
 			size : [500, 240],
-			content: 'animation-assets/i-chw-male50.svg'
+			content: 'animation-assets/nurse.svg'
 		});
 
 		var placeHari = new StateModifier ({
-			align: [0.0, 0.5],
-			origin: [0.0, -0.2],
-			transform: Transform.translate(700, 0, 0)
+			align: [0.5, 0.5],
+			origin: [0.5, 0.5],
+			transform: Transform.translate(300, 150, 0)
 		});
 
 		this.add(placeHari).add(hari);
 
 		placeHari.setTransform(
-			Transform.translate(580, 0, 0),
+			Transform.translate(200, 150, 0),
 			{duration: 1000, curve: Easing.easeInOut}
 		);
 	}
 
-	var paper_pos = 470;
-	var init_pos = -200;
+	var paper_pos = -220;
+	var init_pos = -600;
+	var base_pos = 100;
 
 	function _addPaper() {
 
@@ -82,8 +83,9 @@ define(function(require, exports, module) {
 
 
 		var placePile = new StateModifier ({
-			align: [0.0, 0],
-			origin: [0.0, 0],
+			align: [0.5, 0.5],
+			origin: [0.5, 0.5],
+			opacity: 0,
 			transform: Transform.translate(paper_pos, init_pos, 0)
 		});
 
@@ -96,7 +98,7 @@ define(function(require, exports, module) {
 
 
 		placePile.setTransform(
-			Transform.translate(paper_pos, 400, 0),
+			Transform.translate(paper_pos, base_pos + 150, 0),
 			{duration: 500, curve: 'easeInOut'}
 		);
 
@@ -111,10 +113,9 @@ define(function(require, exports, module) {
 
 
 		var placePile2 = new StateModifier ({
-			align: [0.0, 0],
-			origin: [0.0, 0],
+			align: [0.5, 0.5],
+			origin: [0.5, 0.5],
 			transform: Transform.translate(paper_pos, init_pos, 0)
-			//transform: Transform.behind
 		});
 
 		this.add(placePile2).add(paper_pile2);
@@ -125,11 +126,10 @@ define(function(require, exports, module) {
 		);
 
 		placePile2.setTransform(
-			Transform.translate(paper_pos, 380, 1),
+			Transform.translate(paper_pos, base_pos + 130, 1),
 			{duration: 500, curve: 'easeInOut'}
 		);
 
-		//placePile2.setTransform(Transform.inFront);
 
 		//place pile 3
 		var paper_pile3 = new ImageSurface ({
@@ -139,8 +139,8 @@ define(function(require, exports, module) {
 
 
 		var placePile3 = new StateModifier ({
-			align: [0.0, 0],
-			origin: [0.0, 0],
+			align: [0.5, 0.5],
+			origin: [0.5, 0.5],
 			transform: Transform.translate(paper_pos, init_pos, 0)
 			//transform: Transform.behind
 		});
@@ -153,7 +153,7 @@ define(function(require, exports, module) {
 		);
 
 		placePile3.setTransform(
-			Transform.translate(paper_pos, 350, 2),
+			Transform.translate(paper_pos, base_pos + 100, 2),
 			{duration: 500, curve: 'easeInOut'}
 		);
 
@@ -167,8 +167,8 @@ define(function(require, exports, module) {
 
 
 		var placePile4 = new StateModifier ({
-			align: [0.0, 0],
-			origin: [0.0, 0],
+			align: [0.5, 0.5],
+			origin: [0.5, .5],
 			transform: Transform.translate(paper_pos, init_pos, 0)
 			//transform: Transform.behind
 		});
@@ -181,7 +181,7 @@ define(function(require, exports, module) {
 		);
 
 		placePile4.setTransform(
-			Transform.translate(paper_pos, 320, 3),
+			Transform.translate(paper_pos, base_pos + 70, 3),
 			{duration: 500, curve: 'easeInOut'}
 		);
 
@@ -195,8 +195,8 @@ define(function(require, exports, module) {
 
 
 		var placePile5 = new StateModifier ({
-			align: [0.0, 0],
-			origin: [0.0, 0],
+			align: [0.5, 0.5],
+			origin: [0.5, 0.5],
 			transform: Transform.translate(paper_pos, init_pos, 0)
 			//transform: Transform.behind
 		});
@@ -210,7 +210,7 @@ define(function(require, exports, module) {
 		);
 
 		placePile5.setTransform(
-			Transform.translate(paper_pos, 300, 4),
+			Transform.translate(paper_pos, base_pos + 50, 4),
 			{duration: 500, curve: 'easeInOut'}
 		);
 
@@ -224,8 +224,8 @@ define(function(require, exports, module) {
 
 
 		var placePile6 = new StateModifier ({
-			align: [0.0, 0],
-			origin: [0.0, 0],
+			align: [0.5, 0.5],
+			origin: [0.5, 0.5],
 			transform: Transform.translate(paper_pos, init_pos, 0)
 			//transform: Transform.behind
 		});
@@ -238,7 +238,7 @@ define(function(require, exports, module) {
 		);
 
 		placePile6.setTransform(
-			Transform.translate(paper_pos, 280, 5),
+			Transform.translate(paper_pos, base_pos + 30, 5),
 			{duration: 500, curve: 'easeInOut'}
 		);
 
@@ -252,8 +252,8 @@ define(function(require, exports, module) {
 
 
 		var placePile7 = new StateModifier ({
-			align: [0.0, 0],
-			origin: [0.0, 0],
+			align: [0.5, 0.5],
+			origin: [0.5, 0.5],
 			transform: Transform.translate(paper_pos, init_pos, 0)
 			//transform: Transform.behind
 		});
@@ -266,7 +266,7 @@ define(function(require, exports, module) {
 		);
 
 		placePile7.setTransform(
-			Transform.translate(paper_pos, 250, 6),
+			Transform.translate(paper_pos, base_pos + 0, 6),
 			{duration: 500, curve: 'easeInOut'}
 		);
 
@@ -280,8 +280,8 @@ define(function(require, exports, module) {
 
 
 		var placePile8 = new StateModifier ({
-			align: [0.0, 0],
-			origin: [0.0, 0],
+			align: [0.5, 0.5],
+			origin: [0.5, 0.5],
 			transform: Transform.translate(paper_pos, init_pos, 0)
 			//transform: Transform.behind
 		});
@@ -294,7 +294,7 @@ define(function(require, exports, module) {
 		);
 
 		placePile8.setTransform(
-			Transform.translate(paper_pos, 220, 7),
+			Transform.translate(paper_pos, base_pos + -30, 7),
 			{duration: 500, curve: 'easeInOut'}
 		);
 
@@ -308,8 +308,8 @@ define(function(require, exports, module) {
 
 
 		var placePile9 = new StateModifier ({
-			align: [0.0, 0],
-			origin: [0.0, 0],
+			align: [0.5, 0.5],
+			origin: [0.5, 0.5],
 			transform: Transform.translate(paper_pos, init_pos, 0)
 			//transform: Transform.behind
 		});
@@ -322,7 +322,7 @@ define(function(require, exports, module) {
 		);
 
 		placePile9.setTransform(
-			Transform.translate(paper_pos, 200, 8),
+			Transform.translate(paper_pos, base_pos + -50, 8),
 			{duration: 500, curve: 'easeInOut'}
 		);
 

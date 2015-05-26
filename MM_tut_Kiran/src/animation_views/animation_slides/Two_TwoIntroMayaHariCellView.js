@@ -1,4 +1,4 @@
-/* LailaIntroView -- view where Lalita is first introduced. */
+/* 2.2 Tutorial 2 slide 2-- Lalita holds up her cell phone! */
 
 
 define(function(require, exports, module) {
@@ -10,65 +10,22 @@ define(function(require, exports, module) {
 	var ImageSurface = require('famous/surfaces/ImageSurface');
 	var Easing = require('famous/transitions/Easing');
 
-   function LalitaIntroView () {
+   function Two_TwoIntroMayaHariCellView () {
    		View.apply(this, arguments);
-   		// _createBackground.call(this);
    		_createHuts.call(this);
-   		_createLalita.call(this);
+   		_createLalitaAndMaya.call(this);
+   		_createCellPhone.call(this);
    }
 
-   LalitaIntroView.prototype = Object.create(View.prototype);
-   LalitaIntroView.prototype.constructor = LalitaIntroView;
+   Two_TwoIntroMayaHariCellView.prototype = Object.create(View.prototype);
+   Two_TwoIntroMayaHariCellView.prototype.constructor = Two_TwoIntroMayaHariCellView;
 
-   LalitaIntroView.prototype.returnCaptionArray = function() {
-   		var captionText = ["This is Lalita. Lalita is a community health worker in Maya’s village."];
+   Two_TwoIntroMayaHariCellView.prototype.returnCaptionArray = function() {
+   		var captionText = ["Because Hari’s clinic uses Medic Mobile, Lalita can register new patients using her mobile phone. She is trained to text a special message back to the clinic computers, which will add Maya to the patient records."];
    		return captionText;	
    }
 
-   LalitaIntroView.DEFAULT_OPTIONS = {};
-
-
-	function _createBackground() {
-		var background = new ImageSurface ({
-			size : [1700, 1200],
-			content: 'animation-assets/scene-1.svg'
-		});
-
-		var middleground = new ImageSurface ({
-			size : [1700, 1200],
-			content: 'animation-assets/hills-middle-ground.svg'
-
-		});
-
-		var placeForeground = new StateModifier({
-			align: [0.5, 0.5],
-			origin: [0.6, 0.45],
-			transform : Transform.translate(143, 30, 0)
-		});
-
-		var placeMiddleground = new StateModifier ({
-			align: [0.5, 0.5],
-			origin: [0.6, 0.45],
-			transform : Transform.translate(143, 30, 0)
-		});
-
-		var foreground = new ImageSurface ({
-			size : [1700, 1200],
-			content: 'animation-assets/hills-foreground.svg'
-
-		});
-
-		var placeBackground = new StateModifier({
-			align: [0.5, 0.5],
-			origin: [0.6, 0.4]
-		});
-
-		this.add(placeBackground).add(background);
-		this.add(placeMiddleground).add(middleground);
-		this.add(placeForeground).add(foreground);
-
-
-	}
+   Two_TwoIntroMayaHariCellView.DEFAULT_OPTIONS = {};
 
 	function _createHuts() {
 
@@ -94,6 +51,12 @@ define(function(require, exports, module) {
 		});
 		this.add(placeChickens).add(chickens);
 
+	}
+
+
+
+	function _createLalitaAndMaya() {
+
 		var maya = new ImageSurface ({
 			size : [250, 250],
 			content: 'animation-assets/anc-trimester1.svg'
@@ -115,14 +78,9 @@ define(function(require, exports, module) {
 			{duration: 10, curve: 'easeInOut'}
 		);
 
-	}
-
-
-
-	function _createLalita() {
 		var lalita = new ImageSurface ({
 			size : [250, 250],
-			content: 'animation-assets/chw-nepali.svg'
+			content: 'animation-assets/chw-female-side-left.svg'
 		});
 
 		var placeLalita= new StateModifier ({
@@ -138,12 +96,42 @@ define(function(require, exports, module) {
 
 		placeLalita.setTransform(
 			Transform.translate(-570, 0, 0),
-			{duration: 2000, curve: 'easeInOut'}
+			{duration: 10, curve: 'easeInOut'}
 		);
 
 
 	}
 
-	module.exports = LalitaIntroView;
+	function _createCellPhone() {
+
+		var phone = new ImageSurface ({
+			size : [25,25],
+			content: 'animation-assets/phone_logo.svg'
+		});
+
+		var placePhone = new StateModifier ({
+			align : [1.2, 0.55],
+			origin: [0.4, 0.0],
+			opacity: 0
+		});
+
+		var bringToFront = new StateModifier();
+		bringToFront.setTransform(Transform.inFront);
+		this.add(bringToFront).add(placePhone).add(phone);
+
+		placePhone.setTransform(
+			Transform.translate(-585, 15, 0)
+		);
+
+		placePhone.setOpacity(1, {duration : 1000, curve: 'easeInOut'});
+
+	}
+
+	module.exports = Two_TwoIntroMayaHariCellView;
 
 });
+
+
+
+
+

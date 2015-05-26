@@ -1,4 +1,4 @@
-/*** MenuView.js ***/
+/*** ProgressView.js ***/
 
 define(function(require, exports, module) {
     var View          = require('famous/core/View');
@@ -6,87 +6,107 @@ define(function(require, exports, module) {
     var Transform     = require('famous/core/Transform');
     var StateModifier = require('famous/modifiers/StateModifier');
 
-    var StripView = require('animation_views/ProgressBarView');
+    var ProgressBarView = require('animation_views/ProgressBarView');
 
     var AnimationController = require('controllers/AnimationController');
     var tutNum = 3;//AnimationController.getCurrTutorial();
     var tutColor = '';
     var tutLength = 5; //AnimationController.getTutorialLength
 
+    var bars = [];
 
-
-    switch(tutNum) {
-        case 1:
-            tutColor = '#656912';
-            break;
-        case 2:
-            tutColor = '#984A3C';
-            break;
-        case 3:
-            tutColor = '#3F6464';
-            break;
-        case 4:
-            tutColor = '#A27513';
-            break;
-        default:
-            tutColor = '#000';
-    }
-    var filledColor = "red";
+    var filledColor = '';
+    var unfilledColor = '';
+    
     var numFilled = 3;
-    function MenuView() {
+    function ProgressView() {
         View.apply(this, arguments);
         _createProgressBars.call(this);
     }
 
-    MenuView.prototype = Object.create(View.prototype);
-    MenuView.prototype.constructor = MenuView;
+    ProgressView.prototype = Object.create(View.prototype);
+    ProgressView.prototype.constructor = ProgressView;
 
-    MenuView.DEFAULT_OPTIONS = {
+    ProgressView.DEFAULT_OPTIONS = {
         length: tutLength,
-        backgroundFilledColor: filledColor,
-        backgroundUnfilledColor: tutColor,
         stripData: {},
-        topOffset: 80,
-        leftOffset: 280,
-        stripLeftOffset: (screen.width - 280)/tutLength,
-        
+        topOffset: 56, //(80 * 0.7)
+        leftOffset: 196, //(280 * 0.7)        
     };
 
+    
+
     function _createProgressBars() {
+        var thisrow = [];
+        switch(this.options.currentTutorial) {
+            case 0:
+                unfilledColor = '#656912';
+                filledColor = '#B5BD21';
+                break;
+            case 1:
+                unfilledColor = '#984A3C';
+                filledColor = '#F47963';
+                break;
+            case 2:
+                unfilledColor = '#3F6464';
+                filledColor = '#79B1B1';
+                break;
+            case 3:
+                unfilledColor = '#A27513';
+                filledColor = '#E9A722';
+                break;
+            default:
+                filledColor = '#000';
+        }
+        /*alert(unfilledColor);
+        alert(filledColor);*/
         this.stripModifiers = [];
         var yOffset = this.options.topOffset;
         var xOffset = this.options.leftOffset;
-
-        for (var i = 0; i < this.options.length; i++) {
-            var backColor ="";
-            if (i < this.options.numberFilled) {
-                backColor = this.options.backgroundFilledColor;
-            }
-            else {
-                backColor = this.options.backgroundUnfilledColor;
-            }
-            var stripView = new StripView({
-                //iconUrl: this.options.stripData[i].iconUrl,
-                //title: "",
-                length: this.options.length,
-                backgroundColor: backColor
+        var leftOffset = (screen.width - 196)/this.options.tutorialLength;
+        for (var i = 0; i < this.options.tutorialLength; i++) {
+            var progressBarView = new ProgressBarView({
+                length: this.options.tutorialLength,
+                backgroundFilledColor: filledColor,
+                backgroundUnfilledColor: unfilledColor
             });
+            
+
+            thisrow.push(progressBarView);
 
             var stripModifier = new StateModifier({
                 transform: Transform.translate(xOffset, yOffset, 0)
             });
 
             this.stripModifiers.push(stripModifier);
-            this.add(stripModifier).add(stripView);
+            this.add(stripModifier).add(progressBarView);
 
-            xOffset += this.options.stripLeftOffset;
+            xOffset += leftOffset;
         }
+        /*for (var i = 0; i < bars.length; i++) {
+            console.log('back'+bars[i].getBackgroundColor());
+        }*/
+        bars.push(thisrow);
     }
 
-    function _updateProgressBar(slideNumber) {
-
+    ProgressView.prototype.incrementProgressBar = function(tutorialNumber, slideNumber) {
+        bars[tutorialNumber][slideNumber].fillBackgroundColor();
     }
 
+    ProgressView.prototype.decrementProgressBar = function(tutorialNumber,  slideNumber) {
+        bars[tutorialNumber][slideNumber+1].unfillBackgroundColor();
+    }
 
-    module.exports = MenuView;
+    ProgressView.prototype.resetProgressBar = function(tutorialNumber, tutorialLength) {
+        for (var i = tutorialLength-1; i > 0; i--) {
+            bars[tutorialNumber][i].unfillBackgroundColor();
+        }
+        /*bars[tutorialNumber][4].unfillBackgroundColor();
+        bars[tutorialNumber][5].unfillBackgroundColor();
+        /*for (var i = 6; i > 0; i++) {
+            bars[tutorialNumber][i].unfillBackgroundColor();
+        }*/
+    }
+
+    module.exports = ProgressView;
 });

@@ -1,4 +1,4 @@
-/* HariIntroView -- view where Hari is first introduced. */
+/* Tutorial 1 Slide 1: HariIntroView -- view where Hari is first introduced. */
 
 
 define(function(require, exports, module) {
@@ -10,65 +10,21 @@ define(function(require, exports, module) {
 	var ImageSurface = require('famous/surfaces/ImageSurface');
 	var Easing = require('famous/transitions/Easing');
 
-   function HariIntroView () {
+   function One_OneHariIntroView () {
    		View.apply(this, arguments);
-   		// _createBackground.call(this);
    		_createHuts.call(this);
    		_createHari.call(this);
    }
 
-   HariIntroView.prototype = Object.create(View.prototype);
-   HariIntroView.prototype.constructor = HariIntroView;
+   One_OneHariIntroView.prototype = Object.create(View.prototype);
+   One_OneHariIntroView.prototype.constructor = One_OneHariIntroView;
 
-   HariIntroView.prototype.returnCaptionArray = function() {
-   		var captionText = ["This is Hari. Hari is the clinic director at a rural health post."];
+   One_OneHariIntroView.prototype.returnCaptionArray = function() {
+   		var captionText = ["This is Hari. Hari is a nurse at a rural health post."];
    		return captionText;	
    }
 
-   HariIntroView.DEFAULT_OPTIONS = {};
-
-
-	function _createBackground() {
-		var background = new ImageSurface ({
-			size : [1700, 1200],
-			content: 'animation-assets/scene-1.svg'
-		});
-
-		var middleground = new ImageSurface ({
-			size : [1700, 1200],
-			content: 'animation-assets/hills-middle-ground.svg'
-
-		});
-
-		var placeForeground = new StateModifier({
-			align: [0.5, 0.5],
-			origin: [0.6, 0.45],
-			transform : Transform.translate(143, 30, 0)
-		});
-
-		var placeMiddleground = new StateModifier ({
-			align: [0.5, 0.5],
-			origin: [0.6, 0.45],
-			transform : Transform.translate(143, 30, 0)
-		});
-
-		var foreground = new ImageSurface ({
-			size : [1700, 1200],
-			content: 'animation-assets/hills-foreground.svg'
-
-		});
-
-		var placeBackground = new StateModifier({
-			align: [0.567, 0.5],
-			origin: [0.6, 0.4]
-		});
-
-		this.add(placeBackground).add(background);
-		this.add(placeMiddleground).add(middleground);
-		this.add(placeForeground).add(foreground);
-
-
-	}
+   One_OneHariIntroView.DEFAULT_OPTIONS = {};
 
 	function _createHuts() {
 
@@ -103,7 +59,7 @@ define(function(require, exports, module) {
 	function _createHari() {
 		var hari = new ImageSurface ({
 			size : [500, 240],
-			content: 'animation-assets/i-chw-male50.svg'
+			content: 'animation-assets/nurse.svg'
 		});
 
 		var placeHari = new StateModifier ({
@@ -123,6 +79,6 @@ define(function(require, exports, module) {
 
 	}
 
-	module.exports = HariIntroView;
+	module.exports = One_OneHariIntroView;
 
 });
