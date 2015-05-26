@@ -1,6 +1,7 @@
 /*** MenuView.js ***/
 
 define(function(require, exports, module) {
+    var DEBUG = true;
     var View          = require('famous/core/View');
     var Surface       = require('famous/core/Surface');
     var Transform     = require('famous/core/Transform');
@@ -75,34 +76,34 @@ define(function(require, exports, module) {
         var i = 0;
         stripViews[i].on('stripViewClick', function() {
                 this._eventOutput.emit('menuViewClick' + i);
-                console.log('clicked' + i);
+                if (DEBUG) console.log('menuViewClick' + i);
             }.bind(this));
 
             stripViews[i].on('stripViewMouseOver', function() {
                 this._eventOutput.emit('menuViewMouseOver' + i);
-                console.log('moused over: ' + i);
+                if (DEBUG) console.log('menuViewMouseOver' + i);
             }.bind(this));
 
         var j = 1;
         stripViews[j].on('stripViewClick', function() {
                 this._eventOutput.emit('menuViewClick' + j);
-                console.log('clicked' + j);
+                if (DEBUG) console.log('menuViewClick' + j);
             }.bind(this));
 
         stripViews[j].on('stripViewMouseOver', function() {
             this._eventOutput.emit('menuViewMouseOver' + j);
-            console.log('moused over: ' + j);
+            if (DEBUG) console.log('menuViewMouseOver' + j);
         }.bind(this));
 
         var k = 2;
         stripViews[k].on('stripViewClick', function() {
                 this._eventOutput.emit('menuViewClick' + k);
-                console.log('clicked' + k);
+                if (DEBUG) console.log('menuViewClick' + k);
             }.bind(this));
 
         stripViews[k].on('stripViewMouseOver', function() {
             this._eventOutput.emit('menuViewMouseOver' + k);
-            console.log('moused over: ' + k);
+           if (DEBUG) console.log('menuViewMouseOver' + k);
         }.bind(this));
   
     } 

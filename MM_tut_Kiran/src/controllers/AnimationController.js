@@ -83,7 +83,13 @@ define(function(require, exports, module) {
         return tutorialLengths[tutorialNum];
     }
 
-
+    /**
+     * Sets the tutorial to the start of a given tutorial
+     */
+    AnimationController.prototype.setStartOfTutorial = function(tutorialNum) {
+        currTutorial = tutorialNum;
+        currTutorialSlide = 0;
+    }
     /**
      * Called when the next button is clicked to increment the index counters accordingly
      */
@@ -137,6 +143,7 @@ define(function(require, exports, module) {
 
         //Redraw all of the other layers on top
     }
+
 
     /** Controls the logic to determine which animation to load */
     function _getNextAnimationView() {
