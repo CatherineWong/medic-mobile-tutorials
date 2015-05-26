@@ -96,8 +96,8 @@ define(function(require, exports, module) {
         //console.log(filledColor);
     }
 
-    ProgressView.prototype.decrementProgressBar = function(slideNumber) {
-        bars[0][slideNumber+1].unfillBackgroundColor();
+    ProgressView.prototype.decrementProgressBar = function(tutorialNumber,  slideNumber) {
+        bars[tutorialNumber][slideNumber+1].unfillBackgroundColor();
     }
 
     module.exports = ProgressView;
