@@ -72,8 +72,15 @@ define(function(require, exports, module) {
         //stripViews[1].selectMe();
     }
 
-    MenuView.prototype.dostuff = function() {
-        alert('hi');
+    MenuView.prototype.changeSelected = function(selected) {
+        for (var i = 0; i < 3; i++) {
+            if (i == selected) {
+                stripViews[i].selectMe(colors[i]); 
+            }
+            else {
+                stripViews[i].unselectMe(); 
+            }
+        }
     }
 
     /*MenuView.prototype.colorSelected = function(whichButton) {
@@ -88,9 +95,6 @@ define(function(require, exports, module) {
         /* The fact that we need to do this is actually ridiculous...not sure why normal for loops don't work */
         var i = 0; var j = 1; var k = 2;
         stripViews[i].on('stripViewClick', function() {
-                stripViews[i].selectMe(colors[i]); 
-                stripViews[j].unselectMe(); 
-                stripViews[k].unselectMe();
                 this._eventOutput.emit('menuViewClick' + i);
                 if (DEBUG) console.log('menuViewClick' + i);
             }.bind(this));
@@ -102,9 +106,6 @@ define(function(require, exports, module) {
 
         
         stripViews[j].on('stripViewClick', function() {
-                stripViews[i].unselectMe(); 
-                stripViews[j].selectMe(colors[j]); 
-                stripViews[k].unselectMe();
                 this._eventOutput.emit('menuViewClick' + j);
                 if (DEBUG) console.log('menuViewClick' + j);
             }.bind(this));
@@ -116,9 +117,6 @@ define(function(require, exports, module) {
 
         
         stripViews[k].on('stripViewClick', function() {
-                stripViews[i].unselectMe(); 
-                stripViews[j].unselectMe(); 
-                stripViews[k].selectMe(colors[k]);
                 this._eventOutput.emit('menuViewClick' + k);
                 if (DEBUG) console.log('menuViewClick' + k);
             }.bind(this));

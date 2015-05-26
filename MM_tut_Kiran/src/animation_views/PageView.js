@@ -15,6 +15,7 @@ define(function(require, exports, module) {
     var thisPageView; //Give global access to the page view to load animations
     var NavigationView = require('animation_views/NavigationView');
     var MenuView = require('animation_views/MenuView');
+    var menuView;
     var ProgressView = require('animation_views/ProgressView');
     var progressView = [0,0,0];
     var progressViewModifier = [0,0,0];
@@ -189,7 +190,7 @@ define(function(require, exports, module) {
     }
 
     function _createMenuView() {
-        this.menuView = new MenuView({ stripData: StripData });
+        menuView = new MenuView({ stripData: StripData });
 
         var anotherModifier = new StateModifier ({
             transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
@@ -197,7 +198,7 @@ define(function(require, exports, module) {
 
         thisPageView.menuModifier = new StateModifier();
 
-        this.add(this.menuModifier).add(anotherModifier).add(this.menuView);
+        this.add(this.menuModifier).add(anotherModifier).add(menuView);
     }
 
     function _createProgress() {
@@ -245,7 +246,7 @@ define(function(require, exports, module) {
         var animationModifier = new StateModifier ({
             transform: Transform.behind
         });
-
+        menuView.changeSelected(animationController.getCurrTutorial());
         animationController.loadAnimationView(thisPageView, thisPageView.footerSurface);
         progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(),animationController.getCurrTutorialSlide());
         //progressView[0].incrementProgressBar(animationController.getCurrTutorial(),2);
@@ -260,12 +261,13 @@ define(function(require, exports, module) {
         }.bind(this));
 
         this.navigationView.on('next', function() {
-            animationController.incrementTutorialCounts();
+             animationController.incrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
             if (animationController.getCurrTutorialSlide() == 0) {
                 console.log(progressView);
                 _progressToFront();
+                menuView.changeSelected(animationController.getCurrTutorial());
                 progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(),animationController.getCurrTutorialSlide());
                 //progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(),animationController.getCurrTutorialSlide());                
             }
@@ -278,6 +280,7 @@ define(function(require, exports, module) {
         this.navigationView.on('back', function() {
             if (animationController.getCurrTutorialSlide() == 0) {
                 var indexBefore = animationController.getCurrTutorial()-1;
+                menuView.changeSelected(indexBefore);
                 progressView[animationController.getCurrTutorial()-1].resetProgressBar(indexBefore,animationController.getTutorialLength(indexBefore));
                 
             }      
@@ -294,28 +297,28 @@ define(function(require, exports, module) {
         var j = 1;
         var k = 2;
         /** On click: menus should update the animation to the start of the tutorial */
-        this.menuView.on('menuViewClick' + n, function() {
+        menuView.on('menuViewClick' + n, function() {
                 console.log("Clicked" + n);
                 _loadAnimationAfterMenuClick(n);
             }.bind(this));
 
-        this.menuView.on('menuViewClick' + j, function() {
+        menuView.on('menuViewClick' + j, function() {
                 console.log("Clicked" + j);
                 _loadAnimationAfterMenuClick(j);
             }.bind(this));
-        this.menuView.on('menuViewClick' + k, function() {
+        menuView.on('menuViewClick' + k, function() {
                 console.log("Clicked" + k);
                 _loadAnimationAfterMenuClick(k);
             }.bind(this));
 
         /** On mouse over: the menus should show the coloration */
-        this.menuView.on('menuViewMouseOver' + n, function() {
+        menuView.on('menuViewMouseOver' + n, function() {
                 console.log("Moused" + n);
             }.bind(this));
-        this.menuView.on('menuViewMouseOver' + j, function() {
+        menuView.on('menuViewMouseOver' + j, function() {
                 console.log("Moused" + j);
             }.bind(this));
-        this.menuView.on('menuViewMouseOver' + k, function() {
+        menuView.on('menuViewMouseOver' + k, function() {
                 console.log("Moused" + k);
             }.bind(this));
     } 
@@ -328,7 +331,7 @@ define(function(require, exports, module) {
         
         _bringHeaderToFront();
         //alert('inman');
-        //this.menuView.dostuff();
+        menuView.changeSelected(currentTutorial);
     }
 
     function _menuToggle() {
@@ -371,6 +374,7 @@ define(function(require, exports, module) {
             if (animationController.getCurrTutorialSlide() == 0) {
                 console.log(progressView);
                 _progressToFront();
+                menuView.changeSelected(animationController.getCurrTutorial());
                 progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(),animationController.getCurrTutorialSlide());
                 //progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(),animationController.getCurrTutorialSlide());                
             }
@@ -382,6 +386,7 @@ define(function(require, exports, module) {
         } else if (e.which === 37) { //Left arrow key
             if (animationController.getCurrTutorialSlide() == 0) {
                 var indexBefore = animationController.getCurrTutorial()-1;
+                menuView.changeSelected(indexBefore);
                 progressView[animationController.getCurrTutorial()-1].resetProgressBar(indexBefore,animationController.getTutorialLength(indexBefore));
                 
             }      
