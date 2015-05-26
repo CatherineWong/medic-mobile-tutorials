@@ -263,15 +263,29 @@ define(function(require, exports, module) {
             animationController.incrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-            progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(), animationController.getCurrTutorialSlide());
+            if (animationController.getCurrTutorialSlide() == 0) {
+                console.log(progressView);
+                _progressToFront();
+                progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(),animationController.getCurrTutorialSlide());
+                //progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(),animationController.getCurrTutorialSlide());                
+            }
+            else {
+                progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(), animationController.getCurrTutorialSlide());
+            }
             _bringHeaderToFront();
         }.bind(this));
 
         this.navigationView.on('back', function() {
+            if (animationController.getCurrTutorialSlide() == 0) {
+                var indexBefore = animationController.getCurrTutorial()-1;
+                progressView[animationController.getCurrTutorial()-1].resetProgressBar(indexBefore,animationController.getTutorialLength(indexBefore));
+                
+            }      
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
             progressView[animationController.getCurrTutorial()].decrementProgressBar(animationController.getCurrTutorial(), animationController.getCurrTutorialSlide());
+            _progressToFront();
             _bringHeaderToFront();
         }.bind(this));
 
@@ -346,7 +360,6 @@ define(function(require, exports, module) {
      Engine.on('keydown', function(e) {
         if(e.which === 39) { //Right arrow key
             
-
             animationController.incrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
@@ -366,17 +379,12 @@ define(function(require, exports, module) {
                 var indexBefore = animationController.getCurrTutorial()-1;
                 progressView[animationController.getCurrTutorial()-1].resetProgressBar(indexBefore,animationController.getTutorialLength(indexBefore));
                 
-            }
-            
-            
+            }      
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-
             progressView[animationController.getCurrTutorial()].decrementProgressBar(animationController.getCurrTutorial(), animationController.getCurrTutorialSlide());
             _progressToFront();
-            /*alert("slide: " + animationController.getCurrTutorialSlide());
-            alert("tutorial: " + animationController.getCurrTutorial());*/
             _bringHeaderToFront();
         }
      }); 
