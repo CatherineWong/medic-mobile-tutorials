@@ -201,7 +201,7 @@ define(function(require, exports, module) {
     }
 
     function _createProgress() {
-       for (var i = 0; i < 1; i++) {
+       for (var i = 0; i < StripData.length; i++) {
             progressView[i] = new ProgressView({ 
                 stripData: StripData,
                 currentTutorial: i,//animationController.getCurrTutorial(),
@@ -215,60 +215,6 @@ define(function(require, exports, module) {
 
             thisPageView.add(progressViewModifier[i]).add(progressView[i]);
         }
-
-        /*progressView[0] = new ProgressView({ 
-                stripData: StripData,
-                currentTutorial: 0,//animationController.getCurrTutorial(),
-                tutorialLength: animationController.getTutorialLength(0)//,animationController.getCurrTutorial()
-            });
-
-            progressViewModifier[0] = new StateModifier ({
-                transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
-            });
-
-
-            thisPageView.add(progressViewModifier[0]).add(progressView[animationController.getCurrTutorial()]);
-
-            progressView[1] = new ProgressView({ 
-                stripData: StripData,
-                currentTutorial: 1,//animationController.getCurrTutorial(),
-                tutorialLength: animationController.getTutorialLength(1)//,animationController.getCurrTutorial()
-            });
-
-            progressViewModifier[1] = new StateModifier ({
-                transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
-            });
-
-
-            thisPageView.add(progressViewModifier[1]).add(progressView[animationController.getCurrTutorial()]);
-
-            /*
-            var view1 = new ProgressView({ 
-                stripData: StripData,
-                currentTutorial: 0,//animationController.getCurrTutorial(),
-                tutorialLength: animationController.getTutorialLength(0)//,animationController.getCurrTutorial()
-            });
-
-            var mod1 = new StateModifier ({
-                transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
-            });
-
-
-            thisPageView.add(mod1).add(view1);
-
-            var view2 = new ProgressView({ 
-                stripData: StripData,
-                currentTutorial: 1,//animationController.getCurrTutorial(),
-                tutorialLength: animationController.getTutorialLength(1)//,animationController.getCurrTutorial()
-            });
-
-            var mod2 = new StateModifier ({
-                transform: Transform.translate(0, 0, 0.2)   //use this z axis to bring in front of surface
-            });
-
-
-            thisPageView.add(mod2).add(view2);
-            */
         
     }
 
@@ -308,43 +254,13 @@ define(function(require, exports, module) {
             _bringHeaderToFront();
         }.bind(this));
 
-        /** Set listeners for the strips - for whatever reason, must be set individually */
-        var n = 0;
-        var j = 1;
-        var k = 2;
-        /** On click: menus should update the animation to the start of the tutorial */
-        this.menuView.on('menuViewClick' + n, function() {
-                console.log("Clicked" + n);
-                _loadAnimationAfterMenuClick(n);
+       /*for (var i=0; i < StripData.length; i++) {
+            this.menuView.on('menuViewClick' + i, function() {
+                console.log("Hello");
             }.bind(this));
 
-        this.menuView.on('menuViewClick' + j, function() {
-                console.log("Clicked" + j);
-                _loadAnimationAfterMenuClick(j);
-            }.bind(this));
-        this.menuView.on('menuViewClick' + k, function() {
-                console.log("Clicked" + k);
-                _loadAnimationAfterMenuClick(k);
-            }.bind(this));
-
-        /** On mouse over: the menus should show the coloration */
-        this.menuView.on('menuViewMouseOver' + n, function() {
-                console.log("Moused" + n);
-            }.bind(this));
-        this.menuView.on('menuViewMouseOver' + j, function() {
-                console.log("Moused" + j);
-            }.bind(this));
-        this.menuView.on('menuViewMouseOver' + k, function() {
-                console.log("Moused" + k);
-            }.bind(this));
-
+        }*/
     } 
-
-    function _loadAnimationAfterMenuClick(tutorialNum) {
-        animationController.setStartOfTutorial(tutorialNum);
-        animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-        _bringHeaderToFront();
-    }
 
     function _menuToggle() {
         if(this.menuToggle) {
