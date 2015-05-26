@@ -1,4 +1,4 @@
-/* LalitaConfirmView.js -- Lalita sends a message that travels to Hari's*/
+/* LalitaConfirmView_1_8.js -- Lalita sends a message that travels to Hari's*/
 
 define(function(require, exports, module) {
 
@@ -253,24 +253,6 @@ function _createMovingTransitionBetweenScenes() {
 			content: 'animation-assets/Message-icon-blank.png'
 		});
 
-		var message_text = new Surface({
-		  size: [1, 1],
-		  content: 'Maya has successfully delivered!',
-		  properties: {
-		  	textAlign: 'left',
-    		padding: '5px',
-		    // backgroundColor: '#64a2c7', //#8799BC
-		    // color: 'white',
-		    borderRadius: '7px'
-		  }
-		});
-
-		var placeText = new StateModifier ({
-			align: [1.2, 0.55],
-			origin: [0.4, 0.0],
-			opacity: 1,
-			transform: Transform.translate(-570 - 200,-100 + 200,1)
-		});
 
 		var placeMessage = new StateModifier ({
 			align: [1.2, 0.55],

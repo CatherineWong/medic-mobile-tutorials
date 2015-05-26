@@ -25,7 +25,11 @@ define(function(require, exports, module) {
     var Two_ThreeZoomToHariView = require('animation_views/animation_slides/Two_ThreeZoomToHariView');
     var One_FourZoomOutTransitionView = require('animation_views/animation_slides/One_FourZoomOutTransitionView');
     var Two_EightCellView = require('animation_views/animation_slides/Two_EightCellView');
+<<<<<<< HEAD
     var Two_NineClipboardView = require('animation_views/animation_slides/Two_NineClipboardView');
+=======
+    var Two_ElevenUserGuide = require('animation_views/animation_slides/Two_ElevenUserGuide');
+>>>>>>> b425268e3c545cc59b946d782e0df6de4cfc86b9
 
     var tutorialLengths = [11, 12, 4, 4]; //Holds the lengths of each tutorial
     var currTutorial = 0;
@@ -139,7 +143,7 @@ define(function(require, exports, module) {
     /** Controls the logic to determine which animation to load */
     function _getNextAnimationView() {
         var currView = null;
-        if (currTutorial == 6) {     //CHANGE THIS               
+        if (currTutorial == 0) {              
             switch (currTutorialSlide) {
                 case 0:
                     //currView = new SplitScreenView();
@@ -180,7 +184,7 @@ define(function(require, exports, module) {
                     break;
             }
             
-        } else if (currTutorial == 0) {
+        } else if (currTutorial == 1) {
             switch (currTutorialSlide) {
                 case 0:
                     currView = new Two_OneIntroMayaAndHariView();
@@ -205,6 +209,9 @@ define(function(require, exports, module) {
                     break;
                 case 7:
                     currView = new Two_NineClipboardView();
+                    break;
+                case 8:
+                    currView = new Two_ElevenUserGuide();
                     break;
                 default:
                     break;

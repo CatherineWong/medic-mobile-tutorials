@@ -66,15 +66,40 @@ define(function(require, exports, module) {
 
     /** Set listeners on all of the strips for click and hover*/
     function _setListeners() {
-        for (var i=0; i < this.options.stripData.length; i++) {
-            stripViews[i].on('stripViewClick', function() {
-                this._eventOutput.emit('menuViewClick');
+        /* The fact that we need to do this is actually ridiculous...not sure why normal for loops don't work */
+        var i = 0;
+        stripViews[i].on('stripViewClick', function() {
+                this._eventOutput.emit('menuViewClick' + i);
+                console.log('clicked' + i);
             }.bind(this));
 
             stripViews[i].on('stripViewMouseOver', function() {
-                this._eventOutput.emit('menuViewMouseOver');
+                this._eventOutput.emit('menuViewMouseOver' + i);
+                console.log('moused over: ' + i);
             }.bind(this));
-        }
+
+        var j = 1;
+        stripViews[j].on('stripViewClick', function() {
+                this._eventOutput.emit('menuViewClick' + j);
+                console.log('clicked' + j);
+            }.bind(this));
+
+        stripViews[j].on('stripViewMouseOver', function() {
+            this._eventOutput.emit('menuViewMouseOver' + j);
+            console.log('moused over: ' + j);
+        }.bind(this));
+
+        var k = 2;
+        stripViews[k].on('stripViewClick', function() {
+                this._eventOutput.emit('menuViewClick' + k);
+                console.log('clicked' + k);
+            }.bind(this));
+
+        stripViews[k].on('stripViewMouseOver', function() {
+            this._eventOutput.emit('menuViewMouseOver' + k);
+            console.log('moused over: ' + k);
+        }.bind(this));
+  
     } 
 
 

@@ -237,7 +237,7 @@ define(function(require, exports, module) {
             animationController.incrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-            progressView.incrementProgressBar(animationController.getCurrTutorialSlide());
+            progressView[animationController.getCurrTutorial()].incrementProgressBar(animationController.getCurrTutorial(), animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
         }.bind(this));
 
@@ -245,11 +245,16 @@ define(function(require, exports, module) {
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-            progressView.decrementProgressBar(animationController.getCurrTutorialSlide());
+            progressView[animationController.getCurrTutorial()].decrementProgressBar(animationController.getCurrTutorial(), animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
         }.bind(this));
 
-       // TODO: set the menu click and hover here
+       /*for (var i=0; i < StripData.length; i++) {
+            this.menuView.on('menuViewClick' + i, function() {
+                console.log("Hello");
+            }.bind(this));
+
+        }*/
     } 
 
     function _menuToggle() {
@@ -311,7 +316,7 @@ define(function(require, exports, module) {
             animationController.decrementTutorialCounts();
             animationController.printDebugOutput();
             animationController.loadAnimationView(thisPageView, thisPageView.footerSurface); 
-            progressView[animationController.getCurrTutorial()].decrementProgressBar(animationController.getCurrTutorialSlide());
+            progressView[animationController.getCurrTutorial()].decrementProgressBar(animationController.getCurrTutorial(), animationController.getCurrTutorialSlide());
             _bringHeaderToFront();
         }
      }); 
