@@ -88,9 +88,7 @@ define(function(require, exports, module) {
 		var bringToBack = new StateModifier();
 		bringToBack.setTransform(Transform.behind);
 
-		this.add(bringToBack);
-
-		this.add(place_health_center).add(health_center);
+		this.add(place_health_center).add(bringToBack).add(health_center);
 
 		setTimeout(function(){
 			place_health_center.setOpacity(0, {duration: 1000})
@@ -126,8 +124,7 @@ define(function(require, exports, module) {
 		var bringToFront = new StateModifier();
 		bringToFront.setTransform(Transform.inFront);
 
-		this.add(bringToFront);
-		this.add(placeMayaClinic).add(mayaClinic);
+		this.add(placeMayaClinic).add(bringToFront).add(mayaClinic);
 		this.add(placeMaya).add(maya);
 
 		setTimeout(function(){
@@ -167,8 +164,7 @@ define(function(require, exports, module) {
 		var bringToFront = new StateModifier();
 		bringToFront.setTransform(Transform.inFront);
 
-		this.add(bringToFront);
-		this.add(placeNurse).add(nurse);
+		this.add(placeNurse).add(bringToFront).add(nurse);
 		setTimeout(function(){
 			placeNurse.setOpacity(1,{duration: 1000, curve: 'easeInOut'})
 		}, 3500);
