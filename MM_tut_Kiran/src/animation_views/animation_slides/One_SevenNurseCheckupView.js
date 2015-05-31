@@ -120,13 +120,14 @@ define(function(require, exports, module) {
 			transform: Transform.translate(500, 0, 0),
 		});
 
-		this.add(placeMayaClinic).add(mayaClinic);
 
 
 		var bringToFront = new StateModifier();
 		bringToFront.setTransform(Transform.inFront);
 
 		this.add(bringToFront);
+
+		this.add(placeMayaClinic).add(mayaClinic);
 		this.add(placeMaya).add(maya);
 
 		setTimeout(function(){
