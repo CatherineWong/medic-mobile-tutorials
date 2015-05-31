@@ -1,4 +1,4 @@
-/* 3.2 Tutorial 3 slide 2 -- hardware introduction*/
+/* 3.4 Tutorial 3 slide 4 -- laptop*/
 
 
 define(function(require, exports, module) {
@@ -10,22 +10,22 @@ define(function(require, exports, module) {
 	var ImageSurface = require('famous/surfaces/ImageSurface');
 	var Easing = require('famous/transitions/Easing');
 
-   function Three_TwoHardwareRequirementsView () {
+   function Three_FourLaptopRequirementView () {
    		View.apply(this, arguments);
    		// _createBackground.call(this);
    		_createRequirementIcons.call(this);
    		//_createLalitaAndMaya.call(this);
    }
 
-   Three_TwoHardwareRequirementsView.prototype = Object.create(View.prototype);
-   Three_TwoHardwareRequirementsView.prototype.constructor = Three_TwoHardwareRequirementsView;
+   Three_FourLaptopRequirementView.prototype = Object.create(View.prototype);
+   Three_FourLaptopRequirementView.prototype.constructor = Three_FourLaptopRequirementView;
 
-   Three_TwoHardwareRequirementsView.prototype.returnCaptionArray = function() {
-   		var captionText = ["This is the hardware you'll need..."];
+   Three_FourLaptopRequirementView.prototype.returnCaptionArray = function() {
+   		var captionText = ["You’ll need a laptop to run the Medic Mobile software, receive messages from CHWs, and visualize historic data."];
    		return captionText;	
    }
 
-   Three_TwoHardwareRequirementsView.DEFAULT_OPTIONS = {};
+   Three_FourLaptopRequirementView.DEFAULT_OPTIONS = {};
 
 
 	function getX(total_number_of_icons, current_icon_number) {
@@ -41,24 +41,24 @@ define(function(require, exports, module) {
 
 
 		var PhoneIcon = new ImageSurface ({
-			size : [100, 100],
+			size : [400, 400],
 			content: 'animation-assets/phone_logo.svg'
 		});
 
 		var placePhoneIcon = new StateModifier ({
 			align : [0.5, 0.5],
-			origin : [0.5, 0.5]
+			origin : [1.0, 1.0]
 			//translate: 
 		});
 
 		placePhoneIcon.setTransform(
-			Transform.translate(200*getX(5,1), 200*getY(5,1), 0)
+			Transform.translate(3*200*getX(5,2)+200, (200*getY(5,2) + 100)+50, 0)
 		);
 
 		var movePhoneIcon = new StateModifier ();
 
 		movePhoneIcon.setTransform(
-			Transform.translate(-200*getX(5,1) + 3*200*getX(5,2), -200*getY(5,1) + 200*getY(5,2) + 100, 0),
+			Transform.scale(0.25, 0.25, 1),
 			{duration: 1000, curve: 'easeInOut'}
 		);
 
@@ -67,25 +67,25 @@ define(function(require, exports, module) {
 
 
 		var LaptopIcon = new ImageSurface ({
-			size : [100, 100],
+			size : [400, 400],
 			content: 'animation-assets/laptop-logo.svg'
 		});
 
 
 		var placeLaptopIcon = new StateModifier ({
 			align : [0.5, 0.5],
-			origin : [0.5, 0.5]
+			origin : [0.0, 1.0]
 		});
 
 		placeLaptopIcon.setTransform(
-			Transform.translate(200*getX(5,2), 200*getY(5,2), 0)
+			Transform.thenScale(Transform.translate(4*(200*getX(5,2) - 200), 4*(200*getY(5,2) + 100) + 200, 0), [0.25,0.25,1])
 		);
 
 		
 		var moveLaptopIcon = new StateModifier ();
 
 		moveLaptopIcon.setTransform(
-			Transform.translate(0, 100, 0),
+			Transform.scale(4,4,1),
 			{duration: 1000, curve: 'easeInOut'}
 		);
 
@@ -105,14 +105,14 @@ define(function(require, exports, module) {
 		});
 
 		placeGSMIcon.setTransform(
-			Transform.translate(200*getX(5,3), 200*getY(5,3), 0)
+			Transform.translate(200*getX(5,3)-150, 200*getY(5,3) + 100, 0)
 		);
 		
 
 		var moveGSMIcon = new StateModifier();
 
 		moveGSMIcon.setTransform(
-			Transform.translate(0, 100, 0),
+			Transform.translate(0, 0, 0),
 			{duration: 1000, curve: 'easeInOut'}
 		);
 
@@ -132,13 +132,13 @@ define(function(require, exports, module) {
 		});
 
 		placeOutletIcon.setTransform(
-			Transform.translate(200*getX(5,4), 200*getY(5,4), 0)
+			Transform.translate(3*200*getX(5,3)-150, 200*getY(5,3) + 100, 0)
 		);
 
 		var moveOutletIcon = new StateModifier ();
 
 		moveOutletIcon.setTransform(
-			Transform.translate(-200*getX(5,4) + 3*200*getX(5,3), -200*getY(5,4) + 200*getY(5,3) + 100, 0),
+			Transform.translate(0, 0, 0),
 			{duration: 1000, curve: 'easeInOut'}
 		);
 
@@ -154,6 +154,6 @@ define(function(require, exports, module) {
 
 
 
-	module.exports = Three_TwoHardwareRequirementsView;
+	module.exports = Three_FourLaptopRequirementView;
 
 });

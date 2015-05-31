@@ -1,4 +1,4 @@
-/* 3.2 Tutorial 3 slide 2 -- hardware introduction*/
+/* 3.7 Tutorial 3 slide 7 -- */
 
 
 define(function(require, exports, module) {
@@ -10,22 +10,22 @@ define(function(require, exports, module) {
 	var ImageSurface = require('famous/surfaces/ImageSurface');
 	var Easing = require('famous/transitions/Easing');
 
-   function Three_TwoHardwareRequirementsView () {
+   function Three_SevenTrainingRequirementView () {
    		View.apply(this, arguments);
    		// _createBackground.call(this);
    		_createRequirementIcons.call(this);
    		//_createLalitaAndMaya.call(this);
    }
 
-   Three_TwoHardwareRequirementsView.prototype = Object.create(View.prototype);
-   Three_TwoHardwareRequirementsView.prototype.constructor = Three_TwoHardwareRequirementsView;
+   Three_SevenTrainingRequirementView.prototype = Object.create(View.prototype);
+   Three_SevenTrainingRequirementView.prototype.constructor = Three_SevenTrainingRequirementView;
 
-   Three_TwoHardwareRequirementsView.prototype.returnCaptionArray = function() {
+   Three_SevenTrainingRequirementView.prototype.returnCaptionArray = function() {
    		var captionText = ["This is the hardware you'll need..."];
    		return captionText;	
    }
 
-   Three_TwoHardwareRequirementsView.DEFAULT_OPTIONS = {};
+   Three_SevenTrainingRequirementView.DEFAULT_OPTIONS = {};
 
 
 	function getX(total_number_of_icons, current_icon_number) {
@@ -52,13 +52,13 @@ define(function(require, exports, module) {
 		});
 
 		placePhoneIcon.setTransform(
-			Transform.translate(200*getX(5,1), 200*getY(5,1), 0)
+			Transform.translate(3*200*getX(5,2) + 150, 200*getY(5,2) + 100, 0)
 		);
 
 		var movePhoneIcon = new StateModifier ();
 
 		movePhoneIcon.setTransform(
-			Transform.translate(-200*getX(5,1) + 3*200*getX(5,2), -200*getY(5,1) + 200*getY(5,2) + 100, 0),
+			Transform.translate(0, 0, 0),
 			{duration: 1000, curve: 'easeInOut'}
 		);
 
@@ -78,14 +78,14 @@ define(function(require, exports, module) {
 		});
 
 		placeLaptopIcon.setTransform(
-			Transform.translate(200*getX(5,2), 200*getY(5,2), 0)
+			Transform.translate(200*getX(5,2)+150, 200*getY(5,2) + 100, 0)
 		);
 
 		
 		var moveLaptopIcon = new StateModifier ();
 
 		moveLaptopIcon.setTransform(
-			Transform.translate(0, 100, 0),
+			Transform.translate(0, 0, 0),
 			{duration: 1000, curve: 'easeInOut'}
 		);
 
@@ -105,14 +105,14 @@ define(function(require, exports, module) {
 		});
 
 		placeGSMIcon.setTransform(
-			Transform.translate(200*getX(5,3), 200*getY(5,3), 0)
+			Transform.translate(200*getX(5,3)+150, 200*getY(5,3) + 100, 0)
 		);
 		
 
 		var moveGSMIcon = new StateModifier();
 
 		moveGSMIcon.setTransform(
-			Transform.translate(0, 100, 0),
+			Transform.translate(0, 0, 0),
 			{duration: 1000, curve: 'easeInOut'}
 		);
 
@@ -121,24 +121,24 @@ define(function(require, exports, module) {
 
 
 		var OutletIcon = new ImageSurface ({
-			size : [100, 100],
+			size : [400, 400],
 			content: 'animation-assets/outlet.png'
 		});
 
 
 		var placeOutletIcon = new StateModifier ({
 			align : [0.5, 0.5],
-			origin : [0.5, 0.5]
+			origin : [0.0, 1.0]
 		});
 
 		placeOutletIcon.setTransform(
-			Transform.translate(200*getX(5,4), 200*getY(5,4), 0)
+			Transform.thenScale(Transform.translate(4*(3*200*getX(5,3) - 200), 4*(200*getY(5,3) + 150) + 25, 0), [0.25,0.25,1])
 		);
 
 		var moveOutletIcon = new StateModifier ();
 
 		moveOutletIcon.setTransform(
-			Transform.translate(-200*getX(5,4) + 3*200*getX(5,3), -200*getY(5,4) + 200*getY(5,3) + 100, 0),
+			Transform.scale(2.5, 2.5, 1),
 			{duration: 1000, curve: 'easeInOut'}
 		);
 
@@ -154,6 +154,6 @@ define(function(require, exports, module) {
 
 
 
-	module.exports = Three_TwoHardwareRequirementsView;
+	module.exports = Three_SevenTrainingRequirementView;
 
 });

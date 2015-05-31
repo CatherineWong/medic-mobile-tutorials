@@ -32,8 +32,15 @@ define(function(require, exports, module) {
     var Two_ElevenUserGuide = require('animation_views/animation_slides/Two_ElevenUserGuide');
     var Two_TenVisitMayaView = require('animation_views/animation_slides/Two_TenVisitMayaView');
     var Two_TwelveMessageView = require('animation_views/animation_slides/Two_TwelveMessageView');
+    var Three_OneRequirementsIntroView = require('animation_views/animation_slides/Three_OneRequirementsIntroView');
+    var Three_TwoHardwareRequirementsView = require('animation_views/animation_slides/Three_TwoHardwareRequirementsView');
+    var Three_ThreePhoneRequirementView = require('animation_views/animation_slides/Three_ThreePhoneRequirementView');
+    var Three_FourLaptopRequirementView = require('animation_views/animation_slides/Three_FourLaptopRequirementView');
+    var Three_FiveModemRequirementView = require('animation_views/animation_slides/Three_FiveModemRequirementView');
+    var Three_SixOutletRequirementView = require('animation_views/animation_slides/Three_SixOutletRequirementView');
+    var Three_SevenTrainingRequirementView = require('animation_views/animation_slides/Three_SevenTrainingRequirementView');
 
-    var tutorialLengths = [11, 13, 4, 4]; //Holds the lengths of each tutorial
+    var tutorialLengths = [11, 13, 7, 2]; //Holds the lengths of each tutorial
     var currTutorial = 0;
     var currTutorialSlide = 0;
     var renderController;
@@ -233,6 +240,32 @@ define(function(require, exports, module) {
                     break;
                 case 10:
                     currView = new Two_TwelveMessageView();
+                    break;
+                default:
+                    break;
+            } 
+        } else if (currTutorial == 2) {
+            switch (currTutorialSlide) {
+                case 0:
+                    currView = new Three_OneRequirementsIntroView();
+                    break;
+                case 1:
+                    currView = new Three_TwoHardwareRequirementsView();
+                    break;
+                case 2:
+                    currView = new Three_ThreePhoneRequirementView();
+                    break;
+                case 3:
+                    currView = new Three_FourLaptopRequirementView();
+                    break;
+                case 4:
+                    currView = new Three_FiveModemRequirementView();
+                    break;
+                case 5:
+                    currView = new Three_SixOutletRequirementView();
+                    break;
+                case 6:
+                    currView = new Three_SevenTrainingRequirementView();
                     break;
                 default:
                     break;

@@ -1,4 +1,4 @@
-/* 3.2 Tutorial 3 slide 2 -- hardware introduction*/
+/* 3.7 Tutorial 3 slide 7 -- */
 
 
 define(function(require, exports, module) {
@@ -10,22 +10,22 @@ define(function(require, exports, module) {
 	var ImageSurface = require('famous/surfaces/ImageSurface');
 	var Easing = require('famous/transitions/Easing');
 
-   function Three_TwoHardwareRequirementsView () {
+   function Three_SevenTrainingRequirementView () {
    		View.apply(this, arguments);
    		// _createBackground.call(this);
    		_createRequirementIcons.call(this);
    		//_createLalitaAndMaya.call(this);
    }
 
-   Three_TwoHardwareRequirementsView.prototype = Object.create(View.prototype);
-   Three_TwoHardwareRequirementsView.prototype.constructor = Three_TwoHardwareRequirementsView;
+   Three_SevenTrainingRequirementView.prototype = Object.create(View.prototype);
+   Three_SevenTrainingRequirementView.prototype.constructor = Three_SevenTrainingRequirementView;
 
-   Three_TwoHardwareRequirementsView.prototype.returnCaptionArray = function() {
-   		var captionText = ["This is the hardware you'll need..."];
+   Three_SevenTrainingRequirementView.prototype.returnCaptionArray = function() {
+   		var captionText = ["Beyond these hardware requirements, to make the Medic Mobile system truly effective, your entire care system will need adequate training"];
    		return captionText;	
    }
 
-   Three_TwoHardwareRequirementsView.DEFAULT_OPTIONS = {};
+   Three_SevenTrainingRequirementView.DEFAULT_OPTIONS = {};
 
 
 	function getX(total_number_of_icons, current_icon_number) {
@@ -52,14 +52,14 @@ define(function(require, exports, module) {
 		});
 
 		placePhoneIcon.setTransform(
-			Transform.translate(200*getX(5,1), 200*getY(5,1), 0)
+			Transform.translate(3*200*getX(5,2) + 150, 200*getY(5,2) + 100, 0)
 		);
 
 		var movePhoneIcon = new StateModifier ();
 
 		movePhoneIcon.setTransform(
-			Transform.translate(-200*getX(5,1) + 3*200*getX(5,2), -200*getY(5,1) + 200*getY(5,2) + 100, 0),
-			{duration: 1000, curve: 'easeInOut'}
+			Transform.translate(1250, 0, 0),
+			{duration: 2000, curve: 'easeInOut'}
 		);
 
 
@@ -78,15 +78,15 @@ define(function(require, exports, module) {
 		});
 
 		placeLaptopIcon.setTransform(
-			Transform.translate(200*getX(5,2), 200*getY(5,2), 0)
+			Transform.translate(200*getX(5,2)+150, 200*getY(5,2) + 100, 0)
 		);
 
 		
 		var moveLaptopIcon = new StateModifier ();
 
 		moveLaptopIcon.setTransform(
-			Transform.translate(0, 100, 0),
-			{duration: 1000, curve: 'easeInOut'}
+			Transform.translate(1250, 0, 0),
+			{duration: 2000, curve: 'easeInOut'}
 		);
 
 
@@ -105,15 +105,15 @@ define(function(require, exports, module) {
 		});
 
 		placeGSMIcon.setTransform(
-			Transform.translate(200*getX(5,3), 200*getY(5,3), 0)
+			Transform.translate(200*getX(5,3)+150, 200*getY(5,3) + 100, 0)
 		);
 		
 
 		var moveGSMIcon = new StateModifier();
 
 		moveGSMIcon.setTransform(
-			Transform.translate(0, 100, 0),
-			{duration: 1000, curve: 'easeInOut'}
+			Transform.translate(1250, 0, 0),
+			{duration: 2000, curve: 'easeInOut'}
 		);
 
 
@@ -121,25 +121,52 @@ define(function(require, exports, module) {
 
 
 		var OutletIcon = new ImageSurface ({
-			size : [100, 100],
+			size : [250, 250],
 			content: 'animation-assets/outlet.png'
 		});
 
 
 		var placeOutletIcon = new StateModifier ({
 			align : [0.5, 0.5],
-			origin : [0.5, 0.5]
+			origin : [1.0, 1.0]
 		});
 
 		placeOutletIcon.setTransform(
-			Transform.translate(200*getX(5,4), 200*getY(5,4), 0)
+			Transform.translate(200*3*getX(5,3) + 50, 200*getY(5,3) + 155, 0)
+			//Transform.thenScale(Transform.translate(4*(3*200*getX(5,3) - 200), 4*(200*getY(5,3) + 150) + 25, 0), [0.25,0.25,1])
 		);
 
 		var moveOutletIcon = new StateModifier ();
 
 		moveOutletIcon.setTransform(
-			Transform.translate(-200*getX(5,4) + 3*200*getX(5,3), -200*getY(5,4) + 200*getY(5,3) + 100, 0),
-			{duration: 1000, curve: 'easeInOut'}
+			Transform.thenScale(Transform.translate(6000, 0, 0), [0.25,0.25,1]),
+			{duration: 2000, curve: 'easeInOut'}
+		);
+
+
+
+
+
+		var TrainingIcon = new ImageSurface ({
+			size : [400, 400],
+			content: 'animation-assets/training.svg'
+		});
+
+		var placeTrainingIcon = new StateModifier ({
+			align : [0.5, 0.5],
+			origin : [0.5, 0.5]
+		});
+
+		placeTrainingIcon.setTransform(
+			Transform.translate(-1000, 0, 0)
+		);
+
+
+		var moveTrainingIcon = new StateModifier ();
+
+		moveTrainingIcon.setTransform(
+			Transform.translate(1000, 0, 0),
+			{duration: 2000, curve: 'easeInOut'}
 		);
 
 
@@ -149,11 +176,12 @@ define(function(require, exports, module) {
 		this.add(placeLaptopIcon).add(moveLaptopIcon).add(LaptopIcon);
 		this.add(placeGSMIcon).add(moveGSMIcon).add(GSMIcon);
 		this.add(placeOutletIcon).add(moveOutletIcon).add(OutletIcon);
+		this.add(placeTrainingIcon).add(moveTrainingIcon).add(TrainingIcon);
 
 	}
 
 
 
-	module.exports = Three_TwoHardwareRequirementsView;
+	module.exports = Three_SevenTrainingRequirementView;
 
 });

@@ -60,7 +60,7 @@ define(function(require, exports, module) {
 
 		var TrainingIcon = new ImageSurface ({
 			size : [100, 100],
-			content: 'animation-assets/chw-nepali.svg'
+			content: 'animation-assets/training.svg'
 		});
 
 		var placeTrainingIcon = new StateModifier ({
@@ -137,8 +137,8 @@ define(function(require, exports, module) {
 
 
 		var GSMIcon = new ImageSurface ({
-			size : [100, 100],
-			content: 'animation-assets/oxcart.svg'
+			size : [100, 50],
+			content: 'animation-assets/modem.png'
 		});
 
 
@@ -163,7 +163,7 @@ define(function(require, exports, module) {
 
 		var OutletIcon = new ImageSurface ({
 			size : [100, 100],
-			content: 'animation-assets/chickens.svg'
+			content: 'animation-assets/outlet.png'
 		});
 
 
