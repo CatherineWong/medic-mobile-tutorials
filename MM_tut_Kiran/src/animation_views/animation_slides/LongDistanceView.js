@@ -32,7 +32,7 @@ define(function(require, exports, module) {
    LongDistanceView.DEFAULT_OPTIONS = {};
 
     LongDistanceView.prototype.returnCaptionArray = function() {
-   		var captionText = ["Before Medic Mobile, Lalita uses paper record to register pregnant women in her village"];
+   		var captionText = ["Before Medic Mobile, Lalita used paper records to register pregnant women in her village"];
    		return captionText;	
    }
 

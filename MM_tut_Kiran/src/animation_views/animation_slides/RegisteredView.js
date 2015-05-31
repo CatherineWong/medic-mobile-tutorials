@@ -24,7 +24,7 @@ define(function(require, exports, module) {
    RegisteredView.prototype.constructor = RegisteredView;
 
    RegisteredView.prototype.returnCaptionArray = function() {
-   		var captionText = ["Great! Back at Hari’s clinic, his computer receives this text message, and Medic Mobile creates a new record for Maya. Hari can see all new registered patients in the “Reports” tab of the software."];
+   		var captionText = ["Great! Back at Hari’s clinic, her computer receives this text message, and Medic Mobile creates a new record for Maya. Hari can see all new registered patients in the “Reports” tab of the software."];
    		return captionText;	
    }
 

@@ -21,7 +21,7 @@ define(function(require, exports, module) {
    One_FourZoomOutTransitionView.prototype.constructor = One_FourZoomOutTransitionView;
 
    One_FourZoomOutTransitionView.prototype.returnCaptionArray = function() {
-   		var captionText = ["Unfortunately, Maya lives X hours away from the nearest health provider, Hari’s clinic. She has never visited the clinic before."];
+   		var captionText = ["Unfortunately, Maya lives 10 hours away from the nearest health provider, Hari’s clinic. She has never visited the clinic before."];
    		return captionText;	
    }
 

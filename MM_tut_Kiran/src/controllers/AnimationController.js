@@ -41,7 +41,7 @@ define(function(require, exports, module) {
     var Three_SixOutletRequirementView = require('animation_views/animation_slides/Three_SixOutletRequirementView');
     var Three_SevenTrainingRequirementView = require('animation_views/animation_slides/Three_SevenTrainingRequirementView');
 
-    var tutorialLengths = [13, 13, 7, 2]; //Holds the lengths of each tutorial
+    var tutorialLengths = [14, 13, 7, 2]; //Holds the lengths of each tutorial
     var currTutorial = 0;
     var currTutorialSlide = 0;
     var renderController;

@@ -24,7 +24,7 @@ define(function(require, exports, module) {
    Two_TwelveMessageView.prototype.constructor = Two_TwelveMessageView;
 
    Two_TwelveMessageView.prototype.returnCaptionArray = function() {
-   		var captionText = ["Back at the clinic, Hari can also send text messages to community health workers directly from his computer using the Messages tab."];
+   		var captionText = ["Back at the clinic, Hari can also send text messages to community health workers directly from her computer using the Messages tab."];
    		return captionText;	
    }
 

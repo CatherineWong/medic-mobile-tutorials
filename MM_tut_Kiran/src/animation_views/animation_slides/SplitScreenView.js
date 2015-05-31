@@ -26,7 +26,7 @@ define(function(require, exports, module) {
    SplitScreenView.prototype.constructor = SplitScreenView;
 
    SplitScreenView.prototype.returnCaptionArray = function() {
-   		var captionText = ["Let’s take a look at how Lalita’s can use her phone to register new patients, and how that information is stored at the clinic using Medic Mobile."];
+   		var captionText = ["Let’s take a look at how Lalita can use her phone to register new patients, and how that information is stored at the clinic using Medic Mobile."];
    		return captionText;	
    }
 

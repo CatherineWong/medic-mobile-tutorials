@@ -27,7 +27,7 @@ define(function(require, exports, module) {
    Two_ElevenUserGuide.prototype.constructor = Two_ElevenUserGuide;
 
    Two_ElevenUserGuide.prototype.returnCaptionArray = function() {
-   		var captionText = ["After downloading Medic Mobile, Hari can refer back to the User Guide that comes with the Medic Mobile software to learn what these text messages look like, and how community health workers in your village need to respond."];
+   		var captionText = ["After downloading Medic Mobile, Hari can refer back to the User Guide that comes with the Medic Mobile software to learn what these text messages look like, and how community health workers in the village need to respond."];
    		return captionText;	
    }
 
