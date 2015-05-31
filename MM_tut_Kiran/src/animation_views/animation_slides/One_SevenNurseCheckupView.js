@@ -18,6 +18,7 @@ define(function(require, exports, module) {
    		_createBackground.call(this);
    		_createClinic.call(this);
    		_createMaya.call(this);
+   		_createNurse.call(this);
    }
 
    One_SevenNurseCheckupView.prototype = Object.create(View.prototype);
@@ -34,7 +35,7 @@ define(function(require, exports, module) {
 	function _createBackground() {
 		var background = new ImageSurface ({
 			size : [undefined, undefined],
-			content: 'animation-assets/healthcenter-inside.svg',
+			content: 'animation-assets/scene-inside-no-nurse.svg',
 			transform: Transform.scale(0.7, 0, 0),
 		});
 
@@ -126,7 +127,6 @@ define(function(require, exports, module) {
 		bringToFront.setTransform(Transform.inFront);
 
 		this.add(bringToFront);
-
 		this.add(placeMayaClinic).add(mayaClinic);
 		this.add(placeMaya).add(maya);
 
@@ -146,6 +146,31 @@ define(function(require, exports, module) {
 			placeMayaClinic.setTransform(
 				Transform.translate(800, 0, 0),
 				{duration: 2000, curve: 'easeInOut'})
+		}, 3500);
+
+	}
+
+	function _createNurse() {
+
+		var nurse = new ImageSurface ({
+			size : [250, 250],
+			content: 'animation-assets/nurse.svg'
+		});
+		var placeNurse = new StateModifier ({
+			align : [-0.2, 0.55],
+			origin: [0.4, 0.0], 
+			transform: Transform.translate(1000, -50, 0),
+			opacity: 0
+		});
+
+
+		var bringToFront = new StateModifier();
+		bringToFront.setTransform(Transform.inFront);
+
+		this.add(bringToFront);
+		this.add(placeNurse).add(nurse);
+		setTimeout(function(){
+			placeNurse.setOpacity(1,{duration: 1000, curve: 'easeInOut'})
 		}, 3500);
 
 	}
