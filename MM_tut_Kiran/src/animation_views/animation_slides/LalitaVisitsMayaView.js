@@ -1,4 +1,4 @@
-/* One_SixLalitaVisitsMayaView -- view where Lalita visits to Maya */
+/* LalitaVisitsMaya -- view where Lalita visits to Maya */
 
 
 define(function(require, exports, module) {
@@ -10,7 +10,7 @@ define(function(require, exports, module) {
 	var ImageSurface = require('famous/surfaces/ImageSurface');
 	var Easing = require('famous/transitions/Easing');
 
-   function One_SixLalitaVisitsMayaView () {
+   function LalitaVisitsMaya () {
    		View.apply(this, arguments);
    		_createHuts.call(this);
    		_createCalendar.call(this);
@@ -21,15 +21,15 @@ define(function(require, exports, module) {
 
    }
 
-   One_SixLalitaVisitsMayaView.prototype = Object.create(View.prototype);
-   One_SixLalitaVisitsMayaView.prototype.constructor = One_SixLalitaVisitsMayaView;
+   LalitaVisitsMaya.prototype = Object.create(View.prototype);
+   LalitaVisitsMaya.prototype.constructor = LalitaVisitsMaya;
 
-   One_SixLalitaVisitsMayaView.prototype.returnCaptionArray = function() {
+   LalitaVisitsMaya.prototype.returnCaptionArray = function() {
    		var captionText = ["Each time, Lalita visits Maya to let her know."];
    		return captionText;	
    }
 
-   One_SixLalitaVisitsMayaView.DEFAULT_OPTIONS = {};
+   LalitaVisitsMaya.DEFAULT_OPTIONS = {};
 
 	function _createHuts() {
 
@@ -43,11 +43,7 @@ define(function(require, exports, module) {
 			origin : [0.3, 0.5],
 			opacity: 1
 		});
-
-		var bringToBack = new StateModifier();
-		bringToBack.setTransform(Transform.behind);
-
-		this.add(placeHut).add(bringToBack).add(hut);
+		this.add(placeHut).add(hut);
 
 		// animates x- and y-scale to 1
 		placeHut.setTransform(
@@ -73,7 +69,7 @@ define(function(require, exports, module) {
 		var bringToFront = new StateModifier();
 		bringToFront.setTransform(Transform.inFront);
 
-		this.add(placeChickens).add(chickens);
+		this.add(placeChickens).add(bringToFront).add(chickens);
 
 	}
 
@@ -165,8 +161,7 @@ define(function(require, exports, module) {
 		});
 		var placeMaya1= new StateModifier ({
 			align : [0.45, 0.55],
-			origin: [0.4, 0.0], 
-			opacity: 0
+			origin: [0.4, 0.0]
 		});
 
 		var maya2 = new ImageSurface ({
@@ -192,36 +187,31 @@ define(function(require, exports, module) {
 		var bringToFront = new StateModifier();
 		bringToFront.setTransform(Transform.inFront);
 
-		this.add(bringToFront);
-
-
-		this.add(placeMaya1).add(maya1);
+		this.add(placeMaya1).add(bringToFront).add(maya1);
 		this.add(placeMaya2).add(maya2);
 		this.add(placeMaya3).add(maya3);
-
-		placeMaya1.setOpacity(1, {duration: 1000, curve: Easing.outBack});
 
 
 		setTimeout(function(){
 			placeMaya1.setTransform(
-				Transform.translate(1600, 0, 0),
-				{duration: 4000, curve: 'easeInOut'})
+				Transform.translate(800, 0, 0),
+				{duration: 2000, curve: 'easeInOut'})
 		}, 4500);
 		setTimeout(function(){
 			placeMaya2.setOpacity(1, {duration: 1000, curve: Easing.outBack});
 		}, 6500);
 		setTimeout(function(){
 			placeMaya2.setTransform(
-				Transform.translate(1600, 0, 0),
-				{duration: 4000, curve: 'easeInOut'})
+				Transform.translate(800, 0, 0),
+				{duration: 2000, curve: 'easeInOut'})
 		}, 10000);
 		setTimeout(function(){
 			placeMaya3.setOpacity(1, {duration: 1000, curve: Easing.outBack});
 		}, 12000);
 		setTimeout(function(){
 			placeMaya3.setTransform(
-				Transform.translate(1600, 0, 0),
-				{duration: 4000, curve: 'easeInOut'})
+				Transform.translate(800, 0, 0),
+				{duration: 2000, curve: 'easeInOut'})
 		}, 15500);
 
 	}
@@ -244,11 +234,6 @@ define(function(require, exports, module) {
 			origin: [0.4, 0.0],
 		});
 
-		var bringToFront = new StateModifier();
-		bringToFront.setTransform(Transform.inFront);
-
-		this.add(bringToFront);
-
 		this.add(placeCellphoneLalita1).add(cellphoneLalita1);
 		this.add(placePhone1).add(phone1);
 
@@ -262,11 +247,11 @@ define(function(require, exports, module) {
 		}, 1000);
 		setTimeout(function(){
 			placeCellphoneLalita1.setTransform(
-				Transform.translate(-3200, 0, 0),
-				{duration: 4000, curve: 'easeInOut'})
+				Transform.translate(-1600, 0, 0),
+				{duration: 2000, curve: 'easeInOut'})
 			placePhone1.setTransform(
-				Transform.translate(-3200, 0, 0),
-				{duration: 4000, curve: 'easeInOut'})
+				Transform.translate(-1600, 0, 0),
+				{duration: 2000, curve: 'easeInOut'})
 		}, 4500);
 	}
 
@@ -301,11 +286,11 @@ define(function(require, exports, module) {
 		}, 6500);
 		setTimeout(function(){
 			placeCellphoneLalita2.setTransform(
-				Transform.translate(-3200, 0, 0),
-				{duration: 4000, curve: 'easeInOut'})
+				Transform.translate(-1600, 0, 0),
+				{duration: 2000, curve: 'easeInOut'})
 			placePhone2.setTransform(
-				Transform.translate(-3200, 0, 0),
-				{duration: 4000, curve: 'easeInOut'})
+				Transform.translate(-1600, 0, 0),
+				{duration: 2000, curve: 'easeInOut'})
 		}, 10000);
 	}
 
@@ -340,14 +325,14 @@ define(function(require, exports, module) {
 		}, 12000);
 		setTimeout(function(){
 			placeCellphoneLalita3.setTransform(
-				Transform.translate(-3200, 0, 0),
-				{duration: 4000, curve: 'easeInOut'})
+				Transform.translate(-1600, 0, 0),
+				{duration: 2000, curve: 'easeInOut'})
 			placePhone3.setTransform(
-				Transform.translate(-3200, 0, 0),
-				{duration: 4000, curve: 'easeInOut'})
+				Transform.translate(-1600, 0, 0),
+				{duration: 2000, curve: 'easeInOut'})
 		}, 15500);
 	}
 
-	module.exports = One_SixLalitaVisitsMayaView;
+	module.exports = LalitaVisitsMaya;
 
 });

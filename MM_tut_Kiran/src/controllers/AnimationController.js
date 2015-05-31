@@ -23,6 +23,7 @@ define(function(require, exports, module) {
     var RegisteredView = require('animation_views/animation_slides/RegisteredView');
     var One_SixMedicMobileMessagesLalitaView = require('animation_views/animation_slides/One_SixMedicMobileMessagesLalitaView');
     var One_SixLalitaVisitsMayaView = require('animation_views/animation_slides/One_SixLalitaVisitsMayaView');
+    var One_SevenNurseCheckupView = require('animation_views/animation_slides/One_SevenNurseCheckupView');
     var Two_OneIntroMayaAndHariView = require('animation_views/animation_slides/Two_OneIntroMayaAndHariView');
     var Two_TwoIntroMayaHariCellView = require('animation_views/animation_slides/Two_TwoIntroMayaHariCellView');
     var Two_ThreeZoomToHariView = require('animation_views/animation_slides/Two_ThreeZoomToHariView');
@@ -196,9 +197,12 @@ define(function(require, exports, module) {
                     currView = new One_SixLalitaVisitsMayaView();
                     break;
                 case 11:
-                    currView = new LalitaToHariZoomView();
+                    currView = new One_SevenNurseCheckupView();
                     break;
                 case 12:
+                    currView = new LalitaToHariZoomView();
+                    break;
+                case 13:
                     currView = new LalitaConfirmView_1_8();
                     break;
                 default:
